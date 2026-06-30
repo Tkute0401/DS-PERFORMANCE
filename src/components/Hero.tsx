@@ -66,7 +66,7 @@ export default function Hero() {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover grayscale opacity-[0.15] mix-blend-screen"
-          src="https://www.digitalsupremacy.in/footer-vid.mp4"
+          src="/war-room.mp4"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950/30" />
       </div>
