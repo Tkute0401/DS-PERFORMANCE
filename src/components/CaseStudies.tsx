@@ -12,8 +12,8 @@ const CASE_STUDIES = [
     metric: "2X",
     label: "Course Conversions",
     description: "Scaled lead generation funnels while reducing customer acquisition costs by 50%.",
-    // Data points for the animated chart
-    chartPath: "M -100,250 C 100,250 200,200 300,220 C 400,240 500,100 600,120 C 700,140 800,50 1100,0"
+    chartPath: "M -100,250 C 100,250 200,200 300,220 C 400,240 500,100 600,120 C 700,140 800,50 1100,0",
+    image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=2574&auto=format&fit=crop"
   },
   {
     client: "Code Hub India",
@@ -22,7 +22,8 @@ const CASE_STUDIES = [
     metric: "120%",
     label: "Admissions",
     description: "High-ticket enrollment sales driven through hyper-targeted paid media.",
-    chartPath: "M -100,280 L 200,250 L 400,270 L 600,120 L 800,150 L 1100,0"
+    chartPath: "M -100,280 L 200,250 L 400,270 L 600,120 L 800,150 L 1100,0",
+    image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop"
   },
   {
     client: "Trading Monk",
@@ -31,7 +32,8 @@ const CASE_STUDIES = [
     metric: "3X",
     label: "Business Growth",
     description: "Optimized conversion rate architecture for course enrollments.",
-    chartPath: "M -100,280 C 300,280 400,80 1100,0"
+    chartPath: "M -100,280 C 300,280 400,80 1100,0",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"
   },
   {
     client: "Sarvital",
@@ -40,7 +42,8 @@ const CASE_STUDIES = [
     metric: "3.5x",
     label: "ROAS Maintained",
     description: "Scaled D2C health supplement sales with high-converting paid media and retention funnels.",
-    chartPath: "M -100,260 C 150,280 250,220 400,230 C 600,240 750,80 1100,0"
+    chartPath: "M -100,260 C 150,280 250,220 400,230 C 600,240 750,80 1100,0",
+    image: "https://images.unsplash.com/photo-1604871000636-074fa5117945?q=80&w=2487&auto=format&fit=crop"
   }
 ];
 
@@ -77,11 +80,22 @@ export default function CaseStudies() {
               <motion.div
                 initial="rest"
                 whileHover="hover"
-                className="group w-full h-[55vh] md:h-[65vh] min-h-[400px] md:min-h-[500px] max-h-[800px] bg-zinc-900 border border-white/5 rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 flex flex-col justify-between overflow-hidden shadow-2xl transition-all duration-500 hover:border-white/20"
+                className="group w-full h-[55vh] md:h-[65vh] min-h-[400px] md:min-h-[500px] max-h-[800px] bg-zinc-900 rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 flex flex-col justify-between overflow-hidden shadow-2xl transition-all duration-700 hover:border-white/20 border border-white/5 relative"
               >
                 
+                {/* Immersive Background Image */}
+                <div className="absolute inset-0 z-0 overflow-hidden">
+                  <img
+                    src={study.image}
+                    alt={study.client}
+                    className="w-full h-full object-cover opacity-40 mix-blend-luminosity grayscale group-hover:scale-110 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/80 to-transparent" />
+                </div>
+
                 {/* Background Data-Viz Animation (Always Visible Loop) */}
-                <div className="absolute inset-0 z-0 transition-opacity duration-700 pointer-events-none flex items-center justify-center opacity-40 group-hover:opacity-100">
+                <div className="absolute inset-0 z-0 transition-opacity duration-700 pointer-events-none flex items-center justify-center opacity-30 group-hover:opacity-100 mix-blend-screen">
                   {/* Subtle grid background to look like a chart interface */}
                   <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
                   
@@ -122,9 +136,6 @@ export default function CaseStudies() {
                       }}
                     />
                   </svg>
-
-                  {/* Dark gradient fade at the bottom so text stays legible */}
-                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-zinc-900 via-zinc-900/80 to-transparent" />
                 </div>
 
                 {/* Card Content Header */}

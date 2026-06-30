@@ -64,14 +64,15 @@ export default function Hero() {
       ref={containerRef}
       className="relative w-full min-h-[100dvh] flex flex-col justify-end pt-24 pb-6 px-6 md:px-12 overflow-hidden bg-zinc-950"
     >
-      {/* Fullscreen Animated Webp Background */}
-      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
-        <img
-          src="https://asset.eyecannndy.com/media/clip/2024/01/10/261704861468.webp"
-          alt="Hero Background"
-          className="w-full h-full object-cover opacity-20 mix-blend-screen grayscale"
+      {/* Fullscreen Animated Video Background */}
+      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden bg-zinc-950">
+        <video
+          autoPlay loop muted playsInline
+          className="w-full h-full object-cover opacity-30 mix-blend-screen grayscale"
+          src="https://www.digitalsupremacy.in/footer-vid.mp4"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(9,9,11,0.8)_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent" />
       </div>
 
       {/* Ultra-subtle engineering grid overlay (No messy blur blobs) */}
@@ -129,31 +130,17 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Brutalist Kinetic Headline (Mobile Only) */}
-        <div className="flex md:hidden flex-col w-full max-w-[100vw] overflow-hidden relative z-20 pb-6 pt-4">
-          <div className="w-full text-zinc-100 border-t border-zinc-800/50 pt-2 pb-1 relative">
-            <h1 className="hero-mobile-word text-[clamp(3rem,15vw,6rem)] font-black tracking-[-0.04em] leading-[0.85] uppercase">
-              PERFORMANCE
+        {/* Cinematic Center Headline (Mobile Only) */}
+        <div className="flex md:hidden flex-col w-full max-w-full overflow-hidden relative z-20 pb-4 text-center items-center">
+          <div className="overflow-hidden w-full">
+            <h1 className="hero-mobile-word text-[clamp(2.5rem,11vw,4rem)] font-black tracking-tighter leading-[0.9] uppercase text-zinc-100">
+              PERFORMANCE IS NOT
             </h1>
-            <span className="absolute top-3 right-0 text-[10px] font-mono text-zinc-500">SYS_01</span>
           </div>
-          <div className="w-full text-zinc-100 border-t border-zinc-800/50 pt-2 pb-1 relative">
-            <h1 className="hero-mobile-word text-[clamp(3rem,15vw,6rem)] font-black tracking-[-0.04em] leading-[0.85] uppercase">
-              IS NOT A
+          <div className="overflow-hidden w-full mt-1">
+            <h1 className="hero-mobile-word text-[clamp(2.5rem,11vw,4rem)] font-black tracking-tighter leading-[0.9] uppercase text-zinc-100">
+              A <span className="text-red-500">GUESSING</span> GAME.
             </h1>
-            <span className="absolute top-3 right-0 text-[10px] font-mono text-zinc-500">SYS_02</span>
-          </div>
-          <div className="w-full text-red-500 border-t border-red-500/20 pt-2 pb-1 relative bg-red-500/5">
-            <h1 className="hero-mobile-word text-[clamp(3rem,15vw,6rem)] font-black tracking-[-0.04em] leading-[0.85] uppercase" style={{ textShadow: '0 0 40px rgba(239,68,68,0.5)' }}>
-              GUESSING
-            </h1>
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-          </div>
-          <div className="w-full text-zinc-100 border-t border-b border-zinc-800/50 pt-2 pb-2 relative">
-            <h1 className="hero-mobile-word text-[clamp(3rem,15vw,6rem)] font-black tracking-[-0.04em] leading-[0.85] uppercase">
-              GAME.
-            </h1>
-            <span className="absolute top-3 right-0 text-[10px] font-mono text-zinc-500">SYS_04</span>
           </div>
         </div>
 
@@ -168,14 +155,14 @@ export default function Hero() {
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12 w-full">
 
             {/* CTA Group */}
-            <div className="hero-bottom-element flex flex-wrap items-center gap-4">
+            <div className="hero-bottom-element flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
               <motion.button
                 onClick={openConversionModal}
                 onMouseMove={handleMouseMove}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={handleMouseLeave}
                 style={{ x: springX, y: springY }}
-                className="group relative flex items-center justify-center gap-4 bg-zinc-100 text-zinc-950 px-8 py-5 rounded-full font-bold overflow-hidden transition-transform shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.2)]"
+                className="group relative flex items-center justify-center gap-4 bg-zinc-100 text-zinc-950 px-8 py-5 min-h-[56px] min-w-[200px] rounded-full font-bold overflow-hidden transition-transform shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] w-full sm:w-auto active:scale-95"
               >
                 <span className="relative z-10 uppercase tracking-widest text-sm">Audit My System</span>
                 <motion.div
@@ -187,7 +174,7 @@ export default function Hero() {
                 </motion.div>
               </motion.button>
 
-              <button className="px-8 py-5 rounded-full font-bold text-sm uppercase tracking-widest text-zinc-500 hover:text-white transition-colors duration-500 flex items-center justify-center gap-2 group">
+              <button className="px-8 py-5 min-h-[56px] rounded-full font-bold text-sm uppercase tracking-widest text-zinc-400 hover:text-white transition-colors duration-500 flex items-center justify-center gap-2 group w-full sm:w-auto active:scale-95">
                 See The Math
                 <ArrowDownRight weight="bold" className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
               </button>

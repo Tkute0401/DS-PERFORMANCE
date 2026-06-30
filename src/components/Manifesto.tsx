@@ -63,14 +63,15 @@ export default function Manifesto() {
       const mobileTexts = gsap.utils.toArray(".manifesto-mobile-text");
       mobileTexts.forEach((el: any) => {
         gsap.fromTo(el,
-          { y: "150%", rotationZ: 10, opacity: 0 },
+          { y: "150%", rotationZ: 15, skewX: 20, scaleY: 0.5, opacity: 0, transformOrigin: "left bottom" },
           { 
-            y: "0%", rotationZ: 0, opacity: 1, 
+            y: "0%", rotationZ: 0, skewX: 0, scaleY: 1, opacity: 1, 
+            ease: "power3.out",
             scrollTrigger: {
               trigger: el.parentElement,
               start: "top 95%",
-              end: "top 60%",
-              scrub: 1, // Mechanical, scroll-tied feel
+              end: "top 50%",
+              scrub: 1.5,
             }
           }
         );
@@ -198,60 +199,57 @@ export default function Manifesto() {
         </div>
 
         {/* Mobile Version (Brutalist Kinetic Overflow Slide-ins) */}
-        <div className="md:hidden flex flex-col gap-8 w-full px-4 pt-6 pb-12 overflow-hidden max-w-[100vw]">
+        <div className="md:hidden flex flex-col gap-6 w-full px-4 pt-6 pb-12 overflow-hidden max-w-[100vw]">
           
-          <div className="w-full flex flex-col items-start text-left gap-1 border-l-2 border-zinc-800 pl-4 py-2 relative">
-            <span className="absolute -top-3 left-0 text-[10px] font-mono text-white/30 tracking-widest uppercase bg-zinc-950 pr-2">Transmission 01</span>
+          <div className="w-full flex flex-col items-start text-left gap-1">
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[clamp(2.5rem,11vw,4.5rem)] font-black tracking-[-0.04em] uppercase leading-[0.85] text-white">
+              <h2 className="manifesto-mobile-text text-[clamp(2.5rem,11vw,4.5rem)] font-black tracking-tighter uppercase leading-[0.85] text-white">
                 THE
               </h2>
             </div>
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[clamp(2.5rem,11vw,4.5rem)] font-black tracking-[-0.04em] uppercase leading-[0.85] text-red-500 bg-white inline-block px-2">
+              <h2 className="manifesto-mobile-text text-[clamp(2.5rem,11vw,4.5rem)] font-black tracking-tighter uppercase leading-[0.85] text-red-500 bg-white inline-block px-2">
                 INDUSTRY
               </h2>
             </div>
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[clamp(2.5rem,11vw,4.5rem)] font-black tracking-[-0.04em] uppercase leading-[0.85] text-white">
+              <h2 className="manifesto-mobile-text text-[clamp(2.5rem,11vw,4.5rem)] font-black tracking-tighter uppercase leading-[0.85] text-white">
                 SELLS HOPE.
               </h2>
             </div>
           </div>
 
-          <div className="w-full flex flex-col items-start text-left gap-1 border-l-2 border-zinc-800 pl-4 py-2 relative">
-            <span className="absolute -top-3 left-0 text-[10px] font-mono text-white/30 tracking-widest uppercase bg-zinc-950 pr-2">Transmission 02</span>
+          <div className="w-full flex flex-col items-start text-left gap-1">
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[clamp(2.2rem,10vw,4rem)] font-black tracking-[-0.04em] uppercase leading-[0.85] text-zinc-400">
+              <h2 className="manifesto-mobile-text text-[clamp(2.2rem,10vw,4rem)] font-black tracking-tighter uppercase leading-[0.85] text-zinc-400">
                 WE SELL
               </h2>
             </div>
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[clamp(2.2rem,10vw,4rem)] font-black tracking-[-0.04em] uppercase leading-[0.85] text-black bg-white inline-block px-2 transform -skew-x-12">
+              <h2 className="manifesto-mobile-text text-[clamp(2.2rem,10vw,4rem)] font-black tracking-tighter uppercase leading-[0.85] text-black bg-white inline-block px-2 transform -skew-x-12">
                 MATHEMATICAL
               </h2>
             </div>
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[clamp(2.2rem,10vw,4rem)] font-black tracking-[-0.04em] uppercase leading-[0.85] text-white">
+              <h2 className="manifesto-mobile-text text-[clamp(2.2rem,10vw,4rem)] font-black tracking-tighter uppercase leading-[0.85] text-white">
                 CERTAINTY.
               </h2>
             </div>
           </div>
 
-          <div className="w-full flex flex-col items-start text-left gap-1 border-l-2 border-red-500/50 pl-4 py-2 relative bg-red-500/5">
-            <span className="absolute -top-3 left-0 text-[10px] font-mono text-red-500/80 tracking-widest uppercase bg-zinc-950 pr-2">System Warning</span>
+          <div className="w-full flex flex-col items-start text-left gap-1 pt-2">
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[clamp(1.8rem,8vw,3.5rem)] font-black tracking-[-0.04em] uppercase leading-[0.9] text-zinc-400">
+              <h2 className="manifesto-mobile-text text-[clamp(1.8rem,8vw,3.5rem)] font-black tracking-tighter uppercase leading-[0.9] text-zinc-500">
                 YOUR ROAS IS NOT
               </h2>
             </div>
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[clamp(2.5rem,11vw,4.5rem)] font-black tracking-[-0.04em] uppercase leading-[0.85] text-red-500" style={{ textShadow: '0 0 30px rgba(239,68,68,0.4)' }}>
+              <h2 className="manifesto-mobile-text text-[clamp(2.5rem,11vw,4.5rem)] font-black tracking-tighter uppercase leading-[0.85] text-red-500">
                 A LOTTERY
               </h2>
             </div>
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[clamp(2.5rem,11vw,4.5rem)] font-black tracking-[-0.04em] uppercase leading-[0.85] text-red-500" style={{ textShadow: '0 0 30px rgba(239,68,68,0.4)' }}>
+              <h2 className="manifesto-mobile-text text-[clamp(2.5rem,11vw,4.5rem)] font-black tracking-tighter uppercase leading-[0.85] text-red-500">
                 TICKET.
               </h2>
             </div>
