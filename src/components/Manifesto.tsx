@@ -9,15 +9,27 @@ import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
 const BASE_TERMS = [
-  "CAC", "ROAS", "LTV", "A/B TEST", "CTR", "CPA", "FUNNELS", "SCALE", 
-  "ATTRIBUTION", "RETENTION", "PIXELS", "CPL", "CONVERSION", "MARGIN", 
-  "GROWTH", "VELOCITY", "MRR", "CHURN", "EBITDA", "LIQUIDITY", "CPM", 
-  "PPC", "KPI", "CRO", "DATA", "TEST", "ITERATE", "CONVERT", "PROFIT"
+  { text: "CAC", isFluff: false },
+  { text: "ROAS", isFluff: false },
+  { text: "LTV", isFluff: false },
+  { text: "SYNERGY", isFluff: true },
+  { text: "IMPRESSIONS", isFluff: true },
+  { text: "AWARENESS", isFluff: true },
+  { text: "MARGIN", isFluff: false },
+  { text: "EBITDA", isFluff: false },
+  { text: "VIRALITY", isFluff: true },
+  { text: "CONVERSION", isFluff: false },
+  { text: "EYEBALLS", isFluff: true },
+  { text: "EXPOSURE", isFluff: true },
+  { text: "NET PROFIT", isFluff: false },
+  { text: "SCALE", isFluff: false },
+  { text: "ENGAGEMENT", isFluff: true },
+  { text: "PROFIT", isFluff: false }
 ];
 
 // Generate 80 chaotic but deterministically positioned terms for a true stickerbomb
 const MARKETING_TERMS = Array.from({ length: 80 }).map((_, i) => {
-  const term = BASE_TERMS[i % BASE_TERMS.length];
+  const termObj = BASE_TERMS[i % BASE_TERMS.length];
   
   // Pseudo-random deterministic placement so hydration matches
   const top = ((i * 93) % 110) - 5; // -5% to 105%
@@ -26,7 +38,15 @@ const MARKETING_TERMS = Array.from({ length: 80 }).map((_, i) => {
   const scale = 0.6 + ((i * 11) % 10) * 0.15; // 0.6 to 2.1
   const stroke = i % 3 === 0;
 
-  return { text: term, top: `${top}%`, left: `${left}%`, rotate, scale, stroke };
+  return { 
+    text: termObj.text, 
+    isFluff: termObj.isFluff,
+    top: `${top}%`, 
+    left: `${left}%`, 
+    rotate, 
+    scale, 
+    stroke 
+  };
 });
 
 export default function Manifesto() {
@@ -114,13 +134,13 @@ export default function Manifesto() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute font-black uppercase whitespace-nowrap opacity-[0.03] md:opacity-[0.06]"
+              className={`absolute font-black uppercase whitespace-nowrap ${term.isFluff ? 'opacity-[0.02] md:opacity-[0.03] line-through' : 'opacity-[0.03] md:opacity-[0.06]'}`}
               style={{
                 top: term.top,
                 left: term.left,
                 scale: term.scale,
-                WebkitTextStroke: term.stroke ? "2px white" : "none",
-                color: term.stroke ? "transparent" : "white",
+                WebkitTextStroke: term.stroke ? (term.isFluff ? "2px rgba(239, 68, 68, 0.4)" : "2px white") : "none",
+                color: term.stroke ? "transparent" : (term.isFluff ? "rgba(239, 68, 68, 0.4)" : "white"),
                 fontSize: "clamp(4rem, 8vw, 8rem)",
               }}
             >
@@ -156,15 +176,15 @@ export default function Manifesto() {
 
       </div>
 
-      <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col md:block items-center justify-center text-center gap-24 md:gap-0 h-full mix-blend-difference">
+      <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col md:block items-center justify-center text-center gap-24 md:gap-0 h-full mix-blend-difference">
         <h2 ref={text1Ref} className="md:absolute top-1/2 left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-[clamp(2.5rem,6vw,8rem)] font-black tracking-tighter uppercase leading-[0.9] w-full text-white">
-          Data Over Fluff.
+          THE INDUSTRY <br className="md:hidden" /> SELLS HOPE.
         </h2>
-        <h2 ref={text2Ref} className="md:absolute top-1/2 left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-[clamp(2.5rem,6vw,8rem)] font-black tracking-tighter uppercase leading-[0.9] md:opacity-0 w-full text-white">
-          Engineering <br className="md:hidden" /> Multipliers.
+        <h2 ref={text2Ref} className="md:absolute top-1/2 left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-[clamp(2.2rem,5vw,7.5rem)] font-black tracking-tighter uppercase leading-[0.9] md:opacity-0 w-full text-white">
+          WE SELL <br className="md:hidden" /> MATHEMATICAL <br className="hidden md:block" /> CERTAINTY.
         </h2>
-        <h2 ref={text3Ref} className="md:absolute top-1/2 left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-[clamp(2.5rem,6vw,8rem)] font-black tracking-tighter uppercase leading-[0.9] md:opacity-0 w-full text-zinc-400">
-          We don&apos;t guess.<br/>We execute.
+        <h2 ref={text3Ref} className="md:absolute top-1/2 left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-[clamp(2.2rem,5vw,7.5rem)] font-black tracking-tighter uppercase leading-[0.9] md:opacity-0 w-full text-zinc-400">
+          YOUR ROAS IS NOT <br/>A LOTTERY TICKET.
         </h2>
       </div>
 
