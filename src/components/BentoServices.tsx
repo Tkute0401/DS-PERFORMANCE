@@ -101,7 +101,9 @@ export default function BentoServices() {
       tl.to(dialRef.current, { rotation: -240, ease: "none" }, 0);
     }
     if (mobileDialRef.current) {
-      tl.to(mobileDialRef.current, { rotation: -240, ease: "none" }, 0);
+      // Start at -90deg so Node 0 is at top center (270deg / -90deg)
+      gsap.set(mobileDialRef.current, { rotation: -90 });
+      tl.to(mobileDialRef.current, { rotation: -330, ease: "none" }, 0);
     }
 
   }, { scope: containerRef });
@@ -141,7 +143,7 @@ export default function BentoServices() {
                     </h3>
                   </div>
 
-                  <div className="flex flex-col gap-2 max-h-[55vh] overflow-y-auto pb-8 scrollbar-hide">
+                  <div className="flex-1 overflow-y-auto flex flex-col gap-2 pb-8 scrollbar-hide">
                     {currentCategory.nodes.map((node) => (
                       <div key={`${currentCategory.id}-${node.id}`} className="bg-zinc-900/80 backdrop-blur-md border border-white/10 p-4 rounded-xl flex items-center gap-4">
                         <div className="p-2 bg-white/5 rounded-lg">{node.icon}</div>
@@ -161,7 +163,7 @@ export default function BentoServices() {
               {/* Fade out mask so text doesn't clash with wheel */}
               <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-t from-zinc-950 to-transparent z-10" />
               
-              <div ref={mobileDialRef} className="absolute top-[50px] w-[150vw] h-[150vw] rounded-full border-2 border-white/10 flex items-center justify-center bg-zinc-950 shadow-[0_-10px_80px_rgba(0,0,0,0.6)]">
+              <div ref={mobileDialRef} className="absolute top-[20px] w-[150vw] h-[150vw] rounded-full border-2 border-white/10 flex items-center justify-center bg-zinc-950 shadow-[0_-10px_80px_rgba(0,0,0,0.6)]">
                 {/* Inner rings */}
                 <div className="absolute inset-[8vw] rounded-full border border-white/5 border-dashed" />
                 <div className="absolute inset-[15vw] rounded-full border border-white/5" />
