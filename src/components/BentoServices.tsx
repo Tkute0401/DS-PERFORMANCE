@@ -179,8 +179,8 @@ export default function BentoServices() {
                 {dialCategories.map((cat, i) => {
                   // Position nodes at 0 (Right), 120 (Bottom Left), 240 (Top Left)
                   const angle = (i * 120) * (Math.PI / 180);
-                  const x = Math.cos(angle) * DIAL_RADIUS;
-                  const y = Math.sin(angle) * DIAL_RADIUS;
+                  const x = Math.round(Math.cos(angle) * DIAL_RADIUS);
+                  const y = Math.round(Math.sin(angle) * DIAL_RADIUS);
                   
                   const isActive = activeIndex === i;
 
