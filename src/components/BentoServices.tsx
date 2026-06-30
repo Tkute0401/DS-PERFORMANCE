@@ -66,7 +66,7 @@ export default function BentoServices() {
     <section ref={containerRef} id="services" className="w-full bg-zinc-950 relative">
       {/* Pinned Container */}
       <div ref={pinRef} className="w-full h-[100dvh] flex flex-col items-center justify-center px-4 md:px-12 overflow-hidden">
-        <div className="max-w-6xl w-full mx-auto relative flex flex-col justify-center h-full py-16 md:py-24">
+        <div className="max-w-6xl w-full mx-auto relative flex flex-col h-full py-16 md:py-20">
           
           <div className="mb-4 md:mb-8 mt-8 flex-shrink-0">
             <h2 ref={titleRef} className="text-4xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white uppercase origin-left">
@@ -74,7 +74,7 @@ export default function BentoServices() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[1fr] gap-4 md:gap-6 grid-flow-dense w-full h-[60vh] max-h-[600px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[1fr] gap-4 md:gap-6 grid-flow-dense w-full flex-1 min-h-0 pb-4">
             
             {/* Main Card: Paid Media (Takes 2 cols) */}
             <Card className="md:col-span-2">

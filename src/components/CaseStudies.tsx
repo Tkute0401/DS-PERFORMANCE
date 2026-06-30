@@ -57,9 +57,9 @@ export default function CaseStudies() {
 
       <div className="w-full max-w-6xl relative z-10 flex flex-col">
         
-        <div className="mb-24 md:mb-32">
-          <p className="font-mono text-sm tracking-widest text-zinc-500 uppercase mb-4">Phase 03</p>
-          <h2 className="text-5xl md:text-7xl font-black tracking-tighter">
+        <div className="sticky top-12 md:top-24 z-20 mb-12 md:mb-16 pointer-events-none drop-shadow-xl">
+          <p className="font-mono text-sm tracking-widest text-zinc-500 uppercase mb-2 md:mb-4">Phase 03</p>
+          <h2 className="text-4xl md:text-7xl font-black tracking-tighter mix-blend-difference text-white">
             THE ARCHIVE.
           </h2>
         </div>
@@ -71,8 +71,8 @@ export default function CaseStudies() {
               href={`/case-studies/${study.slug}`}
               key={idx}
               className="sticky block w-full outline-none"
-              // The sticky logic: top offset increases for each card so they stack visibly
-              style={{ top: `calc(10vh + ${idx * 40}px)` }}
+              // The sticky logic: top offset starts below the title (30vh) and increases for each card
+              style={{ top: `calc(30vh + ${idx * 40}px)` }}
             >
               <motion.div
                 initial="rest"

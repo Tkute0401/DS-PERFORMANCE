@@ -56,7 +56,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full min-h-[100dvh] flex flex-col justify-end pt-32 pb-12 px-6 md:px-12 overflow-hidden bg-zinc-950"
+      className="relative w-full min-h-[100dvh] flex flex-col justify-end pt-24 pb-6 px-6 md:px-12 overflow-hidden bg-zinc-950"
     >
       {/* Ultra-subtle engineering grid overlay (No messy blur blobs) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
@@ -71,7 +71,7 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative z-10 w-full max-w-[100rem] mx-auto flex flex-col items-start gap-12 mt-auto">
+      <div className="relative z-10 w-full max-w-[100rem] mx-auto flex flex-col items-start gap-6 mt-auto">
 
         {/* Top Tag */}
         <motion.div
@@ -114,7 +114,7 @@ export default function Hero() {
         </div>
 
         {/* Bottom Section: Subtitle above the Action+Proof block */}
-        <div className="w-full flex flex-col gap-12 border-t border-white/10 pt-12 mt-8">
+        <div className="w-full flex flex-col gap-8 border-t border-white/10 pt-6 mt-4">
 
           <p className="hero-bottom-element text-xl md:text-3xl text-zinc-400 font-light tracking-tight max-w-3xl leading-relaxed">
             We don't just run ads. We build <strong className="text-white font-medium">8-figure revenue engines</strong> based on mathematical certainty.
