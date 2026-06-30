@@ -94,7 +94,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 3, duration: 1 }}
-          className="flex items-center gap-3 border border-red-500/30 rounded-full px-4 py-2 bg-red-500/10 backdrop-blur-md"
+          className="flex items-center gap-3 border border-red-500/30 rounded-full px-4 py-2 bg-red-500/10 backdrop-blur-md mb-6 md:mb-0"
         >
           <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
           <span className="text-xs font-mono font-bold tracking-widest text-red-200 uppercase">Warning: Not a traditional agency</span>
@@ -130,49 +130,41 @@ export default function Hero() {
         </div>
 
         {/* Brutalist Kinetic Headline (Mobile Only) */}
-        <div className="flex md:hidden flex-col w-full max-w-[100vw] overflow-hidden gap-1 relative z-20 pb-4">
+        <div className="flex md:hidden flex-col w-full max-w-[100vw] overflow-hidden relative z-20 pb-4">
           <motion.div 
             whileTap={{ x: [-5, 5, -5, 5, 0], filter: "invert(100%)", scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="w-full bg-zinc-100 text-zinc-950 px-3 py-1"
+            className="w-full text-zinc-100"
           >
-            <h1 className="hero-mobile-word text-[clamp(2.5rem,10.5vw,4.5rem)] font-black tracking-tighter leading-[0.85] uppercase">
+            <h1 className="hero-mobile-word text-[clamp(2.5rem,12vw,5rem)] font-black tracking-tighter leading-[0.85] uppercase">
               PERFORMANCE
             </h1>
           </motion.div>
           <motion.div 
             whileTap={{ x: [5, -5, 5, -5, 0], filter: "invert(100%)", scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="w-full text-zinc-100 px-3 py-1"
+            className="w-full text-zinc-100"
           >
-            <h1 className="hero-mobile-word text-[clamp(2.5rem,10.5vw,4.5rem)] font-black tracking-tighter leading-[0.85] uppercase">
+            <h1 className="hero-mobile-word text-[clamp(2.5rem,12vw,5rem)] font-black tracking-tighter leading-[0.85] uppercase">
               IS NOT A
             </h1>
           </motion.div>
           
-          <div className="w-full h-20 my-1 overflow-hidden border border-red-500/30">
-            <video
-              autoPlay loop muted playsInline
-              className="w-full h-full object-cover grayscale mix-blend-screen opacity-80"
-              src="https://www.digitalsupremacy.in/footer-vid.mp4"
-            />
-          </div>
-
           <motion.div 
             whileTap={{ x: [-5, 5, -5, 5, 0], filter: "invert(100%)", scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="w-full bg-red-600 text-white px-3 py-1"
+            className="w-full text-red-500"
           >
-            <h1 className="hero-mobile-word text-[clamp(2.5rem,11vw,5rem)] font-black tracking-tighter leading-[0.85] uppercase">
+            <h1 className="hero-mobile-word text-[clamp(2.5rem,12vw,5rem)] font-black tracking-tighter leading-[0.85] uppercase">
               GUESSING
             </h1>
           </motion.div>
           <motion.div 
             whileTap={{ x: [5, -5, 5, -5, 0], filter: "invert(100%)", scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="w-full text-zinc-100 px-3 py-1 border border-zinc-800"
+            className="w-full text-zinc-100"
           >
-            <h1 className="hero-mobile-word text-[clamp(2.5rem,11vw,5rem)] font-black tracking-tighter leading-[0.85] uppercase">
+            <h1 className="hero-mobile-word text-[clamp(2.5rem,12vw,5rem)] font-black tracking-tighter leading-[0.85] uppercase">
               GAME.
             </h1>
           </motion.div>

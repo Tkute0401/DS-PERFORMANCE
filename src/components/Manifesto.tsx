@@ -198,7 +198,7 @@ export default function Manifesto() {
         </div>
 
         {/* Mobile Version (Brutalist Kinetic Overflow Slide-ins) */}
-        <div className="md:hidden flex flex-col gap-10 w-full px-4 pt-12 overflow-hidden max-w-[100vw]">
+        <div className="md:hidden flex flex-col gap-6 w-full px-4 pt-6 pb-12 overflow-hidden max-w-[100vw]">
           
           <div className="w-full flex flex-col items-start text-left gap-1">
             <div className="overflow-hidden w-full">
@@ -236,7 +236,7 @@ export default function Manifesto() {
             </div>
           </div>
 
-          <div className="w-full flex flex-col items-start text-left gap-1 border-t border-red-500 pt-6 mt-6">
+          <div className="w-full flex flex-col items-start text-left gap-1 pt-2">
             <div className="overflow-hidden w-full">
               <h2 className="manifesto-mobile-text text-[clamp(1.8rem,8vw,3.5rem)] font-black tracking-tighter uppercase leading-[0.9] text-zinc-500">
                 YOUR ROAS IS NOT
