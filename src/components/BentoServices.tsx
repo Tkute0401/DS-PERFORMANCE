@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import { 
   Target, Funnel, MagnifyingGlass, Browser, 
   ShareNetwork, PenNib, Envelope, ChartLineUp, VideoCamera,
@@ -73,6 +73,38 @@ export default function BentoServices() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  const progress = useMotionValue(0);
+
+  // Hook-compliant pre-calculation for the 3 root nodes' scroll animations
+  const m0 = useTransform(progress, [0.05, 0.3], [0, 1]);
+  const m1 = useTransform(progress, [0.35, 0.6], [0, 1]);
+  const m2 = useTransform(progress, [0.65, 0.9], [0, 1]);
+  
+  const rootMultipliers = [m0, m1, m2];
+  
+  const RADIUS = 320; 
+
+  const x0 = useTransform(m0, [0, 1], [0, Math.cos(-Math.PI / 2) * RADIUS]);
+  const y0 = useTransform(m0, [0, 1], [0, Math.sin(-Math.PI / 2) * RADIUS]);
+  const o0 = useTransform(m0, [0, 1], [0, 1]);
+  const s0 = useTransform(m0, [0, 1], [0, 1]);
+
+  const x1 = useTransform(m1, [0, 1], [0, Math.cos((1 / 3) * 2 * Math.PI - Math.PI / 2) * RADIUS]);
+  const y1 = useTransform(m1, [0, 1], [0, Math.sin((1 / 3) * 2 * Math.PI - Math.PI / 2) * RADIUS]);
+  const o1 = useTransform(m1, [0, 1], [0, 1]);
+  const s1 = useTransform(m1, [0, 1], [0, 1]);
+
+  const x2 = useTransform(m2, [0, 1], [0, Math.cos((2 / 3) * 2 * Math.PI - Math.PI / 2) * RADIUS]);
+  const y2 = useTransform(m2, [0, 1], [0, Math.sin((2 / 3) * 2 * Math.PI - Math.PI / 2) * RADIUS]);
+  const o2 = useTransform(m2, [0, 1], [0, 1]);
+  const s2 = useTransform(m2, [0, 1], [0, 1]);
+
+  const rootTransforms = [
+    { x: x0, y: y0, opacity: o0, scale: s0 },
+    { x: x1, y: y1, opacity: o1, scale: s1 },
+    { x: x2, y: y2, opacity: o2, scale: s2 },
+  ];
+
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
     
@@ -86,14 +118,13 @@ export default function BentoServices() {
         pin: pinRef.current,
         scrub: 1,
         refreshPriority: 2,
+        onUpdate: (self) => progress.set(self.progress)
       }
     });
   }, { scope: containerRef });
 
   const currentData = orbitData[activeState];
   const totalNodes = currentData.nodes.length;
-  // Radius for desktop orbital math
-  const RADIUS = 320; 
 
   const handleNodeClick = (id: string) => {
     if (activeState === "root" && (id === "full" || id === "ecom" || id === "edtech")) {
@@ -154,6 +185,19 @@ export default function BentoServices() {
                   const angle = (i / totalNodes) * 2 * Math.PI - (Math.PI / 2);
                   const x = 500 + Math.cos(angle) * RADIUS;
                   const y = 400 + Math.sin(angle) * RADIUS;
+                  
+                  if (activeState === "root") {
+                    return (
+                      <motion.line
+                        key={`line-root-${i}`}
+                        style={{ pathLength: rootMultipliers[i] }}
+                        x1="500" y1="400" x2={x} y2={y}
+                        stroke="white" strokeWidth="1" strokeDasharray="4 4"
+                        opacity="0.3"
+                      />
+                    );
+                  }
+
                   return (
                     <motion.line
                       key={`line-${activeState}-${i}`}
@@ -191,6 +235,30 @@ export default function BentoServices() {
             {/* Orbiting Nodes */}
             <AnimatePresence mode="popLayout">
               {currentData.nodes.map((node, i) => {
+                if (activeState === "root") {
+                  const { x, y, opacity, scale } = rootTransforms[i];
+                  return (
+                    <motion.div
+                      key={`root-${node.id}`}
+                      style={{ x, y, opacity, scale }}
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30"
+                    >
+                      <button
+                        onClick={() => handleNodeClick(node.id)}
+                        className="w-56 bg-zinc-900 border border-white/10 p-5 rounded-2xl text-left flex flex-col gap-3 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-colors cursor-pointer hover:border-white/30 hover:bg-zinc-800 hover:scale-105 duration-300"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 bg-white/5 rounded-lg">{node.icon}</div>
+                          <h3 className="text-base font-bold text-white leading-tight">{node.title}</h3>
+                        </div>
+                        {node.desc && (
+                          <p className="text-white/50 text-xs leading-relaxed">{node.desc}</p>
+                        )}
+                      </button>
+                    </motion.div>
+                  );
+                }
+
                 const angle = (i / totalNodes) * 2 * Math.PI - (Math.PI / 2);
                 const x = Math.cos(angle) * RADIUS;
                 const y = Math.sin(angle) * RADIUS;
@@ -206,10 +274,7 @@ export default function BentoServices() {
                   >
                     <button
                       onClick={() => handleNodeClick(node.id)}
-                      className={cn(
-                        "w-56 bg-zinc-900 border border-white/10 p-5 rounded-2xl text-left flex flex-col gap-3 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-colors",
-                        activeState === "root" ? "cursor-pointer hover:border-white/30 hover:bg-zinc-800 hover:scale-105 duration-300" : "cursor-default"
-                      )}
+                      className="w-56 bg-zinc-900 border border-white/10 p-5 rounded-2xl text-left flex flex-col gap-3 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-colors cursor-default"
                     >
                       <div className="flex items-center gap-3">
                         <div className="p-2 bg-white/5 rounded-lg">{node.icon}</div>
