@@ -64,6 +64,7 @@ export default function BentoServices() {
   const pinRef = useRef<HTMLDivElement>(null);
   const dialRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState<string>("full");
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
@@ -118,31 +119,79 @@ export default function BentoServices() {
           style={{ background: `radial-gradient(circle at center, ${currentCategory.glow} 0%, transparent 70%)` }}
         />
 
-        {/* Mobile View: Vertical Stack */}
+        {/* Mobile View: Premium Accordion Stack */}
         {isMobile ? (
-          <div className="w-full max-w-md mx-auto flex flex-col gap-12 relative z-10 pt-10">
-            <div className="text-center mb-4">
-              <h2 className="text-5xl font-black tracking-tighter text-white uppercase leading-[0.9]">
+          <div className="w-full mx-auto flex flex-col gap-4 relative z-10 pt-10 pb-20">
+            <div className="text-center mb-6">
+              <h2 className="text-4xl font-black tracking-tighter text-white uppercase leading-[0.9]">
                 WEAPONIZED<br/><span className="text-red-500">INFRASTRUCTURE</span>
               </h2>
             </div>
-            {dialCategories.map((cat) => (
-              <div key={cat.id} className="flex flex-col gap-4">
-                <h3 className={cn("text-2xl font-black uppercase tracking-tighter", cat.color)}>{cat.title}</h3>
-                {cat.nodes.map((node) => (
-                  <div
-                    key={`${cat.id}-${node.id}`}
-                    className="w-full text-left bg-zinc-900/50 border border-white/10 p-5 rounded-2xl flex items-center gap-4"
+            
+            <div className="flex flex-col gap-3">
+              {dialCategories.map((cat) => {
+                const isExpanded = mobileExpanded === cat.id;
+                
+                return (
+                  <div 
+                    key={cat.id} 
+                    className={cn(
+                      "flex flex-col overflow-hidden rounded-2xl border transition-all duration-500",
+                      isExpanded ? "border-white/20 bg-zinc-900/80" : "border-white/5 bg-zinc-900/30"
+                    )}
                   >
-                    <div className="p-3 bg-white/5 rounded-xl">{node.icon}</div>
-                    <div>
-                      <h4 className="text-lg font-bold text-white">{node.title}</h4>
-                      {node.desc && <p className="text-white/50 text-sm mt-1">{node.desc}</p>}
-                    </div>
+                    {/* Accordion Header */}
+                    <button 
+                      onClick={() => setMobileExpanded(isExpanded ? "" : cat.id)}
+                      className="w-full flex items-center justify-between p-6 cursor-pointer"
+                    >
+                      <div className="flex flex-col items-start text-left">
+                        <h3 className={cn("text-2xl font-black uppercase tracking-tighter", cat.color)}>{cat.title}</h3>
+                        <span className="text-white/50 text-sm font-medium tracking-wide">{cat.subtitle}</span>
+                      </div>
+                      <div className={cn(
+                        "w-10 h-10 rounded-full flex items-center justify-center border transition-transform duration-500",
+                        isExpanded ? "rotate-180 border-white/20 bg-white/5" : "border-white/5"
+                      )}>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
+                          <path d="M2.5 5.5L7 10L11.5 5.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                    </button>
+
+                    {/* Accordion Content */}
+                    <AnimatePresence initial={false}>
+                      {isExpanded && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        >
+                          <div className="px-6 pb-6 flex flex-col gap-3">
+                            {cat.nodes.map((node, i) => (
+                              <motion.div
+                                key={`${cat.id}-${node.id}`}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: i * 0.05 }}
+                                className="w-full text-left bg-zinc-950/50 border border-white/5 p-4 rounded-xl flex items-center gap-4"
+                              >
+                                <div className="p-3 bg-white/5 rounded-lg shrink-0">{node.icon}</div>
+                                <div>
+                                  <h4 className="text-base font-bold text-white leading-tight">{node.title}</h4>
+                                  {node.desc && <p className="text-white/40 text-xs mt-1 leading-relaxed">{node.desc}</p>}
+                                </div>
+                              </motion.div>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
-                ))}
-              </div>
-            ))}
+                )
+              })}
+            </div>
           </div>
         ) : (
           /* Desktop View: Left Dial + Right Grid */
