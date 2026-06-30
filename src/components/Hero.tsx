@@ -130,44 +130,31 @@ export default function Hero() {
         </div>
 
         {/* Brutalist Kinetic Headline (Mobile Only) */}
-        <div className="flex md:hidden flex-col w-full max-w-[100vw] overflow-hidden relative z-20 pb-4">
-          <motion.div 
-            whileTap={{ x: [-5, 5, -5, 5, 0], filter: "invert(100%)", scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="w-full text-zinc-100"
-          >
-            <h1 className="hero-mobile-word text-[clamp(2.5rem,12vw,5rem)] font-black tracking-tighter leading-[0.85] uppercase">
+        <div className="flex md:hidden flex-col w-full max-w-[100vw] overflow-hidden relative z-20 pb-6 pt-4">
+          <div className="w-full text-zinc-100 border-t border-zinc-800/50 pt-2 pb-1 relative">
+            <h1 className="hero-mobile-word text-[clamp(3rem,15vw,6rem)] font-black tracking-[-0.04em] leading-[0.85] uppercase">
               PERFORMANCE
             </h1>
-          </motion.div>
-          <motion.div 
-            whileTap={{ x: [5, -5, 5, -5, 0], filter: "invert(100%)", scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="w-full text-zinc-100"
-          >
-            <h1 className="hero-mobile-word text-[clamp(2.5rem,12vw,5rem)] font-black tracking-tighter leading-[0.85] uppercase">
+            <span className="absolute top-3 right-0 text-[10px] font-mono text-zinc-500">SYS_01</span>
+          </div>
+          <div className="w-full text-zinc-100 border-t border-zinc-800/50 pt-2 pb-1 relative">
+            <h1 className="hero-mobile-word text-[clamp(3rem,15vw,6rem)] font-black tracking-[-0.04em] leading-[0.85] uppercase">
               IS NOT A
             </h1>
-          </motion.div>
-          
-          <motion.div 
-            whileTap={{ x: [-5, 5, -5, 5, 0], filter: "invert(100%)", scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="w-full text-red-500"
-          >
-            <h1 className="hero-mobile-word text-[clamp(2.5rem,12vw,5rem)] font-black tracking-tighter leading-[0.85] uppercase">
+            <span className="absolute top-3 right-0 text-[10px] font-mono text-zinc-500">SYS_02</span>
+          </div>
+          <div className="w-full text-red-500 border-t border-red-500/20 pt-2 pb-1 relative bg-red-500/5">
+            <h1 className="hero-mobile-word text-[clamp(3rem,15vw,6rem)] font-black tracking-[-0.04em] leading-[0.85] uppercase" style={{ textShadow: '0 0 40px rgba(239,68,68,0.5)' }}>
               GUESSING
             </h1>
-          </motion.div>
-          <motion.div 
-            whileTap={{ x: [5, -5, 5, -5, 0], filter: "invert(100%)", scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="w-full text-zinc-100"
-          >
-            <h1 className="hero-mobile-word text-[clamp(2.5rem,12vw,5rem)] font-black tracking-tighter leading-[0.85] uppercase">
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+          </div>
+          <div className="w-full text-zinc-100 border-t border-b border-zinc-800/50 pt-2 pb-2 relative">
+            <h1 className="hero-mobile-word text-[clamp(3rem,15vw,6rem)] font-black tracking-[-0.04em] leading-[0.85] uppercase">
               GAME.
             </h1>
-          </motion.div>
+            <span className="absolute top-3 right-0 text-[10px] font-mono text-zinc-500">SYS_04</span>
+          </div>
         </div>
 
         {/* Bottom Section: Subtitle above the Action+Proof block */}

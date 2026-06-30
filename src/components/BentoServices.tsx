@@ -122,23 +122,28 @@ export default function BentoServices() {
                   animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                   exit={{ opacity: 0, x: 20, filter: "blur(5px)" }}
                   transition={{ duration: 0.3 }}
-                  className="flex flex-col gap-4"
+                  className="flex flex-col gap-6"
                 >
-                  <div className="mb-2">
-                    <h2 className="text-xs font-bold text-white/50 tracking-widest uppercase mb-1">Systems Online</h2>
-                    <h3 className="text-[clamp(1.8rem,7vw,2.5rem)] font-black text-white uppercase tracking-tighter leading-[0.9]">
+                  <div className="mb-2 border-l-2 border-white/20 pl-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                      <h2 className="text-[10px] font-mono text-white/50 tracking-widest uppercase">System Configured</h2>
+                    </div>
+                    <h3 className="text-[clamp(1.8rem,7vw,2.5rem)] font-black text-white uppercase tracking-[-0.03em] leading-[0.9]">
                       {currentCategory.title} <br/>
                       <span className={currentCategory.color}>{currentCategory.subtitle}</span>
                     </h3>
                   </div>
 
-                  <div className="flex flex-col gap-2 max-h-[55vh] overflow-y-auto pb-8 scrollbar-hide">
-                    {currentCategory.nodes.map((node) => (
-                      <div key={`${currentCategory.id}-${node.id}`} className="bg-zinc-900/80 backdrop-blur-md border border-white/10 p-4 rounded-xl flex items-center gap-4">
-                        <div className="p-2 bg-white/5 rounded-lg">{node.icon}</div>
+                  <div className="flex flex-col gap-3 max-h-[55vh] overflow-y-auto pb-8 scrollbar-hide">
+                    {currentCategory.nodes.map((node, idx) => (
+                      <div key={`${currentCategory.id}-${node.id}`} className="bg-zinc-950/80 backdrop-blur-md border border-white/10 p-4 flex items-center gap-4 relative overflow-hidden group">
+                        <div className="absolute top-0 left-0 w-1 h-full bg-white/10 group-hover:bg-white/40 transition-colors" />
+                        <span className="absolute top-2 right-2 text-[8px] font-mono text-white/20">0{idx + 1}</span>
+                        <div className="p-2 border border-white/10 bg-zinc-900">{node.icon}</div>
                         <div>
-                          <h4 className="text-sm font-bold text-white">{node.title}</h4>
-                          <p className="text-white/50 text-xs mt-1 leading-tight">{node.desc}</p>
+                          <h4 className="text-sm font-bold text-zinc-100 uppercase tracking-tight">{node.title}</h4>
+                          <p className="text-zinc-500 font-mono text-[10px] mt-1 leading-tight tracking-wide">{node.desc}</p>
                         </div>
                       </div>
                     ))}
