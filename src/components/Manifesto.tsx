@@ -59,14 +59,20 @@ export default function Manifesto() {
   useGSAP(() => {
     // Check if we are on a desktop for scroll-jacking
     if (window.innerWidth < 768) {
-      // Mobile fallback: simple fade in
-      gsap.utils.toArray([text1Ref.current, text2Ref.current, text3Ref.current]).forEach((el: any) => {
-        gsap.fromTo(el, 
-          { opacity: 0, y: 30 }, 
-          { opacity: 1, y: 0, duration: 1, scrollTrigger: {
-            trigger: el,
-            start: "top 80%",
-          }}
+      // Brutalist Kinetic Mobile Fallback: Aggressive masked slide-ins tied to scroll
+      const mobileTexts = gsap.utils.toArray(".manifesto-mobile-text");
+      mobileTexts.forEach((el: any) => {
+        gsap.fromTo(el,
+          { y: "150%", rotationZ: 10, opacity: 0 },
+          { 
+            y: "0%", rotationZ: 0, opacity: 1, 
+            scrollTrigger: {
+              trigger: el.parentElement,
+              start: "top 95%",
+              end: "top 60%",
+              scrub: 1, // Mechanical, scroll-tied feel
+            }
+          }
         );
       });
       return;
@@ -176,16 +182,80 @@ export default function Manifesto() {
 
       </div>
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col md:block items-center justify-center text-center gap-12 md:gap-0 h-full mix-blend-difference">
-        <h2 ref={text1Ref} className="md:absolute top-1/2 left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-[clamp(2.2rem,6vw,8rem)] font-black tracking-tighter uppercase leading-[0.9] w-full text-white">
-          THE INDUSTRY <br className="md:hidden" /> SELLS HOPE.
-        </h2>
-        <h2 ref={text2Ref} className="md:absolute top-1/2 left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-[clamp(2rem,5vw,7.5rem)] font-black tracking-tighter uppercase leading-[0.9] md:opacity-0 w-full text-white">
-          WE SELL <br className="md:hidden" /> MATHEMATICAL <br className="hidden md:block" /> CERTAINTY.
-        </h2>
-        <h2 ref={text3Ref} className="md:absolute top-1/2 left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-[clamp(2rem,5vw,7.5rem)] font-black tracking-tighter uppercase leading-[0.9] md:opacity-0 w-full text-zinc-400">
-          YOUR ROAS IS NOT <br/>A LOTTERY TICKET.
-        </h2>
+      <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center justify-center text-center h-full mix-blend-difference pb-24 md:pb-0">
+        
+        {/* Desktop Version (Scroll-jacked centered text) */}
+        <div className="hidden md:block w-full h-full relative">
+          <h2 ref={text1Ref} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(2.5rem,6vw,8rem)] font-black tracking-tighter uppercase leading-[0.9] w-full text-white">
+            THE INDUSTRY SELLS HOPE.
+          </h2>
+          <h2 ref={text2Ref} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(2.2rem,5vw,7.5rem)] font-black tracking-tighter uppercase leading-[0.9] opacity-0 w-full text-white">
+            WE SELL MATHEMATICAL CERTAINTY.
+          </h2>
+          <h2 ref={text3Ref} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(2.2rem,5vw,7.5rem)] font-black tracking-tighter uppercase leading-[0.9] opacity-0 w-full text-zinc-400">
+            YOUR ROAS IS NOT <br/>A LOTTERY TICKET.
+          </h2>
+        </div>
+
+        {/* Mobile Version (Brutalist Kinetic Overflow Slide-ins) */}
+        <div className="md:hidden flex flex-col gap-24 w-full px-4 pt-12">
+          
+          <div className="w-full flex flex-col items-start text-left gap-2">
+            <div className="overflow-hidden w-full">
+              <h2 className="manifesto-mobile-text text-[15vw] font-black tracking-tighter uppercase leading-[0.8] text-white">
+                THE
+              </h2>
+            </div>
+            <div className="overflow-hidden w-full">
+              <h2 className="manifesto-mobile-text text-[15vw] font-black tracking-tighter uppercase leading-[0.8] text-red-500 bg-white inline-block px-2">
+                INDUSTRY
+              </h2>
+            </div>
+            <div className="overflow-hidden w-full">
+              <h2 className="manifesto-mobile-text text-[15vw] font-black tracking-tighter uppercase leading-[0.8] text-white">
+                SELLS HOPE.
+              </h2>
+            </div>
+          </div>
+
+          <div className="w-full flex flex-col items-start text-left gap-2">
+            <div className="overflow-hidden w-full">
+              <h2 className="manifesto-mobile-text text-[14vw] font-black tracking-tighter uppercase leading-[0.8] text-zinc-400">
+                WE SELL
+              </h2>
+            </div>
+            <div className="overflow-hidden w-full">
+              <h2 className="manifesto-mobile-text text-[14vw] font-black tracking-tighter uppercase leading-[0.8] text-black bg-white inline-block px-2 transform -skew-x-12">
+                MATHEMATICAL
+              </h2>
+            </div>
+            <div className="overflow-hidden w-full">
+              <h2 className="manifesto-mobile-text text-[14vw] font-black tracking-tighter uppercase leading-[0.8] text-white">
+                CERTAINTY.
+              </h2>
+            </div>
+          </div>
+
+          <div className="w-full flex flex-col items-start text-left gap-2 border-t border-red-500 pt-8 mt-12">
+            <div className="overflow-hidden w-full">
+              <h2 className="manifesto-mobile-text text-[11vw] font-black tracking-tighter uppercase leading-[0.85] text-zinc-500">
+                YOUR ROAS IS NOT
+              </h2>
+            </div>
+            <div className="overflow-hidden w-full">
+              <h2 className="manifesto-mobile-text text-[14vw] font-black tracking-tighter uppercase leading-[0.8] text-red-500">
+                A LOTTERY
+              </h2>
+            </div>
+            <div className="overflow-hidden w-full">
+              <h2 className="manifesto-mobile-text text-[14vw] font-black tracking-tighter uppercase leading-[0.8] text-red-500">
+                TICKET.
+              </h2>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
     </section>

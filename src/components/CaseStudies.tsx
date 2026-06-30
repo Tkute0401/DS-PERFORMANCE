@@ -1,7 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
-
 import { ArrowUpRight } from "@phosphor-icons/react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -47,15 +45,6 @@ const CASE_STUDIES = [
 ];
 
 export default function CaseStudies() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
   return (
     <section className="relative w-full bg-zinc-950 text-white py-32 px-6 md:px-12 flex flex-col items-center">
       
@@ -82,13 +71,13 @@ export default function CaseStudies() {
               href={`/case-studies/${study.slug}`}
               key={idx}
               className="sticky block w-full outline-none"
-              // The sticky logic: tighter top offset on mobile so cards don't stack out of view
-              style={{ top: `calc(${isMobile ? 20 : 30}vh + ${idx * (isMobile ? 20 : 40)}px)` }}
+              // The sticky logic: top offset starts below the title (30vh) and increases for each card
+              style={{ top: `calc(30vh + ${idx * 40}px)` }}
             >
               <motion.div
                 initial="rest"
                 whileHover="hover"
-                className="group w-full h-[65vh] min-h-[400px] md:min-h-[500px] max-h-[800px] bg-zinc-900 border border-white/5 rounded-[2.5rem] p-8 md:p-12 flex flex-col justify-between overflow-hidden shadow-2xl transition-all duration-500 hover:border-white/20"
+                className="group w-full h-[65vh] min-h-[500px] max-h-[800px] bg-zinc-900 border border-white/5 rounded-[2.5rem] p-8 md:p-12 flex flex-col justify-between overflow-hidden shadow-2xl transition-all duration-500 hover:border-white/20"
               >
                 
                 {/* Background Data-Viz Animation (Always Visible Loop) */}

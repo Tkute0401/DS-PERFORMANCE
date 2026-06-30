@@ -24,6 +24,13 @@ export default function Hero() {
       { y: 0, opacity: 1, rotationX: 0, scale: 1, duration: 1.0, stagger: 0.1, ease: "power4.out" }
     );
 
+    const mobileWords = gsap.utils.toArray(".hero-mobile-word");
+    tl.fromTo(mobileWords,
+      { opacity: 0, scale: 2, filter: "blur(10px)" },
+      { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.8, stagger: 0.15, ease: "expo.out" },
+      "-=1.0"
+    );
+
     // Animate Action+Proof block
     tl.fromTo(".hero-bottom-element",
       { y: 30, opacity: 0 },
@@ -55,7 +62,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full min-h-[100dvh] flex flex-col justify-end pt-24 pb-8 px-4 md:px-12 overflow-hidden bg-zinc-950"
+      className="relative w-full min-h-[100dvh] flex flex-col justify-end pt-24 pb-6 px-6 md:px-12 overflow-hidden bg-zinc-950"
     >
       {/* Fullscreen Animated Webp Background */}
       <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
@@ -93,10 +100,10 @@ export default function Hero() {
           <span className="text-xs font-mono font-bold tracking-widest text-red-200 uppercase">Warning: Not a traditional agency</span>
         </motion.div>
 
-        {/* Massive Editorial Headline */}
-        <div ref={headlineRef} className="flex flex-col w-full">
+        {/* Massive Editorial Headline (Desktop) */}
+        <div ref={headlineRef} className="hidden md:flex flex-col w-full">
           <div className="overflow-hidden pb-4">
-            <h1 className="hero-word text-[clamp(2.5rem,8vw,7.5rem)] font-black tracking-tighter text-zinc-100 leading-[0.85] uppercase origin-bottom">
+            <h1 className="hero-word text-[clamp(1.8rem,5vw,7.5rem)] font-black tracking-tighter text-zinc-100 leading-[0.85] uppercase origin-bottom">
               PERFORMANCE IS NOT A
             </h1>
           </div>
@@ -115,17 +122,66 @@ export default function Hero() {
               />
             </motion.div>
             <div className="overflow-hidden pb-4">
-              <h1 className="hero-word text-[clamp(2.5rem,8vw,7.5rem)] font-black tracking-tighter text-zinc-100 leading-[0.85] uppercase origin-bottom">
+              <h1 className="hero-word text-[clamp(1.8rem,5vw,7.5rem)] font-black tracking-tighter text-zinc-100 leading-[0.85] uppercase origin-bottom">
                 GUESSING GAME.
               </h1>
             </div>
           </div>
         </div>
 
+        {/* Brutalist Kinetic Headline (Mobile Only) */}
+        <div className="flex md:hidden flex-col w-full gap-2 relative z-20">
+          <motion.div 
+            whileTap={{ x: [-5, 5, -5, 5, 0], filter: "invert(100%)", scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden w-full bg-zinc-100 text-zinc-950 p-2"
+          >
+            <h1 className="hero-mobile-word text-[13vw] font-black tracking-tighter leading-none uppercase">
+              PERFORMANCE
+            </h1>
+          </motion.div>
+          <motion.div 
+            whileTap={{ x: [5, -5, 5, -5, 0], filter: "invert(100%)", scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden w-full text-zinc-100 p-2"
+          >
+            <h1 className="hero-mobile-word text-[13vw] font-black tracking-tighter leading-none uppercase">
+              IS NOT A
+            </h1>
+          </motion.div>
+          
+          <div className="w-full h-24 my-2 overflow-hidden border border-red-500/30">
+            <video
+              autoPlay loop muted playsInline
+              className="w-full h-full object-cover grayscale mix-blend-screen opacity-80"
+              src="https://www.digitalsupremacy.in/footer-vid.mp4"
+            />
+          </div>
+
+          <motion.div 
+            whileTap={{ x: [-5, 5, -5, 5, 0], filter: "invert(100%)", scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden w-full bg-red-600 text-white p-2"
+          >
+            <h1 className="hero-mobile-word text-[14vw] font-black tracking-tighter leading-none uppercase">
+              GUESSING
+            </h1>
+          </motion.div>
+          <motion.div 
+            whileTap={{ x: [5, -5, 5, -5, 0], filter: "invert(100%)", scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden w-full text-zinc-100 p-2 border border-zinc-800"
+          >
+            <h1 className="hero-mobile-word text-[14vw] font-black tracking-tighter leading-none uppercase">
+              GAME.
+            </h1>
+          </motion.div>
+        </div>
+
         {/* Bottom Section: Subtitle above the Action+Proof block */}
         <div className="w-full flex flex-col gap-8 border-t border-white/10 pt-6 mt-4">
 
-          <p className="hero-bottom-element text-lg md:text-3xl text-zinc-400 font-light tracking-tight max-w-4xl leading-relaxed">
+          <p className="hero-bottom-element text-xl md:text-3xl text-zinc-400 font-light tracking-tight max-w-4xl leading-relaxed">
             Stop burning capital on hopeful ad campaigns. We build <strong className="text-white font-medium">ruthless, data-backed acquisition systems</strong> engineered for mathematical certainty.
           </p>
 
@@ -133,7 +189,7 @@ export default function Hero() {
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12 w-full">
 
             {/* CTA Group */}
-            <div className="hero-bottom-element flex flex-col md:flex-row md:items-center gap-4 w-full md:w-auto">
+            <div className="hero-bottom-element flex flex-wrap items-center gap-4">
               <motion.button
                 onClick={openConversionModal}
                 onMouseMove={handleMouseMove}
@@ -152,14 +208,14 @@ export default function Hero() {
                 </motion.div>
               </motion.button>
 
-              <button className="px-8 py-4 md:py-5 rounded-full font-bold text-sm uppercase tracking-widest text-zinc-500 hover:text-white transition-colors duration-500 flex items-center justify-center gap-2 group border border-white/5 md:border-none">
+              <button className="px-8 py-5 rounded-full font-bold text-sm uppercase tracking-widest text-zinc-500 hover:text-white transition-colors duration-500 flex items-center justify-center gap-2 group">
                 See The Math
                 <ArrowDownRight weight="bold" className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
               </button>
             </div>
 
             {/* Stats Grid - Directly adjacent to CTA for psychological proof */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-16 w-full lg:w-auto shrink-0 border-t lg:border-t-0 lg:border-l border-white/10 pt-8 lg:pt-0 lg:pl-16">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-16 w-full lg:w-auto shrink-0 border-t lg:border-t-0 lg:border-l border-white/10 pt-8 lg:pt-0 lg:pl-16">
               <div className="hero-bottom-element flex flex-col gap-2">
                 <span className="text-xs font-mono font-bold tracking-widest text-zinc-500 uppercase">Capital Deployed</span>
                 <span className="text-4xl md:text-5xl font-black tracking-tighter text-white">$100M<span className="text-zinc-600">+</span></span>

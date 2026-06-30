@@ -63,8 +63,8 @@ export default function BentoServices() {
   const containerRef = useRef<HTMLDivElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
   const dialRef = useRef<HTMLDivElement>(null);
+  const mobileDialRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [mobileExpanded, setMobileExpanded] = useState<string>("full");
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
@@ -76,8 +76,6 @@ export default function BentoServices() {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
     
-    if (window.innerWidth < 1024) return;
-
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
@@ -99,10 +97,12 @@ export default function BentoServices() {
     });
 
     // Rotate the dial exactly -240 degrees over the entire scroll length
-    tl.to(dialRef.current, {
-      rotation: -240,
-      ease: "none"
-    });
+    if (dialRef.current) {
+      tl.to(dialRef.current, { rotation: -240, ease: "none" }, 0);
+    }
+    if (mobileDialRef.current) {
+      tl.to(mobileDialRef.current, { rotation: -240, ease: "none" }, 0);
+    }
 
   }, { scope: containerRef });
 
@@ -119,78 +119,84 @@ export default function BentoServices() {
           style={{ background: `radial-gradient(circle at center, ${currentCategory.glow} 0%, transparent 70%)` }}
         />
 
-        {/* Mobile View: Premium Accordion Stack */}
+        {/* Mobile View: Brutalist Kinetic Click-Wheel */}
         {isMobile ? (
-          <div className="w-full mx-auto flex flex-col gap-4 relative z-10 pt-10 pb-20">
-            <div className="text-center mb-6">
-              <h2 className="text-4xl font-black tracking-tighter text-white uppercase leading-[0.9]">
-                WEAPONIZED<br/><span className="text-red-500">INFRASTRUCTURE</span>
-              </h2>
-            </div>
-            
-            <div className="flex flex-col gap-3">
-              {dialCategories.map((cat) => {
-                const isExpanded = mobileExpanded === cat.id;
-                
-                return (
-                  <div 
-                    key={cat.id} 
-                    className={cn(
-                      "flex flex-col overflow-hidden rounded-2xl border transition-all duration-500",
-                      isExpanded ? "border-white/20 bg-zinc-900/80" : "border-white/5 bg-zinc-900/30"
-                    )}
-                  >
-                    {/* Accordion Header */}
-                    <button 
-                      onClick={() => setMobileExpanded(isExpanded ? "" : cat.id)}
-                      className="w-full flex items-center justify-between p-6 cursor-pointer"
-                    >
-                      <div className="flex flex-col items-start text-left">
-                        <h3 className={cn("text-2xl font-black uppercase tracking-tighter", cat.color)}>{cat.title}</h3>
-                        <span className="text-white/50 text-sm font-medium tracking-wide">{cat.subtitle}</span>
-                      </div>
-                      <div className={cn(
-                        "w-10 h-10 rounded-full flex items-center justify-center border transition-transform duration-500",
-                        isExpanded ? "rotate-180 border-white/20 bg-white/5" : "border-white/5"
-                      )}>
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
-                          <path d="M2.5 5.5L7 10L11.5 5.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </div>
-                    </button>
-
-                    {/* Accordion Content */}
-                    <AnimatePresence initial={false}>
-                      {isExpanded && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                        >
-                          <div className="px-6 pb-6 flex flex-col gap-3">
-                            {cat.nodes.map((node, i) => (
-                              <motion.div
-                                key={`${cat.id}-${node.id}`}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: i * 0.05 }}
-                                className="w-full text-left bg-zinc-950/50 border border-white/5 p-4 rounded-xl flex items-center gap-4"
-                              >
-                                <div className="p-3 bg-white/5 rounded-lg shrink-0">{node.icon}</div>
-                                <div>
-                                  <h4 className="text-base font-bold text-white leading-tight">{node.title}</h4>
-                                  {node.desc && <p className="text-white/40 text-xs mt-1 leading-relaxed">{node.desc}</p>}
-                                </div>
-                              </motion.div>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+          <div className="w-full h-[100dvh] flex flex-col justify-between relative z-10 pt-24 overflow-hidden">
+            {/* Top Area: Data Grid */}
+            <div className="flex-1 w-full flex flex-col px-4 z-20">
+              <AnimatePresence mode="wait">
+                <motion.div 
+                  key={currentCategory.id}
+                  initial={{ opacity: 0, x: -20, filter: "blur(5px)" }}
+                  animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, x: 20, filter: "blur(5px)" }}
+                  transition={{ duration: 0.3 }}
+                  className="flex flex-col gap-4"
+                >
+                  <div className="mb-2">
+                    <h2 className="text-xs font-bold text-white/50 tracking-widest uppercase mb-1">Systems Online</h2>
+                    <h3 className="text-4xl font-black text-white uppercase tracking-tighter leading-[0.9]">
+                      {currentCategory.title} <br/>
+                      <span className={currentCategory.color}>{currentCategory.subtitle}</span>
+                    </h3>
                   </div>
-                )
-              })}
+
+                  <div className="flex flex-col gap-2 max-h-[55vh] overflow-y-auto pb-8 scrollbar-hide">
+                    {currentCategory.nodes.map((node) => (
+                      <div key={`${currentCategory.id}-${node.id}`} className="bg-zinc-900/80 backdrop-blur-md border border-white/10 p-4 rounded-xl flex items-center gap-4">
+                        <div className="p-2 bg-white/5 rounded-lg">{node.icon}</div>
+                        <div>
+                          <h4 className="text-sm font-bold text-white">{node.title}</h4>
+                          <p className="text-white/50 text-xs mt-1 leading-tight">{node.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Bottom Area: The Click-Wheel Dial */}
+            <div className="h-[200px] w-full relative flex justify-center mt-auto pointer-events-none">
+              {/* Fade out mask so text doesn't clash with wheel */}
+              <div className="absolute -top-12 left-0 right-0 h-12 bg-gradient-to-t from-zinc-950 to-transparent z-10" />
+              
+              <div ref={mobileDialRef} className="absolute top-1/4 w-[500px] h-[500px] rounded-full border-2 border-white/10 flex items-center justify-center bg-zinc-950 shadow-[0_-10px_50px_rgba(0,0,0,0.8)]">
+                {/* Inner rings */}
+                <div className="absolute inset-8 rounded-full border border-white/5 border-dashed" />
+                <div className="absolute inset-24 rounded-full border border-white/5" />
+                
+                {/* Center Core */}
+                <div className="w-32 h-32 rounded-full bg-zinc-900 flex items-center justify-center border border-white/20">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">SCROLL</span>
+                </div>
+
+                {/* Dial Nodes */}
+                {dialCategories.map((cat, i) => {
+                  const angle = (i * 120) * (Math.PI / 180);
+                  const x = Math.round(Math.cos(angle) * 250); // radius 250
+                  const y = Math.round(Math.sin(angle) * 250);
+                  const isActive = activeIndex === i;
+
+                  return (
+                    <div 
+                      key={cat.id}
+                      className="absolute top-1/2 left-1/2"
+                      style={{ transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))` }}
+                    >
+                      <div className={cn(
+                        "w-16 h-16 rounded-full flex items-center justify-center transition-all duration-500",
+                        isActive ? "bg-zinc-800 border " + cat.color.replace('text', 'border') : "bg-zinc-950 border border-white/10"
+                      )}>
+                        <div className={cn(
+                          "w-8 h-8 rounded-full",
+                          isActive ? cat.color.replace('text', 'bg') : "bg-white/10"
+                        )} style={{ boxShadow: isActive ? `0 0 20px ${cat.glow}` : 'none' }} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         ) : (
