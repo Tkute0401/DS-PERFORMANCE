@@ -2,7 +2,10 @@
 
 import { useRef } from "react";
 import { motion } from "framer-motion";
-import { Target, ShareNetwork, Desktop, Magnet, PresentationChart, ArrowDown } from "@phosphor-icons/react";
+import { 
+  Target, Funnel, MagnifyingGlass, Browser, 
+  ShareNetwork, PenNib, Envelope, ChartLineUp, VideoCamera
+} from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -12,7 +15,7 @@ const Card = ({ children, className, cardRef }: { children: React.ReactNode, cla
   <div
     ref={cardRef}
     className={cn(
-      "bento-card relative rounded-3xl lg:rounded-[2rem] bg-zinc-950 border border-white/10 p-6 lg:p-8 overflow-hidden group will-change-transform shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]",
+      "bento-card relative rounded-2xl bg-zinc-950 border border-white/10 p-5 lg:p-6 overflow-hidden group will-change-transform shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]",
       className
     )}
   >
@@ -30,184 +33,203 @@ export default function BentoServices() {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
     
+    // Check for mobile to avoid pinning massive grids poorly
+    const isMobile = window.innerWidth < 1024;
+
     const cards = gsap.utils.toArray(".bento-card");
     
+    if (isMobile) {
+      // Simple fade in on mobile
+      cards.forEach((card: any) => {
+        gsap.fromTo(card, 
+          { opacity: 0, y: 30 }, 
+          { opacity: 1, y: 0, duration: 1, scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+          }}
+        );
+      });
+      return;
+    }
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top top",
-        end: "+=2000", // scroll distance for the pin
+        end: "+=2000",
         pin: pinRef.current,
-        scrub: 1, // smooth elastic scrub
-        refreshPriority: 2, // Fixes order of calculations with CaseStudies
+        scrub: 1,
+        refreshPriority: 2,
       }
     });
 
-    // Initially position cards out of view, stretched
-    gsap.set(cards, { y: window.innerHeight, scaleY: 1.5, scaleX: 0.9, opacity: 0 });
+    // Initially position cards out of view
+    gsap.set(cards, { y: window.innerHeight, scale: 0.9, opacity: 0 });
 
-    // Title shrinks slightly
-    tl.to(titleRef.current, { scale: 0.8, opacity: 0.3, y: -50, duration: 1 })
-    
-    // Cards slam in sequentially representing the funnel flow
-    .to(cards, {
-      y: 0,
-      scaleY: 1,
-      scaleX: 1,
-      opacity: 1,
-      stagger: 0.15,
-      duration: 1.5,
-      ease: "elastic.out(1, 0.5)"
-    }, "<");
+    tl.to(titleRef.current, { scale: 0.85, opacity: 0.5, y: -20, duration: 1 })
+      .to(cards, {
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        stagger: 0.08,
+        duration: 1.5,
+        ease: "power3.out"
+      }, "<");
 
   }, { scope: containerRef });
 
   return (
     <section ref={containerRef} id="services" className="w-full bg-zinc-950 relative">
-      {/* Pinned Container */}
-      <div ref={pinRef} className="w-full h-[100dvh] flex flex-col items-center justify-center px-4 md:px-8 lg:px-12 overflow-hidden">
-        <div className="max-w-6xl w-full mx-auto relative flex flex-col h-full py-6 lg:py-12">
+      <div ref={pinRef} className="w-full min-h-[100dvh] flex flex-col items-center justify-center px-4 md:px-6 lg:px-8 overflow-hidden py-12 lg:py-0">
+        <div className="max-w-[1400px] w-full mx-auto relative flex flex-col h-full py-6">
           
-          <div className="mb-4 mt-2 lg:mt-6 flex-shrink-0 relative z-20">
-            <h2 ref={titleRef} className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white uppercase origin-left">
-              THE PERFORMANCE <br /> <span className="text-white/30">ENGINE.</span>
+          <div className="mb-6 lg:mb-10 flex-shrink-0 text-center md:text-left">
+            <h2 ref={titleRef} className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter text-white uppercase origin-left">
+              WEAPONIZED <br className="hidden md:block" /> <span className="text-red-500">INFRASTRUCTURE.</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-fr gap-4 grid-flow-row w-full flex-1 min-h-0 pb-4 relative">
+          {/* 4x3 Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(180px,auto)] lg:auto-rows-[minmax(200px,1fr)] gap-3 lg:gap-4 w-full flex-1 min-h-0">
             
-            {/* Visual Funnel Connection Lines (Desktop only) */}
-            <div className="absolute inset-0 pointer-events-none hidden md:block z-0">
-               {/* Line from Traffic to Capture */}
-               <motion.div 
-                 animate={{ opacity: [0.1, 0.5, 0.1] }}
-                 transition={{ duration: 3, repeat: Infinity }}
-                 className="absolute top-[30%] left-[33%] w-[34%] h-px bg-gradient-to-r from-white/0 via-white/30 to-white/0" 
-               />
-               {/* Vertical line down to Close */}
-               <motion.div 
-                 animate={{ opacity: [0.1, 0.5, 0.1] }}
-                 transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-                 className="absolute top-[63%] left-1/2 w-px h-[10%] bg-gradient-to-b from-white/30 to-white/0" 
-               />
-            </div>
-
-            {/* LEVEL 1: TRAFFIC (Top of Funnel) */}
-            
-            <Card className="md:col-span-2">
-              <div className="flex justify-between items-start mb-4 lg:mb-6">
-                <div className="p-3 lg:p-4 bg-white/5 rounded-2xl border border-white/10">
-                  <Target weight="duotone" className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
+            {/* 1. Paid Media (2x1) */}
+            <Card className="md:col-span-2 lg:col-span-2">
+              <div className="flex justify-between items-start mb-4">
+                <div className="p-3 bg-red-500/10 rounded-xl">
+                  <Target weight="duotone" className="w-6 h-6 text-red-500" />
                 </div>
-                <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1 rounded-full text-xs font-bold font-mono tracking-wider text-white/50">
-                  TOP LEVEL: ATTENTION
-                </div>
+                <motion.div 
+                  animate={{ opacity: [1, 0.4, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                  className="flex items-center gap-2 bg-red-500/10 text-red-500 px-3 py-1 rounded-full text-[10px] font-bold font-mono tracking-widest uppercase border border-red-500/20"
+                >
+                  <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                  Deploying Capital
+                </motion.div>
               </div>
-              
-              <div className="mt-auto">
-                <h3 className="text-2xl lg:text-3xl font-bold text-white tracking-tight mb-1 leading-tight">Meta & Google Ads</h3>
-                <p className="text-white/60 text-sm lg:text-lg max-w-md leading-snug">
-                  Precision capital deployment. We buy attention at a discount and sell it at a premium.
-                </p>
+              <div className="mt-auto relative z-10">
+                <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight mb-1">Paid Media</h3>
+                <p className="text-white/50 text-sm">Precision targeting algorithms across Meta, Google, and LinkedIn.</p>
               </div>
-
-              <div className="absolute right-0 bottom-0 w-2/3 h-2/3 opacity-30 pointer-events-none">
-                <div className="w-full h-full border-t border-l border-white/20 rounded-tl-full translate-x-12 translate-y-12 transition-transform group-hover:translate-x-8 group-hover:translate-y-8 duration-700" />
+              {/* Radar Sweep */}
+              <div className="absolute right-0 bottom-0 w-48 h-48 opacity-20 pointer-events-none overflow-hidden rounded-tl-full border-t border-l border-red-500/30">
+                <motion.div 
+                  animate={{ rotate: 360 }} 
+                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                  className="w-full h-full origin-bottom-right"
+                  style={{ background: "conic-gradient(from 180deg at 100% 100%, transparent 0deg, rgba(239,68,68,0.4) 90deg, transparent 90deg)" }}
+                />
               </div>
             </Card>
 
+            {/* 2. Lead Gen (1x1) */}
             <Card>
-              <div className="p-3 lg:p-4 bg-white/5 border border-white/10 rounded-2xl w-fit mb-4 lg:mb-6 relative z-10">
-                <ShareNetwork weight="duotone" className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
+              <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10">
+                <Funnel weight="duotone" className="w-6 h-6 text-white" />
               </div>
-              
-              <div className="absolute inset-x-8 bottom-0 top-1/4 flex items-end gap-2 opacity-10 pointer-events-none z-0">
+              <div className="absolute inset-0 flex items-end justify-center pb-4 opacity-[0.03] z-0">
+                <div className="w-24 h-32 border-x-2 border-b-2 border-white rounded-b-full" />
+              </div>
+              <div className="mt-auto relative z-10">
+                <h3 className="text-lg lg:text-xl font-bold text-white tracking-tight mb-1">Lead Gen</h3>
+                <p className="text-white/50 text-xs">Automated pipeline engineering.</p>
+              </div>
+            </Card>
+
+            {/* 3. Data & Attribution (1x1) */}
+            <Card>
+              <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10">
+                <ChartLineUp weight="duotone" className="w-6 h-6 text-white" />
+              </div>
+              <div className="absolute right-0 top-1/4 flex items-end gap-1 opacity-10 pointer-events-none z-0 px-4">
                 {[40, 70, 45, 90, 65, 100].map((h, i) => (
-                  <motion.div 
-                    key={i}
-                    animate={{ height: [`${h}%`, `${h * 0.8}%`, `${h}%`] }}
-                    transition={{ duration: 3, repeat: Infinity, delay: i * 0.2 }}
-                    className="flex-1 bg-white rounded-t-sm origin-bottom"
-                  />
+                  <motion.div key={i} animate={{ height: [`${h}%`, `${h * 0.5}%`, `${h}%`] }} transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }} className="w-2 bg-white rounded-t-sm origin-bottom" />
                 ))}
               </div>
-
               <div className="mt-auto relative z-10">
-                <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight mb-1 leading-tight">Social Media</h3>
-                <p className="text-white/60 text-sm">Organic algorithmic leverage.</p>
+                <h3 className="text-lg lg:text-xl font-bold text-white tracking-tight mb-1">Data & Analytics</h3>
+                <p className="text-white/50 text-xs">Flawless tracking matrices.</p>
               </div>
             </Card>
 
-            {/* LEVEL 2: CAPTURE (Middle of Funnel) */}
-            
+            {/* 4. SEO Strategy (1x1) */}
             <Card>
-              <div className="p-3 lg:p-4 bg-white/5 border border-white/10 rounded-2xl w-fit mb-4 lg:mb-6 relative z-10">
-                <Desktop weight="duotone" className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
+              <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10">
+                <MagnifyingGlass weight="duotone" className="w-6 h-6 text-white" />
               </div>
-              
-              <div className="absolute inset-x-8 top-1/2 -translate-y-1/2 flex flex-col justify-center opacity-30 pointer-events-none z-0">
-                <div className="w-full h-px bg-gradient-to-r from-transparent via-white to-transparent relative">
-                  <motion.div 
-                    animate={{ x: ["-100%", "200%"] }}
-                    transition={{ duration: 2, ease: "linear", repeat: Infinity }}
-                    className="absolute top-1/2 -translate-y-1/2 w-12 h-[2px] bg-white shadow-[0_0_10px_#fff]"
-                  />
-                </div>
-              </div>
-
               <div className="mt-auto relative z-10">
-                <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight mb-1 leading-tight">Web Design</h3>
-                <p className="text-white/60 text-sm">Conversion architecture.</p>
+                <h3 className="text-lg lg:text-xl font-bold text-white tracking-tight mb-1">SEO Strategy</h3>
+                <p className="text-white/50 text-xs">Search dominance & intent capture.</p>
               </div>
             </Card>
 
-            <Card className="md:col-span-2">
-              <div className="flex justify-between items-start mb-4 lg:mb-6 relative z-10">
-                <div className="p-3 lg:p-4 bg-white/5 border border-white/10 rounded-2xl">
-                  <Magnet weight="duotone" className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
-                </div>
-                <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1 rounded-full text-xs font-bold font-mono tracking-wider text-white/50">
-                  MID LEVEL: INTENT
+            {/* 5. Web Design & CRO (2x1) */}
+            <Card className="md:col-span-2 lg:col-span-2">
+              <div className="flex justify-between items-start mb-4 relative z-10">
+                <div className="p-3 bg-white/5 rounded-xl">
+                  <Browser weight="duotone" className="w-6 h-6 text-white" />
                 </div>
               </div>
-              
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/4 md:translate-x-0 md:right-12 opacity-10 group-hover:opacity-30 transition-opacity duration-700 pointer-events-none">
-                <div className="relative w-32 h-32 md:w-48 md:h-48">
-                  <motion.div animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute inset-0 border border-dashed border-white rounded-full" />
-                  <motion.div animate={{ rotate: -360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute inset-4 border border-white rounded-full" />
+              <div className="absolute inset-x-8 top-1/2 -translate-y-1/2 flex flex-col justify-center opacity-20 pointer-events-none z-0">
+                <div className="w-full h-px bg-white/30 relative overflow-hidden">
+                  <motion.div animate={{ x: ["-100%", "200%"] }} transition={{ duration: 1.5, ease: "linear", repeat: Infinity }} className="absolute top-0 w-24 h-full bg-white shadow-[0_0_15px_#fff]" />
                 </div>
               </div>
-
               <div className="mt-auto relative z-10">
-                <h3 className="text-2xl lg:text-3xl font-bold text-white tracking-tight mb-1 lg:mb-2 leading-tight">Lead Generation</h3>
-                <p className="text-white/60 text-sm lg:text-lg max-w-md leading-snug">
-                  Uncapped acquisition systems designed to monopolize market share.
-                </p>
+                <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight mb-1">Web Design & CRO</h3>
+                <p className="text-white/50 text-sm">Conversion-optimized digital real estate designed for speed.</p>
               </div>
             </Card>
 
-            {/* LEVEL 3: CLOSE (Bottom of Funnel) */}
-            
-            <Card className="md:col-span-3 bg-gradient-to-b from-zinc-950 to-white/5 border-white/20 shadow-[0_0_50px_-20px_rgba(255,255,255,0.1)]">
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2 lg:mb-4 relative z-10">
-                <div className="p-3 lg:p-4 bg-white text-black rounded-2xl mb-4 md:mb-0 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                  <PresentationChart weight="fill" className="w-6 h-6 lg:w-8 lg:h-8" />
-                </div>
-                <div className="flex items-center gap-2 bg-white text-black px-4 py-2 rounded-full text-xs font-bold font-mono tracking-wider">
-                  <ArrowDown weight="bold" className="w-3 h-3 animate-bounce" />
-                  BOTTOM LEVEL: CLOSE
-                </div>
+            {/* 6. Webinar Funnels (1x1) */}
+            <Card>
+              <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10">
+                <VideoCamera weight="duotone" className="w-6 h-6 text-white" />
               </div>
-              
-              <div className="absolute inset-0 opacity-[0.03] bg-[url('https://asset.eyecannndy.com/media/clip/2024/02/15/261707976419.webp')] bg-cover bg-center pointer-events-none mix-blend-screen" />
+              <div className="mt-auto relative z-10">
+                <h3 className="text-lg lg:text-xl font-bold text-white tracking-tight mb-1">Webinars</h3>
+                <p className="text-white/50 text-xs">High-velocity sales events.</p>
+              </div>
+            </Card>
 
-              <div className="mt-auto relative z-10 w-full flex flex-col md:flex-row md:items-end justify-between">
-                <div>
-                  <h3 className="text-2xl lg:text-4xl font-black text-white tracking-tight mb-1 lg:mb-2 leading-tight uppercase">Webinar Funnels</h3>
-                  <p className="text-white/80 text-sm lg:text-lg max-w-xl leading-snug">
-                    High-ticket conversion systems that predictably turn cold traffic into closed deals at scale.
-                  </p>
-                </div>
+            {/* 7. Copywriting (1x1) */}
+            <Card>
+              <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10">
+                <PenNib weight="duotone" className="w-6 h-6 text-white" />
+              </div>
+              <div className="absolute right-[-10%] top-[-10%] opacity-[0.03] pointer-events-none z-0 rotate-12 scale-150">
+                <PenNib weight="fill" className="w-48 h-48 text-white" />
+              </div>
+              <div className="mt-auto relative z-10">
+                <h3 className="text-lg lg:text-xl font-bold text-white tracking-tight mb-1">Copywriting</h3>
+                <p className="text-white/50 text-xs">Persuasion engineering.</p>
+              </div>
+            </Card>
+
+            {/* 8. Social Media (1x1) */}
+            <Card>
+              <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10">
+                <ShareNetwork weight="duotone" className="w-6 h-6 text-white" />
+              </div>
+              <div className="mt-auto relative z-10">
+                <h3 className="text-lg lg:text-xl font-bold text-white tracking-tight mb-1">Social Media</h3>
+                <p className="text-white/50 text-xs">Algorithmic authority.</p>
+              </div>
+            </Card>
+
+            {/* 9. Email & SMS (2x1) */}
+            <Card className="md:col-span-2 lg:col-span-2">
+              <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10">
+                <Envelope weight="duotone" className="w-6 h-6 text-white" />
+              </div>
+              <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col gap-2 opacity-10 pointer-events-none z-0">
+                <motion.div animate={{ x: [0, -20, 0] }} transition={{ duration: 2, repeat: Infinity }} className="w-16 h-2 bg-white rounded-full" />
+                <motion.div animate={{ x: [0, -10, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 0.2 }} className="w-12 h-2 bg-white rounded-full" />
+                <motion.div animate={{ x: [0, -30, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 0.4 }} className="w-20 h-2 bg-white rounded-full" />
+              </div>
+              <div className="mt-auto relative z-10">
+                <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight mb-1">Email & SMS</h3>
+                <p className="text-white/50 text-sm">Retention, reactivation, and lifecycle automation.</p>
               </div>
             </Card>
 
