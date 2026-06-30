@@ -12,7 +12,7 @@ const Card = ({ children, className, cardRef }: { children: React.ReactNode, cla
   <div
     ref={cardRef}
     className={cn(
-      "bento-card relative rounded-[2.5rem] bg-zinc-950 border border-white/10 p-8 md:p-12 overflow-hidden group will-change-transform shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]",
+      "bento-card relative rounded-3xl lg:rounded-[2rem] bg-zinc-950 border border-white/10 p-6 lg:p-8 overflow-hidden group will-change-transform shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]",
       className
     )}
   >
@@ -65,22 +65,22 @@ export default function BentoServices() {
   return (
     <section ref={containerRef} id="services" className="w-full bg-zinc-950 relative">
       {/* Pinned Container */}
-      <div ref={pinRef} className="w-full h-[100dvh] flex flex-col items-center justify-center px-4 md:px-12 overflow-hidden">
-        <div className="max-w-6xl w-full mx-auto relative flex flex-col h-full py-16 md:py-20">
+      <div ref={pinRef} className="w-full h-[100dvh] flex flex-col items-center justify-center px-4 md:px-8 lg:px-12 overflow-hidden">
+        <div className="max-w-6xl w-full mx-auto relative flex flex-col h-full py-6 lg:py-12">
           
-          <div className="mb-4 md:mb-8 mt-8 flex-shrink-0">
-            <h2 ref={titleRef} className="text-4xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white uppercase origin-left">
+          <div className="mb-4 mt-2 lg:mt-6 flex-shrink-0">
+            <h2 ref={titleRef} className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tighter text-white uppercase origin-left">
               THE PERFORMANCE <br /> <span className="text-white/30">ENGINE.</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[1fr] gap-4 md:gap-6 grid-flow-dense w-full flex-1 min-h-0 pb-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[1fr] gap-4 grid-flow-dense w-full flex-1 min-h-0 pb-4">
             
             {/* Main Card: Paid Media (Takes 2 cols) */}
             <Card className="md:col-span-2">
-              <div className="flex justify-between items-start mb-8">
-                <div className="p-4 bg-white/5 rounded-2xl">
-                  <Target weight="duotone" className="w-8 h-8 text-white" />
+              <div className="flex justify-between items-start mb-4 lg:mb-8">
+                <div className="p-3 lg:p-4 bg-white/5 rounded-2xl">
+                  <Target weight="duotone" className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
                 </div>
                 <motion.div 
                   animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
@@ -93,9 +93,9 @@ export default function BentoServices() {
               </div>
               
               <div className="mt-auto">
-                <h3 className="text-3xl font-bold text-white tracking-tight mb-2">Paid Media Architecture</h3>
-                <p className="text-white/60 text-lg max-w-md">
-                  Google, Meta, and LinkedIn strategies built on mathematical precision, not guesswork.
+                <h3 className="text-2xl lg:text-3xl font-bold text-white tracking-tight mb-1 lg:mb-2 leading-tight">Paid Media Architecture</h3>
+                <p className="text-white/60 text-sm lg:text-lg max-w-md leading-snug">
+                  Google, Meta, and LinkedIn strategies built on mathematical precision.
                 </p>
               </div>
 
@@ -108,8 +108,8 @@ export default function BentoServices() {
 
             {/* Secondary Card: Analytics */}
             <Card>
-              <div className="p-4 bg-white/5 rounded-2xl w-fit mb-8 relative z-10">
-                <ChartLineUp weight="duotone" className="w-8 h-8 text-white" />
+              <div className="p-3 lg:p-4 bg-white/5 rounded-2xl w-fit mb-4 lg:mb-8 relative z-10">
+                <ChartLineUp weight="duotone" className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
               </div>
               
               {/* Perpetual Motion Graph (Absolute background) */}
@@ -125,15 +125,15 @@ export default function BentoServices() {
               </div>
 
               <div className="mt-auto relative z-10">
-                <h3 className="text-2xl font-bold text-white tracking-tight mb-2">Data & Attribution</h3>
-                <p className="text-white/60">Flawless tracking across the entire journey.</p>
+                <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight mb-1 leading-tight">Data & Attribution</h3>
+                <p className="text-white/60 text-sm">Flawless tracking across the entire journey.</p>
               </div>
             </Card>
 
             {/* Secondary Card: CRO */}
             <Card>
-              <div className="p-4 bg-white/5 rounded-2xl w-fit mb-8 relative z-10">
-                <MagnifyingGlass weight="duotone" className="w-8 h-8 text-white" />
+              <div className="p-3 lg:p-4 bg-white/5 rounded-2xl w-fit mb-4 lg:mb-8 relative z-10">
+                <MagnifyingGlass weight="duotone" className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
               </div>
               
               <div className="absolute inset-x-8 top-1/2 -translate-y-1/2 flex flex-col justify-center opacity-30 pointer-events-none z-0">
@@ -147,18 +147,18 @@ export default function BentoServices() {
               </div>
 
               <div className="mt-auto relative z-10">
-                <h3 className="text-2xl font-bold text-white tracking-tight mb-2">CRO</h3>
-                <p className="text-white/60">Rigorous A/B testing.</p>
+                <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight mb-1 leading-tight">CRO</h3>
+                <p className="text-white/60 text-sm">Rigorous A/B testing.</p>
               </div>
             </Card>
 
             {/* Main Card: Funnels (Takes 2 cols) */}
             <Card className="md:col-span-2">
-              <div className="flex justify-between items-start mb-8 relative z-10">
-                <div className="p-4 bg-white/5 rounded-2xl">
-                  <Funnel weight="duotone" className="w-8 h-8 text-white" />
+              <div className="flex justify-between items-start mb-4 lg:mb-8 relative z-10">
+                <div className="p-3 lg:p-4 bg-white/5 rounded-2xl">
+                  <Funnel weight="duotone" className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
                 </div>
-                <ArrowUpRight className="w-6 h-6 text-white/30 group-hover:text-white transition-colors" />
+                <ArrowUpRight className="w-5 h-5 lg:w-6 lg:h-6 text-white/30 group-hover:text-white transition-colors" />
               </div>
               
               {/* Concentric Circles (Absolute positioned to prevent squashing text) */}
@@ -173,8 +173,8 @@ export default function BentoServices() {
               </div>
 
               <div className="mt-auto relative z-10">
-                <h3 className="text-3xl font-bold text-white tracking-tight mb-2">Lead Gen Funnels</h3>
-                <p className="text-white/60 text-lg max-w-md">
+                <h3 className="text-2xl lg:text-3xl font-bold text-white tracking-tight mb-1 lg:mb-2 leading-tight">Lead Gen Funnels</h3>
+                <p className="text-white/60 text-sm lg:text-lg max-w-md leading-snug">
                   High-converting landing pages and automated sequences.
                 </p>
               </div>
