@@ -132,24 +132,16 @@ export default function BentoServices() {
                     </h3>
                   </div>
 
-                  <div className="grid grid-cols-2 auto-rows-[minmax(120px,auto)] grid-flow-dense gap-2 max-h-[55vh] overflow-y-auto pb-8 scrollbar-hide p-1">
-                    {currentCategory.nodes.map((node, i) => {
-                      const isLarge = i === 0 || i === 3;
-                      return (
-                      <div 
-                        key={`${currentCategory.id}-${node.id}`} 
-                        className={cn(
-                          "bg-zinc-900/80 backdrop-blur-md border border-white/10 p-4 rounded-xl flex flex-col justify-between gap-2 overflow-hidden group hover:bg-zinc-800 hover:border-white/20 transition-all duration-700 ease-out",
-                          isLarge ? "col-span-2 row-span-2" : "col-span-1 row-span-1"
-                        )}
-                      >
-                        <div className="p-2 bg-white/5 rounded-lg w-fit group-hover:scale-110 transition-transform duration-700 ease-out">{node.icon}</div>
-                        <div className="group-hover:scale-105 transition-transform duration-700 ease-out origin-left">
+                  <div className="flex flex-col gap-2 max-h-[55vh] overflow-y-auto pb-8 scrollbar-hide">
+                    {currentCategory.nodes.map((node) => (
+                      <div key={`${currentCategory.id}-${node.id}`} className="bg-zinc-900/80 backdrop-blur-md border border-white/10 p-4 rounded-xl flex items-center gap-4">
+                        <div className="p-2 bg-white/5 rounded-lg">{node.icon}</div>
+                        <div>
                           <h4 className="text-sm font-bold text-white">{node.title}</h4>
-                          <p className="text-white/50 text-[10px] mt-1 leading-tight">{node.desc}</p>
+                          <p className="text-white/50 text-xs mt-1 leading-tight">{node.desc}</p>
                         </div>
                       </div>
-                    )})}
+                    ))}
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -281,29 +273,24 @@ export default function BentoServices() {
                     </h3>
                   </div>
 
-                  <div className="grid grid-cols-2 grid-flow-dense gap-4">
-                    {currentCategory.nodes.map((node, i) => {
-                      const isLarge = i === 0 || i === 3;
-                      return (
+                  <div className="grid grid-cols-2 gap-4">
+                    {currentCategory.nodes.map((node, i) => (
                       <motion.div
                         key={node.id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.1, duration: 0.4 }}
-                        className={cn(
-                          "bg-zinc-900/50 border border-white/10 p-6 rounded-2xl flex flex-col justify-between gap-4 hover:bg-zinc-800 hover:border-white/20 transition-all duration-700 ease-out group overflow-hidden",
-                          isLarge ? "col-span-2" : "col-span-1"
-                        )}
+                        className="bg-zinc-900/50 border border-white/10 p-6 rounded-2xl flex flex-col gap-4 hover:bg-zinc-800 hover:border-white/20 transition-all group"
                       >
-                        <div className="p-3 bg-white/5 rounded-xl w-fit group-hover:scale-110 transition-transform duration-700 ease-out">
+                        <div className="p-3 bg-white/5 rounded-xl w-fit group-hover:scale-110 transition-transform">
                           {node.icon}
                         </div>
-                        <div className="group-hover:scale-105 transition-transform duration-700 ease-out origin-left">
+                        <div>
                           <h4 className="text-lg font-bold text-white leading-tight">{node.title}</h4>
                           <p className="text-white/50 text-sm mt-2 leading-relaxed">{node.desc}</p>
                         </div>
                       </motion.div>
-                    )})}
+                    ))}
                   </div>
                 </motion.div>
               </AnimatePresence>

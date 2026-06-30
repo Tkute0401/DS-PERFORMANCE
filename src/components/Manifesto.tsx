@@ -63,15 +63,14 @@ export default function Manifesto() {
       const mobileTexts = gsap.utils.toArray(".manifesto-mobile-text");
       mobileTexts.forEach((el: any) => {
         gsap.fromTo(el,
-          { y: "150%", rotationZ: 15, skewX: 20, scaleY: 0.5, opacity: 0, transformOrigin: "left bottom" },
+          { y: "150%", rotationZ: 10, opacity: 0 },
           { 
-            y: "0%", rotationZ: 0, skewX: 0, scaleY: 1, opacity: 1, 
-            ease: "power3.out",
+            y: "0%", rotationZ: 0, opacity: 1, 
             scrollTrigger: {
               trigger: el.parentElement,
               start: "top 95%",
-              end: "top 50%",
-              scrub: 1.5,
+              end: "top 60%",
+              scrub: 1, // Mechanical, scroll-tied feel
             }
           }
         );
