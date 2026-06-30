@@ -64,15 +64,13 @@ export default function Manifesto() {
       }
     });
 
-    // Parallax the sticker wall upwards over the entire 7.5 duration
-    tl.to(bgWallRef.current, { y: "-20%", duration: 7.5, ease: "none" }, 0);
+    // Parallax the sticker wall upwards over the entire duration
+    tl.to(bgWallRef.current, { y: "-20%", duration: 6, ease: "none" }, 0);
 
-    tl.fromTo(text1Ref.current, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 1 }, 0)
-      .to(text1Ref.current, { opacity: 0, scale: 1.2, duration: 1, delay: 0.5 })
-      .fromTo(text2Ref.current, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 1 })
-      .to(text2Ref.current, { opacity: 0, scale: 1.2, duration: 1, delay: 0.5 })
-      .fromTo(text3Ref.current, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 1 })
-      .to(text3Ref.current, { opacity: 0, scale: 1.2, duration: 1, delay: 0.5 });
+    tl.to(text1Ref.current, { opacity: 0, scale: 1.2, duration: 1 }, 1)
+      .fromTo(text2Ref.current, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 1 }, 1.5)
+      .to(text2Ref.current, { opacity: 0, scale: 1.2, duration: 1 }, 3)
+      .fromTo(text3Ref.current, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 1 }, 3.5);
 
   }, { scope: containerRef });
 
@@ -159,7 +157,7 @@ export default function Manifesto() {
       </div>
 
       <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col md:block items-center justify-center text-center gap-24 md:gap-0 h-full mix-blend-difference">
-        <h2 ref={text1Ref} className="md:absolute top-1/2 left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-[clamp(2.5rem,6vw,8rem)] font-black tracking-tighter uppercase leading-[0.9] md:opacity-0 w-full text-white">
+        <h2 ref={text1Ref} className="md:absolute top-1/2 left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-[clamp(2.5rem,6vw,8rem)] font-black tracking-tighter uppercase leading-[0.9] w-full text-white">
           Data Over Fluff.
         </h2>
         <h2 ref={text2Ref} className="md:absolute top-1/2 left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-[clamp(2.5rem,6vw,8rem)] font-black tracking-tighter uppercase leading-[0.9] md:opacity-0 w-full text-white">

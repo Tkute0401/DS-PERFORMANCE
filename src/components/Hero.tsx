@@ -86,27 +86,27 @@ export default function Hero() {
 
         {/* Massive Editorial Headline */}
         <div ref={headlineRef} className="flex flex-col w-full">
-          <div className="overflow-hidden">
-            <h1 className="hero-word text-[clamp(3.5rem,11vw,14rem)] font-black tracking-tighter text-zinc-100 leading-[0.85] uppercase origin-bottom">
+          <div className="overflow-hidden pb-4">
+            <h1 className="hero-word text-[clamp(2.5rem,8vw,11.5rem)] font-black tracking-tighter text-zinc-100 leading-[0.85] uppercase origin-bottom">
               ARCHITECTING
             </h1>
           </div>
-          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 overflow-hidden w-full mt-2 md:mt-0">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8 overflow-hidden w-full mt-2 lg:mt-0 pb-4">
             {/* Dynamic Video Pill - Strictly Constrained */}
             <motion.div
               initial={{ width: 0, opacity: 0 }}
               animate={{ width: "auto", opacity: 1 }}
               transition={{ duration: 1.5, delay: 3, ease: "backOut" }}
-              className="h-[clamp(3rem,8vw,9rem)] rounded-full overflow-hidden shrink-0"
+              className="h-[clamp(3.5rem,7vw,8rem)] rounded-full overflow-hidden shrink-0 hidden md:block"
             >
               <video
                 autoPlay loop muted playsInline
-                className="w-48 md:w-64 lg:w-96 h-full object-cover grayscale mix-blend-screen opacity-80"
+                className="w-32 md:w-48 lg:w-72 h-full object-cover grayscale mix-blend-screen opacity-80"
                 src="https://www.digitalsupremacy.in/footer-vid.mp4"
               />
             </motion.div>
-            <div className="overflow-hidden">
-              <h1 className="hero-word text-[clamp(3.5rem,11vw,14rem)] font-black tracking-tighter text-zinc-100 leading-[0.85] uppercase origin-bottom">
+            <div className="overflow-hidden pb-4">
+              <h1 className="hero-word text-[clamp(2.5rem,8vw,11.5rem)] font-black tracking-tighter text-zinc-100 leading-[0.85] uppercase origin-bottom">
                 ADVANTAGES.
               </h1>
             </div>
