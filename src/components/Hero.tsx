@@ -61,7 +61,7 @@ export default function Hero() {
       {/* Fullscreen Animated Webp Background */}
       <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
         <img
-          src="https://asset.eyecannndy.com/media/clip/2024/02/15/261707976419.webp"
+          src="https://asset.eyecannndy.com/media/clip/2024/01/10/261704861468.webp"
           alt="Hero Background"
           className="w-full h-full object-cover opacity-20 mix-blend-screen grayscale"
         />
