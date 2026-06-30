@@ -13,8 +13,7 @@ export default function Hero() {
   const headlineRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const isFirstVisit = !sessionStorage.getItem("ds_preloader_shown");
-    const initialDelay = isFirstVisit ? 2.8 : 0.2;
+    const initialDelay = 3.2; // Matches preloader duration
 
     const tl = gsap.timeline({ delay: initialDelay });
 

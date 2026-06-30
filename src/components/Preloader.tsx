@@ -18,12 +18,6 @@ export default function Preloader() {
   const streamRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Check if we've already shown the preloader this session
-    if (sessionStorage.getItem("ds_preloader_shown")) {
-      setIsLoading(false);
-      return;
-    }
-
     // Lock scrolling on mount
     document.body.style.overflow = "hidden";
 
@@ -60,7 +54,6 @@ export default function Preloader() {
       const tl = gsap.timeline({
         onComplete: () => {
           document.body.style.overflow = "";
-          sessionStorage.setItem("ds_preloader_shown", "true");
           setIsLoading(false);
         }
       });
