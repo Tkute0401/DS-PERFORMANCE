@@ -158,8 +158,6 @@ export default function BentoServices() {
 
             {/* Bottom Area: The Majestic Arc Dial */}
             <div className="h-[200px] w-full relative overflow-hidden flex justify-center mt-auto pointer-events-none">
-              {/* Fade out mask so text doesn't clash with wheel */}
-              <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-t from-zinc-950 to-transparent z-10" />
               
               <div ref={mobileDialRef} className="absolute top-[50px] w-[150vw] h-[150vw] rounded-full border-2 border-white/10 flex items-center justify-center bg-zinc-950 shadow-[0_-10px_80px_rgba(0,0,0,0.6)]">
                 {/* Inner rings */}
