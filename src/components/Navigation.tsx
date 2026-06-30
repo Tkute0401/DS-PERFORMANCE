@@ -95,24 +95,40 @@ export default function Navigation() {
             <X weight="bold" className="w-8 h-8" />
           </button>
 
-          <div className="flex flex-col gap-8 text-[4rem] font-black tracking-tighter uppercase leading-none">
-            <Link href="#services" onClick={() => setMenuOpen(false)} className="hover:text-red-500 transition-colors">
-              Services
-            </Link>
-            <Link href="#results" onClick={() => setMenuOpen(false)} className="hover:text-red-500 transition-colors">
-              Results
-            </Link>
-            <Link href="#praise" onClick={() => setMenuOpen(false)} className="hover:text-red-500 transition-colors">
-              Praise
-            </Link>
+          <motion.div 
+            initial="hidden"
+            animate={menuOpen ? "visible" : "hidden"}
+            variants={{
+              visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+              hidden: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
+            }}
+            className="flex flex-col gap-6 text-4xl md:text-5xl font-black tracking-tighter uppercase leading-none"
+          >
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
+              <Link href="#services" onClick={() => setMenuOpen(false)} className="hover:text-red-500 transition-colors block">
+                Services
+              </Link>
+            </motion.div>
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
+              <Link href="#results" onClick={() => setMenuOpen(false)} className="hover:text-red-500 transition-colors block">
+                Results
+              </Link>
+            </motion.div>
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
+              <Link href="#praise" onClick={() => setMenuOpen(false)} className="hover:text-red-500 transition-colors block">
+                Praise
+              </Link>
+            </motion.div>
             
-            <button 
-              onClick={() => { setMenuOpen(false); openConversionModal(); }} 
-              className="mt-8 text-left text-2xl font-black bg-white text-black py-6 px-8 hover:bg-red-500 hover:text-white transition-colors w-full"
-            >
-              START SCALING
-            </button>
-          </div>
+            <motion.div variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1 } }}>
+              <button 
+                onClick={() => { setMenuOpen(false); openConversionModal(); }} 
+                className="mt-8 text-left text-xl font-black bg-white text-black py-5 px-6 hover:bg-red-500 hover:text-white transition-colors w-full uppercase"
+              >
+                START SCALING
+              </button>
+            </motion.div>
+          </motion.div>
         </motion.div>
       )}
     </>

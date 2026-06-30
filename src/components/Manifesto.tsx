@@ -198,57 +198,57 @@ export default function Manifesto() {
         </div>
 
         {/* Mobile Version (Brutalist Kinetic Overflow Slide-ins) */}
-        <div className="md:hidden flex flex-col gap-24 w-full px-4 pt-12">
+        <div className="md:hidden flex flex-col gap-10 w-full px-4 pt-12 overflow-hidden max-w-[100vw]">
           
-          <div className="w-full flex flex-col items-start text-left gap-2">
+          <div className="w-full flex flex-col items-start text-left gap-1">
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[15vw] font-black tracking-tighter uppercase leading-[0.8] text-white">
+              <h2 className="manifesto-mobile-text text-[clamp(2.5rem,11vw,4.5rem)] font-black tracking-tighter uppercase leading-[0.85] text-white">
                 THE
               </h2>
             </div>
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[15vw] font-black tracking-tighter uppercase leading-[0.8] text-red-500 bg-white inline-block px-2">
+              <h2 className="manifesto-mobile-text text-[clamp(2.5rem,11vw,4.5rem)] font-black tracking-tighter uppercase leading-[0.85] text-red-500 bg-white inline-block px-2">
                 INDUSTRY
               </h2>
             </div>
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[15vw] font-black tracking-tighter uppercase leading-[0.8] text-white">
+              <h2 className="manifesto-mobile-text text-[clamp(2.5rem,11vw,4.5rem)] font-black tracking-tighter uppercase leading-[0.85] text-white">
                 SELLS HOPE.
               </h2>
             </div>
           </div>
 
-          <div className="w-full flex flex-col items-start text-left gap-2">
+          <div className="w-full flex flex-col items-start text-left gap-1">
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[14vw] font-black tracking-tighter uppercase leading-[0.8] text-zinc-400">
+              <h2 className="manifesto-mobile-text text-[clamp(2.2rem,10vw,4rem)] font-black tracking-tighter uppercase leading-[0.85] text-zinc-400">
                 WE SELL
               </h2>
             </div>
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[14vw] font-black tracking-tighter uppercase leading-[0.8] text-black bg-white inline-block px-2 transform -skew-x-12">
+              <h2 className="manifesto-mobile-text text-[clamp(2.2rem,10vw,4rem)] font-black tracking-tighter uppercase leading-[0.85] text-black bg-white inline-block px-2 transform -skew-x-12">
                 MATHEMATICAL
               </h2>
             </div>
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[14vw] font-black tracking-tighter uppercase leading-[0.8] text-white">
+              <h2 className="manifesto-mobile-text text-[clamp(2.2rem,10vw,4rem)] font-black tracking-tighter uppercase leading-[0.85] text-white">
                 CERTAINTY.
               </h2>
             </div>
           </div>
 
-          <div className="w-full flex flex-col items-start text-left gap-2 border-t border-red-500 pt-8 mt-12">
+          <div className="w-full flex flex-col items-start text-left gap-1 border-t border-red-500 pt-6 mt-6">
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[11vw] font-black tracking-tighter uppercase leading-[0.85] text-zinc-500">
+              <h2 className="manifesto-mobile-text text-[clamp(1.8rem,8vw,3.5rem)] font-black tracking-tighter uppercase leading-[0.9] text-zinc-500">
                 YOUR ROAS IS NOT
               </h2>
             </div>
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[14vw] font-black tracking-tighter uppercase leading-[0.8] text-red-500">
+              <h2 className="manifesto-mobile-text text-[clamp(2.5rem,11vw,4.5rem)] font-black tracking-tighter uppercase leading-[0.85] text-red-500">
                 A LOTTERY
               </h2>
             </div>
             <div className="overflow-hidden w-full">
-              <h2 className="manifesto-mobile-text text-[14vw] font-black tracking-tighter uppercase leading-[0.8] text-red-500">
+              <h2 className="manifesto-mobile-text text-[clamp(2.5rem,11vw,4.5rem)] font-black tracking-tighter uppercase leading-[0.85] text-red-500">
                 TICKET.
               </h2>
             </div>

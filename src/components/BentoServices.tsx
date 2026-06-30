@@ -156,40 +156,36 @@ export default function BentoServices() {
               </AnimatePresence>
             </div>
 
-            {/* Bottom Area: The Click-Wheel Dial */}
-            <div className="h-[200px] w-full relative flex justify-center mt-auto pointer-events-none">
+            {/* Bottom Area: The Majestic Arc Dial */}
+            <div className="h-[200px] w-full relative overflow-hidden flex justify-center mt-auto pointer-events-none">
               {/* Fade out mask so text doesn't clash with wheel */}
-              <div className="absolute -top-12 left-0 right-0 h-12 bg-gradient-to-t from-zinc-950 to-transparent z-10" />
+              <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-t from-zinc-950 to-transparent z-10" />
               
-              <div ref={mobileDialRef} className="absolute top-1/4 w-[500px] h-[500px] rounded-full border-2 border-white/10 flex items-center justify-center bg-zinc-950 shadow-[0_-10px_50px_rgba(0,0,0,0.8)]">
+              <div ref={mobileDialRef} className="absolute -bottom-[110vw] w-[150vw] h-[150vw] rounded-full border-2 border-white/10 flex items-center justify-center bg-zinc-950 shadow-[0_-10px_80px_rgba(0,0,0,0.6)]">
                 {/* Inner rings */}
-                <div className="absolute inset-8 rounded-full border border-white/5 border-dashed" />
-                <div className="absolute inset-24 rounded-full border border-white/5" />
-                
-                {/* Center Core */}
-                <div className="w-32 h-32 rounded-full bg-zinc-900 flex items-center justify-center border border-white/20">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">SCROLL</span>
-                </div>
+                <div className="absolute inset-[8vw] rounded-full border border-white/5 border-dashed" />
+                <div className="absolute inset-[15vw] rounded-full border border-white/5" />
 
                 {/* Dial Nodes */}
                 {dialCategories.map((cat, i) => {
                   const angle = (i * 120) * (Math.PI / 180);
-                  const x = Math.round(Math.cos(angle) * 250); // radius 250
-                  const y = Math.round(Math.sin(angle) * 250);
+                  const radiusVw = 75; // Half of 150vw width
+                  const x = Math.round(Math.cos(angle) * radiusVw);
+                  const y = Math.round(Math.sin(angle) * radiusVw);
                   const isActive = activeIndex === i;
 
                   return (
                     <div 
                       key={cat.id}
                       className="absolute top-1/2 left-1/2"
-                      style={{ transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))` }}
+                      style={{ transform: `translate(calc(-50% + ${x}vw), calc(-50% + ${y}vw))` }}
                     >
                       <div className={cn(
-                        "w-16 h-16 rounded-full flex items-center justify-center transition-all duration-500",
-                        isActive ? "bg-zinc-800 border " + cat.color.replace('text', 'border') : "bg-zinc-950 border border-white/10"
+                        "w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-500",
+                        isActive ? "bg-zinc-800 border-2 " + cat.color.replace('text', 'border') : "bg-zinc-950 border border-white/10"
                       )}>
                         <div className={cn(
-                          "w-8 h-8 rounded-full",
+                          "w-6 h-6 md:w-8 md:h-8 rounded-full",
                           isActive ? cat.color.replace('text', 'bg') : "bg-white/10"
                         )} style={{ boxShadow: isActive ? `0 0 20px ${cat.glow}` : 'none' }} />
                       </div>
