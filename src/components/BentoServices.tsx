@@ -64,14 +64,6 @@ export default function BentoServices() {
   const pinRef = useRef<HTMLDivElement>(null);
   const dialRef = useRef<HTMLDivElement>(null);
   const mobileDialRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -104,7 +96,7 @@ export default function BentoServices() {
       tl.to(mobileDialRef.current, { rotation: -240, ease: "none" }, 0);
     }
 
-  }, { scope: containerRef, dependencies: [isMobile] });
+  }, { scope: containerRef });
 
   const currentCategory = dialCategories[activeIndex];
   const DIAL_RADIUS = 300;
@@ -120,8 +112,7 @@ export default function BentoServices() {
         />
 
         {/* Mobile View: Brutalist Kinetic Click-Wheel */}
-        {isMobile ? (
-          <div className="w-full h-[100dvh] flex flex-col justify-between relative z-10 pt-24 overflow-hidden">
+        <div className="w-full h-[100dvh] flex lg:hidden flex-col justify-between relative z-10 pt-24 overflow-hidden">
             {/* Top Area: Data Grid */}
             <div className="flex-1 w-full flex flex-col px-4 z-20">
               <AnimatePresence mode="wait">
@@ -166,7 +157,7 @@ export default function BentoServices() {
 
                 {/* Dial Nodes */}
                 {dialCategories.map((cat, i) => {
-                  const offset = isMobile ? -90 : 0;
+                  const offset = -90;
                   const angle = (i * 120 + offset) * (Math.PI / 180);
                   const radiusVw = 75; // Half of 150vw width
                   const x = Math.round(Math.cos(angle) * radiusVw);
@@ -194,9 +185,9 @@ export default function BentoServices() {
               </div>
             </div>
           </div>
-        ) : (
-          /* Desktop View: Left Dial + Right Grid */
-          <div className="w-full max-w-[1400px] h-full flex flex-row items-center justify-between gap-12 relative z-10">
+
+          {/* Desktop View: Left Dial + Right Grid */}
+          <div className="w-full max-w-[1400px] h-full hidden lg:flex flex-row items-center justify-between gap-12 relative z-10">
             
             {/* Left Column: The Massive Dial */}
             <div className="w-1/2 h-[800px] relative flex items-center justify-center -translate-x-[20%]">
@@ -307,7 +298,6 @@ export default function BentoServices() {
             </div>
 
           </div>
-        )}
       </div>
     </section>
   );
