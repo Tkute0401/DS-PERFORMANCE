@@ -64,34 +64,10 @@ export default function Hero() {
           alt="Hero Background"
           className="w-full h-full object-cover opacity-20 mix-blend-screen grayscale"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-zinc-950/20" />
       </div>
 
-      {/* Ultra-subtle engineering grid overlay (No messy blur blobs) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
-            backgroundSize: '120px 120px',
-            backgroundPosition: 'top left',
-            backgroundAttachment: 'fixed'
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 w-full max-w-[100rem] mx-auto flex flex-col items-start gap-6 mt-auto">
-
-        {/* Top Tag */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 3, duration: 1 }}
-          className="flex items-center gap-3 border border-white/10 rounded-full px-4 py-2 bg-black/40 backdrop-blur-md"
-        >
-          <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
-          <span className="text-xs font-mono font-bold tracking-widest text-zinc-300 uppercase">Systematic Growth Engine</span>
-        </motion.div>
+      <div className="relative z-10 w-full max-w-[100rem] mx-auto flex flex-col items-start gap-8 mt-auto">
 
         {/* Massive Editorial Headline */}
         <div ref={headlineRef} className="flex flex-col w-full">
@@ -122,25 +98,23 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Bottom Section: Subtitle above the Action+Proof block */}
-        <div className="w-full flex flex-col gap-8 border-t border-white/10 pt-6 mt-4">
+        {/* Bottom Section */}
+        <div className="w-full flex flex-col gap-10 pt-8 mt-4">
 
           <p className="hero-bottom-element text-xl md:text-3xl text-zinc-400 font-light tracking-tight max-w-3xl leading-relaxed">
             We don't just run ads. We build <strong className="text-white font-medium">8-figure revenue engines</strong> based on mathematical certainty.
           </p>
 
-          {/* Action + Proof Lockup */}
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12 w-full">
-
-            {/* CTA Group */}
-            <div className="hero-bottom-element flex flex-wrap items-center gap-4">
+          <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-12 w-full pb-4">
+            
+            <div className="hero-bottom-element flex flex-col sm:flex-row items-start sm:items-center gap-6">
               <motion.button
                 onClick={openConversionModal}
                 onMouseMove={handleMouseMove}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={handleMouseLeave}
                 style={{ x: springX, y: springY }}
-                className="group relative flex items-center justify-center gap-4 bg-zinc-100 text-zinc-950 px-8 py-5 rounded-full font-bold overflow-hidden transition-transform shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.2)]"
+                className="group relative flex items-center justify-center gap-4 bg-white text-black px-10 py-5 rounded-full font-bold overflow-hidden transition-transform shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.2)]"
               >
                 <span className="relative z-10 uppercase tracking-widest text-sm">Scale Your Revenue</span>
                 <motion.div
@@ -151,26 +125,20 @@ export default function Hero() {
                   <ArrowRight weight="bold" className="w-4 h-4" />
                 </motion.div>
               </motion.button>
-
-              <button className="px-8 py-5 rounded-full font-bold text-sm uppercase tracking-widest text-zinc-500 hover:text-white transition-colors duration-500 flex items-center justify-center gap-2 group">
-                View Case Studies
-                <ArrowDownRight weight="bold" className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
-              </button>
             </div>
 
-            {/* Stats Grid - Directly adjacent to CTA for psychological proof */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-16 w-full lg:w-auto shrink-0 border-t lg:border-t-0 lg:border-l border-white/10 pt-8 lg:pt-0 lg:pl-16">
-              <div className="hero-bottom-element flex flex-col gap-2">
-                <span className="text-xs font-mono font-bold tracking-widest text-zinc-500 uppercase">Capital Deployed</span>
-                <span className="text-4xl md:text-5xl font-black tracking-tighter text-white">$100M<span className="text-zinc-600">+</span></span>
+            <div className="flex gap-8 md:gap-16 w-full lg:w-auto shrink-0 opacity-80">
+              <div className="hero-bottom-element flex flex-col gap-1">
+                <span className="text-[10px] font-mono font-bold tracking-widest text-zinc-500 uppercase">Capital Deployed</span>
+                <span className="text-3xl md:text-5xl font-black tracking-tighter text-white">$100M<span className="text-zinc-600">+</span></span>
               </div>
-              <div className="hero-bottom-element flex flex-col gap-2">
-                <span className="text-xs font-mono font-bold tracking-widest text-zinc-500 uppercase">Avg. ROAS</span>
-                <span className="text-4xl md:text-5xl font-black tracking-tighter text-white">3.8X</span>
+              <div className="hero-bottom-element flex flex-col gap-1">
+                <span className="text-[10px] font-mono font-bold tracking-widest text-zinc-500 uppercase">Avg. ROAS</span>
+                <span className="text-3xl md:text-5xl font-black tracking-tighter text-white">3.8X</span>
               </div>
-              <div className="hero-bottom-element hidden md:flex flex-col gap-2">
-                <span className="text-xs font-mono font-bold tracking-widest text-zinc-500 uppercase">Active Systems</span>
-                <span className="text-4xl md:text-5xl font-black tracking-tighter text-white">45<span className="text-zinc-600">+</span></span>
+              <div className="hero-bottom-element hidden md:flex flex-col gap-1">
+                <span className="text-[10px] font-mono font-bold tracking-widest text-zinc-500 uppercase">Active Systems</span>
+                <span className="text-3xl md:text-5xl font-black tracking-tighter text-white">45<span className="text-zinc-600">+</span></span>
               </div>
             </div>
 
