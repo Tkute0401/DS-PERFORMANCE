@@ -58,6 +58,19 @@ export default function Hero() {
       ref={containerRef}
       className="relative w-full min-h-[100dvh] flex flex-col justify-end pt-24 pb-6 px-6 md:px-12 overflow-hidden bg-zinc-950"
     >
+      {/* War Room Background Video */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover grayscale opacity-[0.15] mix-blend-screen"
+          src="https://assets.mixkit.co/videos/preview/mixkit-financial-data-on-a-monitor-at-night-990-large.mp4"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950/30" />
+      </div>
+
       {/* Ultra-subtle engineering grid overlay (No messy blur blobs) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <div
