@@ -58,6 +58,16 @@ export default function Hero() {
       ref={containerRef}
       className="relative w-full min-h-[100dvh] flex flex-col justify-end pt-24 pb-6 px-6 md:px-12 overflow-hidden bg-zinc-950"
     >
+      {/* Fullscreen Animated Webp Background */}
+      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
+        <img
+          src="https://asset.eyecannndy.com/media/clip/2024/02/15/261707976419.webp"
+          alt="Hero Background"
+          className="w-full h-full object-cover opacity-20 mix-blend-screen grayscale"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent" />
+      </div>
+
       {/* Ultra-subtle engineering grid overlay (No messy blur blobs) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <div
@@ -99,10 +109,10 @@ export default function Hero() {
               transition={{ duration: 1.5, delay: 3, ease: "backOut" }}
               className="h-[clamp(3.5rem,7vw,8rem)] rounded-full overflow-hidden shrink-0 hidden md:block"
             >
-              <img
-                src="https://asset.eyecannndy.com/media/clip/2024/02/15/261707976419.webp"
-                alt="Performance Engine"
-                className="w-32 md:w-48 lg:w-72 h-full object-cover grayscale mix-blend-screen opacity-80 pointer-events-none"
+              <video
+                autoPlay loop muted playsInline
+                className="w-32 md:w-48 lg:w-72 h-full object-cover grayscale mix-blend-screen opacity-80"
+                src="https://www.digitalsupremacy.in/footer-vid.mp4"
               />
             </motion.div>
             <div className="overflow-hidden pb-4">
