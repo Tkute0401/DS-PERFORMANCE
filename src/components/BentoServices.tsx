@@ -104,7 +104,7 @@ export default function BentoServices() {
       tl.to(mobileDialRef.current, { rotation: -240, ease: "none" }, 0);
     }
 
-  }, { scope: containerRef });
+  }, { scope: containerRef, dependencies: [isMobile] });
 
   const currentCategory = dialCategories[activeIndex];
   const DIAL_RADIUS = 300;
