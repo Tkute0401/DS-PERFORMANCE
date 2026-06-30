@@ -46,7 +46,7 @@ const CASE_STUDIES = [
 
 export default function CaseStudies() {
   return (
-    <section className="relative w-full bg-zinc-950 text-white py-32 px-6 md:px-12 flex flex-col items-center">
+    <section className="relative w-full bg-zinc-950 text-white py-16 md:py-32 px-4 md:px-12 flex flex-col items-center">
       
       {/* Massive Background Typography Watermark */}
       <div className="absolute top-48 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none overflow-hidden mix-blend-overlay opacity-5">
@@ -57,27 +57,27 @@ export default function CaseStudies() {
 
       <div className="w-full max-w-6xl relative z-10 flex flex-col">
         
-        <div className="sticky top-12 md:top-24 z-20 mb-12 md:mb-16 pointer-events-none drop-shadow-xl">
+        <div className="sticky top-12 md:top-24 z-20 mb-8 md:mb-16 pointer-events-none drop-shadow-xl">
           <p className="font-mono text-sm tracking-widest text-zinc-500 uppercase mb-2 md:mb-4">Phase 03</p>
-          <h2 className="text-4xl md:text-7xl font-black tracking-tighter mix-blend-difference text-white">
+          <h2 className="text-5xl md:text-7xl font-black tracking-tighter mix-blend-difference text-white">
             THE ARCHIVE.
           </h2>
         </div>
 
         {/* Sticky Stack Container */}
-        <div className="relative w-full flex flex-col gap-8 pb-32">
+        <div className="relative w-full flex flex-col gap-4 md:gap-8 pb-32">
           {CASE_STUDIES.map((study, idx) => (
             <Link
               href={`/case-studies/${study.slug}`}
               key={idx}
               className="sticky block w-full outline-none"
-              // The sticky logic: top offset starts below the title (30vh) and increases for each card
-              style={{ top: `calc(30vh + ${idx * 40}px)` }}
+              // The sticky logic: top offset starts below the title and increases for each card
+              style={{ top: `calc(15vh + ${idx * 20}px)` }}
             >
               <motion.div
                 initial="rest"
                 whileHover="hover"
-                className="group w-full h-[65vh] min-h-[500px] max-h-[800px] bg-zinc-900 border border-white/5 rounded-[2.5rem] p-8 md:p-12 flex flex-col justify-between overflow-hidden shadow-2xl transition-all duration-500 hover:border-white/20"
+                className="group w-full h-[55vh] md:h-[65vh] min-h-[400px] md:min-h-[500px] max-h-[800px] bg-zinc-900 border border-white/5 rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 flex flex-col justify-between overflow-hidden shadow-2xl transition-all duration-500 hover:border-white/20"
               >
                 
                 {/* Background Data-Viz Animation (Always Visible Loop) */}
@@ -144,9 +144,9 @@ export default function CaseStudies() {
                     {study.description}
                   </p>
                   
-                  <div className="flex items-baseline gap-4">
-                    <span className="text-6xl md:text-8xl font-black tracking-tighter leading-none">{study.metric}</span>
-                    <span className="text-sm md:text-base font-mono uppercase font-bold tracking-widest text-zinc-500">{study.label}</span>
+                  <div className="flex items-baseline gap-2 md:gap-4">
+                    <span className="text-5xl md:text-8xl font-black tracking-tighter leading-none">{study.metric}</span>
+                    <span className="text-xs md:text-base font-mono uppercase font-bold tracking-widest text-zinc-500">{study.label}</span>
                   </div>
                 </div>
 
