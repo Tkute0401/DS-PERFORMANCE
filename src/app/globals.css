@@ -17,6 +17,19 @@
 html {
   background-color: #09090b;
   color: #ffffff;
+  /* Default 16px for mobile accessibility */
+  font-size: 16px;
+}
+
+/* Replicate the 80% zoom look on laptops/desktops */
+@media (min-width: 768px) {
+  html { font-size: 14px; } /* ~87.5% */
+}
+@media (min-width: 1024px) {
+  html { font-size: 13px; } /* ~81% */
+}
+@media (min-width: 1536px) {
+  html { font-size: 14px; } /* Scale back slightly for massive 4k screens */
 }
 
 body {
