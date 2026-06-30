@@ -2,178 +2,49 @@
 
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Target, Funnel, MagnifyingGlass, Browser, 
-  ShareNetwork, PenNib, Envelope, ChartLineUp, VideoCamera,
-  ShoppingCart, TrendUp, Users, PresentationChart, ChatCircleText
-} from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-type Tab = "full" | "ecom" | "edtech";
+type Category = "full" | "ecom" | "edtech";
 
-const Card = ({ children, className }: { children: React.ReactNode, className?: string }) => (
-  <div
-    className={cn(
-      "relative rounded-2xl bg-zinc-950 border border-white/10 p-5 lg:p-6 overflow-hidden group shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]",
-      className
-    )}
-  >
-    <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
-    <div className="relative z-10 h-full flex flex-col">{children}</div>
-  </div>
-);
+const categories = [
+  { id: "full", label: "The Engine" },
+  { id: "ecom", label: "E-Commerce" },
+  { id: "edtech", label: "Ed-Tech & B2B" },
+] as const;
 
-const FullStackGrid = () => (
-  <motion.div 
-    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}
-    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(180px,auto)] lg:grid-rows-2 gap-3 lg:gap-4 w-full h-full pb-4"
-  >
-    <Card className="lg:col-span-2">
-      <div className="flex justify-between items-start mb-4">
-        <div className="p-3 bg-red-500/10 rounded-xl"><Target weight="duotone" className="w-6 h-6 text-red-500" /></div>
-      </div>
-      <div className="mt-auto relative z-10">
-        <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight mb-1">Paid Media</h3>
-        <p className="text-white/50 text-sm">Meta, Google, & LinkedIn Capital Deployment.</p>
-      </div>
-    </Card>
-    <Card>
-      <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10"><ChartLineUp weight="duotone" className="w-6 h-6 text-white" /></div>
-      <div className="mt-auto relative z-10">
-        <h3 className="text-lg font-bold text-white tracking-tight mb-1">Data & Analytics</h3>
-        <p className="text-white/50 text-xs">Server-side matrices.</p>
-      </div>
-    </Card>
-    <Card>
-      <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10"><PenNib weight="duotone" className="w-6 h-6 text-white" /></div>
-      <div className="mt-auto relative z-10">
-        <h3 className="text-lg font-bold text-white tracking-tight mb-1">Copywriting</h3>
-        <p className="text-white/50 text-xs">Persuasion engineering.</p>
-      </div>
-    </Card>
-    <Card>
-      <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10"><Browser weight="duotone" className="w-6 h-6 text-white" /></div>
-      <div className="mt-auto relative z-10">
-        <h3 className="text-lg font-bold text-white tracking-tight mb-1">Web Design</h3>
-        <p className="text-white/50 text-xs">High-velocity pages.</p>
-      </div>
-    </Card>
-    <Card>
-      <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10"><MagnifyingGlass weight="duotone" className="w-6 h-6 text-white" /></div>
-      <div className="mt-auto relative z-10">
-        <h3 className="text-lg font-bold text-white tracking-tight mb-1">SEO & Content</h3>
-        <p className="text-white/50 text-xs">Organic search dominance.</p>
-      </div>
-    </Card>
-    <Card className="lg:col-span-2">
-      <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10"><Envelope weight="duotone" className="w-6 h-6 text-white" /></div>
-      <div className="mt-auto relative z-10">
-        <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight mb-1">Email & SMS</h3>
-        <p className="text-white/50 text-sm">Lifecycle automation & retention.</p>
-      </div>
-    </Card>
-  </motion.div>
-);
-
-const EcomGrid = () => (
-  <motion.div 
-    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}
-    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(180px,auto)] lg:grid-rows-2 gap-3 lg:gap-4 w-full h-full pb-4"
-  >
-    <Card className="lg:col-span-2">
-      <div className="flex justify-between items-start mb-4">
-        <div className="p-3 bg-blue-500/10 rounded-xl"><TrendUp weight="duotone" className="w-6 h-6 text-blue-500" /></div>
-      </div>
-      <div className="mt-auto relative z-10">
-        <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight mb-1">DTC Growth Scaling</h3>
-        <p className="text-white/50 text-sm">Margin-focused capital deployment for physical products.</p>
-      </div>
-    </Card>
-    <Card>
-      <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10"><ShoppingCart weight="duotone" className="w-6 h-6 text-white" /></div>
-      <div className="mt-auto relative z-10">
-        <h3 className="text-lg font-bold text-white tracking-tight mb-1">Catalog & Feed</h3>
-        <p className="text-white/50 text-xs">Algorithmic product visibility.</p>
-      </div>
-    </Card>
-    <Card>
-      <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10"><Browser weight="duotone" className="w-6 h-6 text-white" /></div>
-      <div className="mt-auto relative z-10">
-        <h3 className="text-lg font-bold text-white tracking-tight mb-1">Storefront CRO</h3>
-        <p className="text-white/50 text-xs">Frictionless checkout flows.</p>
-      </div>
-    </Card>
-    <Card className="lg:col-span-2">
-      <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10"><ChartLineUp weight="duotone" className="w-6 h-6 text-white" /></div>
-      <div className="mt-auto relative z-10">
-        <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight mb-1">LTV Maximization</h3>
-        <p className="text-white/50 text-sm">Advanced email/SMS cohort reactivation strategies.</p>
-      </div>
-    </Card>
-    <Card className="lg:col-span-2">
-      <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10"><ShareNetwork weight="duotone" className="w-6 h-6 text-white" /></div>
-      <div className="mt-auto relative z-10">
-        <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight mb-1">Social Commerce</h3>
-        <p className="text-white/50 text-sm">TikTok Shop & native platform social selling.</p>
-      </div>
-    </Card>
-  </motion.div>
-);
-
-const EdTechGrid = () => (
-  <motion.div 
-    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}
-    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(180px,auto)] lg:grid-rows-2 gap-3 lg:gap-4 w-full h-full pb-4"
-  >
-    <Card className="lg:col-span-2">
-      <div className="flex justify-between items-start mb-4">
-        <div className="p-3 bg-purple-500/10 rounded-xl"><Funnel weight="duotone" className="w-6 h-6 text-purple-500" /></div>
-      </div>
-      <div className="mt-auto relative z-10">
-        <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight mb-1">High-Ticket Lead Gen</h3>
-        <p className="text-white/50 text-sm">Automated pipeline engineering for premium programs.</p>
-      </div>
-    </Card>
-    <Card>
-      <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10"><VideoCamera weight="duotone" className="w-6 h-6 text-white" /></div>
-      <div className="mt-auto relative z-10">
-        <h3 className="text-lg font-bold text-white tracking-tight mb-1">Webinar Funnels</h3>
-        <p className="text-white/50 text-xs">High-velocity sales events.</p>
-      </div>
-    </Card>
-    <Card>
-      <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10"><PresentationChart weight="duotone" className="w-6 h-6 text-white" /></div>
-      <div className="mt-auto relative z-10">
-        <h3 className="text-lg font-bold text-white tracking-tight mb-1">VSL Engineering</h3>
-        <p className="text-white/50 text-xs">Video letters that convert cold.</p>
-      </div>
-    </Card>
-    <Card className="lg:col-span-2">
-      <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10"><Users weight="duotone" className="w-6 h-6 text-white" /></div>
-      <div className="mt-auto relative z-10">
-        <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight mb-1">Community Growth</h3>
-        <p className="text-white/50 text-sm">Scaling paid groups (Skool, Discord) via ads.</p>
-      </div>
-    </Card>
-    <Card className="lg:col-span-2">
-      <div className="p-3 bg-white/5 rounded-xl w-fit mb-4 relative z-10"><ChatCircleText weight="duotone" className="w-6 h-6 text-white" /></div>
-      <div className="mt-auto relative z-10">
-        <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight mb-1">Appointment Setting</h3>
-        <p className="text-white/50 text-sm">CRM integrations & setter team infrastructures.</p>
-      </div>
-    </Card>
-  </motion.div>
-);
+const servicesData = {
+  full: [
+    { title: "Paid Media", desc: "Meta, Google, & LinkedIn Capital Deployment." },
+    { title: "Data & Analytics", desc: "Server-side tracking matrices." },
+    { title: "Copywriting", desc: "Direct response persuasion engineering." },
+    { title: "Web Design & CRO", desc: "High-velocity, high-conversion pages." },
+    { title: "SEO Strategy", desc: "Organic search dominance & intent capture." },
+    { title: "Email & SMS", desc: "Lifecycle automation & retention architecture." },
+  ],
+  ecom: [
+    { title: "DTC Growth Scaling", desc: "Margin-focused capital deployment for physical products." },
+    { title: "Catalog & Feed Mgmt", desc: "Algorithmic product visibility & optimization." },
+    { title: "Storefront CRO", desc: "Frictionless checkout flows & speed optimization." },
+    { title: "LTV Maximization", desc: "Advanced cohort reactivation & retention strategies." },
+    { title: "Social Commerce", desc: "TikTok Shop & native platform social selling." },
+  ],
+  edtech: [
+    { title: "High-Ticket Lead Gen", desc: "Automated pipeline engineering for premium programs." },
+    { title: "Webinar Funnels", desc: "High-velocity automated sales events." },
+    { title: "VSL Engineering", desc: "Video Sales Letters that convert cold traffic." },
+    { title: "Community Growth", desc: "Scaling paid groups (Skool, Discord) via ads." },
+    { title: "Appointment Setting", desc: "CRM integrations & setter team infrastructures." },
+  ]
+};
 
 export default function BentoServices() {
-  const [activeTab, setActiveTab] = useState<Tab>("full");
+  const [activeCategory, setActiveCategory] = useState<Category>("full");
   const containerRef = useRef<HTMLDivElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const tabsRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -181,7 +52,7 @@ export default function BentoServices() {
     const isMobile = window.innerWidth < 1024;
     
     if (isMobile) {
-      gsap.fromTo(tabsRef.current, 
+      gsap.fromTo(contentRef.current, 
         { opacity: 0, y: 30 }, 
         { opacity: 1, y: 0, duration: 1, scrollTrigger: { trigger: containerRef.current, start: "top 85%" } }
       );
@@ -199,51 +70,87 @@ export default function BentoServices() {
       }
     });
 
-    gsap.set(tabsRef.current, { y: window.innerHeight * 0.3, scale: 0.95, opacity: 0 });
+    // Initial state
+    gsap.set(contentRef.current, { y: 100, opacity: 0, scale: 0.95 });
 
-    tl.to(titleRef.current, { scale: 0.85, opacity: 0.5, y: -20, duration: 1 })
-      .to(tabsRef.current, { y: 0, scale: 1, opacity: 1, duration: 1.5, ease: "power3.out" }, "<");
+    // Pinning entrance animation
+    tl.to(contentRef.current, { y: 0, opacity: 1, scale: 1, duration: 1, ease: "power3.out" })
+      .to({}, { duration: 1 }); // buffer for scrolling while pinned
 
   }, { scope: containerRef });
 
   return (
     <section ref={containerRef} id="services" className="w-full bg-zinc-950 relative">
-      <div ref={pinRef} className="w-full h-[100dvh] flex flex-col items-center justify-center px-4 md:px-6 lg:px-8 overflow-hidden">
-        <div className="max-w-[1400px] w-full mx-auto relative flex flex-col h-full py-6 lg:py-8">
+      <div ref={pinRef} className="w-full min-h-[100dvh] flex items-center justify-center px-4 md:px-8 lg:px-12 overflow-hidden py-24 lg:py-0">
+        
+        <div ref={contentRef} className="max-w-[1600px] w-full mx-auto flex flex-col lg:flex-row gap-12 lg:gap-0 relative z-10">
           
-          <div className="mb-4 lg:mb-6 flex-shrink-0 flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-6 w-full">
-            <h2 ref={titleRef} className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter text-white uppercase origin-left text-center lg:text-left leading-[0.9]">
-              WEAPONIZED <br className="hidden lg:block" /> <span className="text-red-500">INFRASTRUCTURE.</span>
+          {/* Left Side: Massive Typography Menu */}
+          <div className="w-full lg:w-[45%] flex flex-col justify-center">
+            <h2 className="text-xs md:text-sm font-mono text-red-500 mb-6 lg:mb-10 uppercase tracking-[0.3em] flex items-center gap-4">
+              <span className="w-8 h-px bg-red-500" />
+              Infrastructure
             </h2>
-            
-            {/* Tab Switcher */}
-            <div className="flex bg-zinc-900 border border-white/10 p-1.5 rounded-full relative z-20 overflow-x-auto max-w-full no-scrollbar">
-              {(["full", "ecom", "edtech"] as const).map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
+            <nav className="flex flex-col gap-4 lg:gap-6">
+              {categories.map(cat => (
+                <button 
+                  key={cat.id}
+                  onMouseEnter={() => {
+                    if (window.innerWidth >= 1024) setActiveCategory(cat.id as Category);
+                  }}
+                  onClick={() => setActiveCategory(cat.id as Category)}
                   className={cn(
-                    "relative px-4 py-2 lg:px-6 lg:py-2.5 rounded-full text-xs lg:text-sm font-bold uppercase tracking-wider transition-colors z-10 whitespace-nowrap",
-                    activeTab === tab ? "text-black" : "text-white/50 hover:text-white"
+                    "text-left text-4xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-black uppercase transition-all duration-300 tracking-tighter leading-[0.85]",
+                    activeCategory === cat.id 
+                      ? "text-white scale-100 origin-left" 
+                      : "text-white/10 hover:text-white/30 scale-95 origin-left"
                   )}
                 >
-                  {activeTab === tab && (
-                    <motion.div layoutId="activeTab" className="absolute inset-0 bg-white rounded-full -z-10" />
-                  )}
-                  {tab === "full" ? "The Engine" : tab === "ecom" ? "E-Commerce" : "Ed-Tech & B2B"}
+                  {cat.label}
                 </button>
               ))}
-            </div>
+            </nav>
           </div>
 
-          <div ref={tabsRef} className="w-full flex-1 min-h-0 relative">
+          {/* Right Side: Brutalist Data Table */}
+          <div className="w-full lg:w-[55%] flex flex-col justify-center lg:pl-16 xl:pl-24 lg:border-l border-white/10 relative">
             <AnimatePresence mode="wait">
-              {activeTab === "full" && <FullStackGrid key="full" />}
-              {activeTab === "ecom" && <EcomGrid key="ecom" />}
-              {activeTab === "edtech" && <EdTechGrid key="edtech" />}
+              <motion.div 
+                key={activeCategory}
+                initial={{ opacity: 0, x: 20, filter: "blur(10px)" }}
+                animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, x: -20, filter: "blur(10px)" }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="flex flex-col w-full"
+              >
+                <div className="flex flex-col border-t border-white/10">
+                  {servicesData[activeCategory].map((service, i) => (
+                    <div 
+                      key={service.title} 
+                      className="group border-b border-white/10 py-5 lg:py-6 flex flex-col sm:flex-row justify-between sm:items-center gap-2 sm:gap-6 hover:bg-white/[0.02] transition-colors px-2 -mx-2"
+                    >
+                      <div className="flex flex-col gap-1 lg:gap-2">
+                        <h3 className="text-xl lg:text-3xl font-black text-white uppercase tracking-tight group-hover:text-red-500 transition-colors">
+                          {service.title}
+                        </h3>
+                        <p className="text-white/40 font-mono text-[10px] lg:text-xs uppercase tracking-widest">
+                          {service.desc}
+                        </p>
+                      </div>
+                      <div className="text-white/10 font-mono text-sm lg:text-base font-bold hidden sm:block group-hover:text-red-500/50 transition-colors">
+                        /0{i + 1}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
             </AnimatePresence>
+            
+            {/* Visual Decorative Elements */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/5 blur-[100px] pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/5 blur-[100px] pointer-events-none" />
           </div>
-          
+
         </div>
       </div>
     </section>
