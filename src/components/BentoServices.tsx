@@ -80,17 +80,17 @@ export default function BentoServices() {
 
   return (
     <section ref={containerRef} id="services" className="w-full bg-zinc-950 relative">
-      <div ref={pinRef} className="w-full min-h-[100dvh] flex flex-col items-center justify-center px-4 md:px-6 lg:px-8 overflow-hidden py-12 lg:py-0">
-        <div className="max-w-[1400px] w-full mx-auto relative flex flex-col h-full py-6">
+      <div ref={pinRef} className="w-full h-[100dvh] flex flex-col items-center justify-center px-4 md:px-6 lg:px-8 overflow-hidden">
+        <div className="max-w-[1400px] w-full mx-auto relative flex flex-col h-full py-6 lg:py-8">
           
-          <div className="mb-6 lg:mb-10 flex-shrink-0 text-center md:text-left">
-            <h2 ref={titleRef} className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter text-white uppercase origin-left">
+          <div className="mb-4 lg:mb-6 flex-shrink-0 text-center md:text-left">
+            <h2 ref={titleRef} className="text-3xl md:text-5xl lg:text-7xl font-black tracking-tighter text-white uppercase origin-left">
               WEAPONIZED <br className="hidden md:block" /> <span className="text-red-500">INFRASTRUCTURE.</span>
             </h2>
           </div>
 
           {/* 4x3 Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(180px,auto)] lg:auto-rows-[minmax(200px,1fr)] gap-3 lg:gap-4 w-full flex-1 min-h-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(180px,auto)] lg:grid-rows-3 gap-3 w-full flex-1 min-h-0 pb-4">
             
             {/* 1. Paid Media (2x1) */}
             <Card className="md:col-span-2 lg:col-span-2">
