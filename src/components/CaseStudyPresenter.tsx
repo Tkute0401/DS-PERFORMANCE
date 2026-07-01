@@ -84,7 +84,7 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
           </div>
           
           {/* Edge-to-Edge Typography */}
-          <h1 className="text-[12vw] font-black tracking-tighter leading-[0.8] uppercase whitespace-nowrap overflow-hidden text-white mix-blend-overlay opacity-90 px-4 md:px-8">
+          <h1 className="text-[15vw] md:text-[12vw] font-black tracking-tighter leading-[0.8] uppercase break-words text-white mix-blend-overlay opacity-90 px-4 md:px-8">
             {data.client}
           </h1>
           
@@ -99,13 +99,13 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
         </div>
       </header>
 
-      {/* Results Banner (Horizontal scrolling marquee could go here, but static blocks work well) */}
+      {/* Results Banner */}
       <section className="w-full border-y border-white/10 bg-black relative z-10 cs-section">
-        <div className="flex flex-row overflow-x-auto snap-x snap-mandatory scrollbar-hide w-full divide-x divide-white/10">
+        <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-white/10 w-full">
           {data.results.map((res, i) => (
-            <div key={i} className="flex-none w-[85vw] md:flex-1 md:w-auto p-12 md:p-24 flex flex-col items-center justify-center text-center group hover:bg-white/[0.02] transition-colors snap-center">
-              <span className="text-7xl md:text-9xl font-black tracking-tighter text-white mb-4">{res.metric}</span>
-              <span className="text-sm font-mono uppercase tracking-widest text-zinc-500">{res.label}</span>
+            <div key={i} className="flex-1 p-8 md:p-24 flex flex-col items-center justify-center text-center group hover:bg-white/[0.02] transition-colors">
+              <span className="text-6xl md:text-9xl font-black tracking-tighter text-white mb-2 md:mb-4">{res.metric}</span>
+              <span className="text-xs md:text-sm font-mono uppercase tracking-widest text-zinc-500">{res.label}</span>
             </div>
           ))}
         </div>
@@ -175,7 +175,7 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
             {/* Massive quotation marks in background */}
             <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[30rem] font-serif text-white/5 leading-none pointer-events-none">"</span>
             
-            <p className="text-4xl md:text-6xl lg:text-7xl leading-[1.1] font-medium tracking-tight text-white mb-16 relative z-10">
+            <p className="text-3xl md:text-6xl lg:text-7xl leading-[1.1] font-medium tracking-tight text-white mb-12 md:mb-16 relative z-10 break-words">
               {data.testimonial.quote}
             </p>
             <div className="flex flex-col items-center gap-4">
@@ -191,13 +191,13 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
       {/* Next Project Teaser (Footer area) */}
       <section className="w-full py-24 md:py-48 flex flex-col items-center justify-center border-t border-white/10 bg-black relative z-10 cs-section overflow-hidden">
         <span className="text-zinc-500 font-mono uppercase tracking-widest text-sm mb-8 md:mb-12">System Ready</span>
-        <Link href="/" className="relative group">
-          <span className="text-5xl md:text-9xl font-black tracking-tighter text-white px-4 md:px-8 text-center block">
+        <Link href="/" className="relative group w-full px-4">
+          <span className="text-4xl md:text-9xl font-black tracking-tighter text-white text-center block break-words">
             START A PROJECT
           </span>
           {/* Slash over text effect on hover */}
           <div className="absolute inset-0 bg-white scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] flex items-center justify-center">
-            <span className="text-5xl md:text-9xl font-black tracking-tighter text-black px-4 md:px-8 text-center block">
+            <span className="text-4xl md:text-9xl font-black tracking-tighter text-black text-center block break-words">
               START A PROJECT
             </span>
           </div>
