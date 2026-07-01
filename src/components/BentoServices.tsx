@@ -103,7 +103,7 @@ export default function BentoServices() {
 
   return (
     <section ref={containerRef} id="services" className="w-full bg-zinc-950 relative overflow-hidden">
-      <div ref={pinRef} className="w-full min-h-[100dvh] flex flex-col lg:flex-row items-center justify-center px-4 md:px-6 lg:px-8 py-20 lg:py-0 relative">
+      <div ref={pinRef} className="w-full min-h-[100dvh] flex flex-col lg:flex-row items-center justify-center px-4 md:px-6 lg:px-8 py-8 lg:py-0 relative">
         
         {/* Background ambient glow based on active category */}
         <div 
@@ -112,7 +112,7 @@ export default function BentoServices() {
         />
 
         {/* Mobile View: Brutalist Kinetic Click-Wheel */}
-        <div className="w-full h-[100dvh] flex lg:hidden flex-col justify-between relative z-10 pt-24 overflow-hidden">
+        <div className="w-full h-[100dvh] flex lg:hidden flex-col justify-between relative z-10 pt-16 overflow-hidden">
             {/* Top Area: Data Grid */}
             <div className="flex-1 w-full flex flex-col px-4 z-20">
               <AnimatePresence mode="wait">

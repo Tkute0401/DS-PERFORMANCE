@@ -56,7 +56,7 @@ export default function Navigation() {
         )}
       >
         <Link href="/" className="flex items-center">
-          <img src="/logo.png" alt="DS Performance" className="hidden md:block h-6 object-contain" />
+          <img src="/logo.png" alt="DS Performance" className="hidden md:block h-10 object-contain" />
           <img src="/logo-mobile.png" alt="DS Performance" className="block md:hidden h-6 object-contain" />
         </Link>
 

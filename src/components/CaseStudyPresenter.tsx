@@ -64,7 +64,7 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
       </nav>
 
       {/* Hero Section - Aggressive Typography */}
-      <header className="relative w-full min-h-[100dvh] flex flex-col justify-end overflow-hidden pb-12 pt-32">
+      <header className="relative w-full min-h-[70dvh] md:min-h-[100dvh] flex flex-col justify-end overflow-hidden pb-8 md:pb-12 pt-32">
         <div className="absolute inset-0 z-0 bg-black pointer-events-none">
           <img 
             ref={heroImageRef}
@@ -88,7 +88,7 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
             {data.client}
           </h1>
           
-          <div className="px-6 md:px-12 mt-12 grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-white/10 pt-12">
+          <div className="px-6 md:px-12 mt-6 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 border-t border-white/10 pt-6 md:pt-12">
             <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white leading-tight">
               {data.heroHeadline}
             </h2>
@@ -101,9 +101,9 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
 
       {/* Results Banner (Horizontal scrolling marquee could go here, but static blocks work well) */}
       <section className="w-full border-y border-white/10 bg-black relative z-10 cs-section">
-        <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-white/10">
+        <div className="flex flex-row overflow-x-auto snap-x snap-mandatory scrollbar-hide w-full divide-x divide-white/10">
           {data.results.map((res, i) => (
-            <div key={i} className="flex-1 p-12 md:p-24 flex flex-col items-center justify-center text-center group hover:bg-white/[0.02] transition-colors">
+            <div key={i} className="flex-none w-[85vw] md:flex-1 md:w-auto p-12 md:p-24 flex flex-col items-center justify-center text-center group hover:bg-white/[0.02] transition-colors snap-center">
               <span className="text-7xl md:text-9xl font-black tracking-tighter text-white mb-4">{res.metric}</span>
               <span className="text-sm font-mono uppercase tracking-widest text-zinc-500">{res.label}</span>
             </div>
@@ -112,17 +112,17 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
       </section>
 
       {/* The Narrative Column (The "Why") */}
-      <section className="w-full py-32 px-6 relative z-10 flex justify-center">
+      <section className="w-full py-16 md:py-32 px-6 relative z-10 flex justify-center">
         <div className="max-w-3xl w-full cs-section">
-          <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-12">01 / The Situation</h3>
+          <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-8 md:mb-12">01 / The Situation</h3>
           
           {/* Editorial Drop Cap effect using first-letter */}
-          <p className="text-2xl md:text-4xl font-serif leading-relaxed text-zinc-300 mb-24 first-letter:text-7xl first-letter:font-black first-letter:text-white first-letter:mr-3 first-letter:float-left">
+          <p className="text-2xl md:text-4xl font-serif leading-relaxed text-zinc-300 mb-12 md:mb-24 first-letter:text-7xl first-letter:font-black first-letter:text-white first-letter:mr-3 first-letter:float-left">
             {data.overview}
           </p>
 
-          <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-12 border-t border-white/10 pt-12">02 / The Obstacles</h3>
-          <div className="space-y-12">
+          <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-8 md:mb-12 border-t border-white/10 pt-8 md:pt-12">02 / The Obstacles</h3>
+          <div className="space-y-8 md:space-y-12">
             {data.challenges.map((challenge, i) => (
               <div key={i} className="flex gap-8">
                 <span className="text-2xl font-mono text-white/20 font-light">0{i+1}</span>
@@ -142,23 +142,23 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
       </section>
 
       {/* The Brutalist Timeline (The "How") */}
-      <section className="w-full py-32 bg-black border-t border-white/10 relative z-10">
+      <section className="w-full py-16 md:py-32 bg-black border-t border-white/10 relative z-10">
         <div className="max-w-screen-2xl mx-auto px-6 md:px-12">
-          <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-24 cs-section">03 / The Execution</h3>
+          <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-12 md:mb-24 cs-section">03 / The Execution</h3>
           
           <div className="flex flex-col border-t border-white/10">
             {data.strategy.map((strategy, i) => (
-              <div key={i} className="flex flex-col lg:flex-row gap-8 lg:gap-24 py-16 md:py-24 border-b border-white/10 cs-section group hover:bg-white/[0.02] transition-colors px-4 lg:px-12 -mx-4 lg:-mx-12">
+              <div key={i} className="flex flex-col lg:flex-row gap-4 lg:gap-24 py-12 md:py-24 border-b border-white/10 cs-section group hover:bg-white/[0.02] transition-colors px-4 lg:px-12 -mx-4 lg:-mx-12">
                 <div className="lg:w-1/3 flex items-start">
-                  <span className="text-8xl md:text-[10rem] font-black tracking-tighter text-white/10 leading-none group-hover:text-white/20 transition-colors">
+                  <span className="text-6xl md:text-[10rem] font-black tracking-tighter text-white/10 leading-none group-hover:text-white/20 transition-colors">
                     0{i+1}
                   </span>
                 </div>
                 <div className="lg:w-2/3 flex flex-col justify-center">
-                  <h4 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-8">
+                  <h4 className="text-3xl md:text-6xl font-bold tracking-tight text-white mb-4 md:mb-8">
                     {strategy.title}
                   </h4>
-                  <p className="text-xl md:text-3xl text-zinc-400 font-light leading-relaxed max-w-3xl">
+                  <p className="text-lg md:text-3xl text-zinc-400 font-light leading-relaxed max-w-3xl">
                     {strategy.description}
                   </p>
                 </div>
@@ -170,7 +170,7 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
 
       {/* Psychological Testimonial */}
       {data.testimonial && (
-        <section className="w-full min-h-screen flex items-center justify-center py-32 px-6 md:px-12 bg-zinc-950 relative z-10">
+        <section className="w-full min-h-[50vh] md:min-h-screen flex items-center justify-center py-16 md:py-32 px-6 md:px-12 bg-zinc-950 relative z-10">
           <div className="max-w-5xl w-full text-center cs-section relative">
             {/* Massive quotation marks in background */}
             <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[30rem] font-serif text-white/5 leading-none pointer-events-none">"</span>
@@ -189,15 +189,15 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
       )}
 
       {/* Next Project Teaser (Footer area) */}
-      <section className="w-full py-48 flex flex-col items-center justify-center border-t border-white/10 bg-black relative z-10 cs-section overflow-hidden">
-        <span className="text-zinc-500 font-mono uppercase tracking-widest text-sm mb-12">System Ready</span>
+      <section className="w-full py-24 md:py-48 flex flex-col items-center justify-center border-t border-white/10 bg-black relative z-10 cs-section overflow-hidden">
+        <span className="text-zinc-500 font-mono uppercase tracking-widest text-sm mb-8 md:mb-12">System Ready</span>
         <Link href="/" className="relative group">
-          <span className="text-6xl md:text-9xl font-black tracking-tighter text-white px-8">
+          <span className="text-5xl md:text-9xl font-black tracking-tighter text-white px-4 md:px-8 text-center block">
             START A PROJECT
           </span>
           {/* Slash over text effect on hover */}
           <div className="absolute inset-0 bg-white scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] flex items-center justify-center">
-            <span className="text-6xl md:text-9xl font-black tracking-tighter text-black px-8">
+            <span className="text-5xl md:text-9xl font-black tracking-tighter text-black px-4 md:px-8 text-center block">
               START A PROJECT
             </span>
           </div>

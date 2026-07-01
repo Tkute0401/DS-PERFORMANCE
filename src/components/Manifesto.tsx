@@ -101,7 +101,7 @@ export default function Manifesto() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative w-full min-h-[70vh] md:min-h-[100dvh] bg-zinc-950 flex flex-col items-center justify-center px-6 py-24 md:py-0 overflow-x-hidden">
+    <section ref={containerRef} className="relative w-full min-h-[70vh] md:min-h-[100dvh] bg-zinc-950 flex flex-col items-center justify-center px-6 py-8 md:py-0 overflow-x-hidden">
       
       {/* Background Engineering Grid */}
       <div 

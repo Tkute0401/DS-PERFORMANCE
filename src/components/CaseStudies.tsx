@@ -46,7 +46,7 @@ const CASE_STUDIES = [
 
 export default function CaseStudies() {
   return (
-    <section className="relative w-full bg-zinc-950 text-white py-16 md:py-32 px-4 md:px-12 flex flex-col items-center">
+    <section className="relative w-full bg-zinc-950 text-white py-8 md:py-32 px-4 md:px-12 flex flex-col items-center">
       
       {/* Massive Background Typography Watermark */}
       <div className="absolute top-48 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none overflow-hidden mix-blend-overlay opacity-5">
