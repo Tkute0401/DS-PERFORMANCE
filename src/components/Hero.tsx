@@ -115,8 +115,7 @@ export default function Hero() {
               transition={{ duration: 1.5, delay: 3, ease: "backOut" }}
               className="h-[clamp(3.5rem,7vw,8rem)] rounded-full overflow-hidden shrink-0 hidden md:block"
             >
-              <video
-                autoPlay loop muted playsInline
+              <img
                 className="w-32 md:w-48 lg:w-72 h-full object-cover grayscale mix-blend-screen opacity-80"
                 src="https://asset.eyecannndy.com/media/clip/2024/01/06/261704530577.webp"
               />

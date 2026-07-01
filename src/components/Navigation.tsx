@@ -55,8 +55,9 @@ export default function Navigation() {
             : "bg-transparent border-transparent w-full max-w-6xl px-6 md:px-12"
         )}
       >
-        <Link href="/" className="text-white font-bold tracking-tighter text-xl">
-          DS<span className="font-light">.PERFORMANCE</span>
+        <Link href="/" className="flex items-center">
+          <img src="/logo.png" alt="DS Performance" className="hidden md:block h-6 object-contain" />
+          <img src="/logo-mobile.png" alt="DS Performance" className="block md:hidden h-6 object-contain" />
         </Link>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white/80">
