@@ -15,9 +15,11 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
   const heroImageRef = useRef<HTMLImageElement>(null);
 
   useGSAP(() => {
-    let mm = gsap.matchMedia();
+    let mm = gsap.matchMedia(containerRef);
 
-    // Desktop Animations
+    // -------------------------
+    // DESKTOP ANIMATIONS (Current)
+    // -------------------------
     mm.add("(min-width: 768px)", () => {
       if (heroImageRef.current) {
         gsap.to(heroImageRef.current, {
@@ -51,11 +53,15 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
       });
     });
 
-    // Mobile Animations (Aggressive / Kinetic)
+    // -------------------------
+    // MOBILE ANIMATIONS (Option 2: Kinetic & Aggressive)
+    // -------------------------
     mm.add("(max-width: 767px)", () => {
+      // 1. Hero Image Parallax (Deeper)
       if (heroImageRef.current) {
         gsap.to(heroImageRef.current, {
-          yPercent: 30,
+          yPercent: 50,
+          scale: 1.2,
           ease: "none",
           scrollTrigger: {
             trigger: containerRef.current,
@@ -66,71 +72,42 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
         });
       }
 
-      // 1. Hero Title Glitch / Slam
-      gsap.from(".hero-title", {
-        opacity: 0,
-        scale: 1.2,
-        skewX: 10,
-        duration: 0.8,
-        ease: "power4.out",
-        delay: 0.2,
-      });
+      // 2. Typewriter Hero Title
+      gsap.fromTo(".hero-char", 
+        { opacity: 0, x: -20, rotateY: 90 },
+        { opacity: 1, x: 0, rotateY: 0, duration: 0.1, stagger: 0.05, ease: "power2.out", delay: 0.2 }
+      );
 
-      // 2. Results Numbers Scale effect
-      const resultNums = gsap.utils.toArray(".result-number");
-      resultNums.forEach((num: any) => {
-        gsap.from(num, {
-          opacity: 0,
-          scale: 0.5,
-          y: 50,
-          duration: 0.8,
-          ease: "back.out(1.7)",
-          scrollTrigger: {
-            trigger: num,
-            start: "top 90%",
-          }
-        });
-      });
-
-      // 3. Obstacles slam (Staggered scaling)
-      const obstacles = gsap.utils.toArray(".obstacle-container");
-      obstacles.forEach((obs: any) => {
-        const words = obs.querySelectorAll(".mobile-obstacle-word");
-        gsap.from(words, {
-          scale: 1.5,
-          opacity: 0,
-          stagger: 0.05,
-          duration: 0.4,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: obs,
-            start: "top 85%",
-          }
-        });
-      });
-
-      // 4. Execution Timeline Background Flash
-      const timelineBgNums = gsap.utils.toArray(".timeline-bg-num");
-      timelineBgNums.forEach((bg: any) => {
-        gsap.fromTo(bg, 
-          { opacity: 1, scale: 1.1 },
-          {
-            opacity: 0.1,
-            scale: 1,
-            duration: 0.6,
-            ease: "power4.out",
-            scrollTrigger: {
-              trigger: bg,
-              start: "top 80%",
-            }
-          }
+      // 3. Results Bounce Snapping
+      const results = gsap.utils.toArray(".result-block");
+      results.forEach((res: any, i) => {
+        gsap.fromTo(res, 
+          { x: i % 2 === 0 ? -100 : 100, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.8, ease: "back.out(1.7)", scrollTrigger: { trigger: res, start: "top 85%" } }
         );
       });
 
-      // Standard section fade for everything else on mobile
-      const sections = gsap.utils.toArray(".cs-section");
+      // 4. Linear Clipping Reveal for Narrative
+      const narrativeLines = gsap.utils.toArray(".narrative-clip");
+      narrativeLines.forEach((line: any) => {
+        gsap.fromTo(line, 
+          { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
+          { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", duration: 0.6, ease: "none", scrollTrigger: { trigger: line, start: "top 85%" } }
+        );
+      });
+
+      // 5. Execution Timeline Border Expansion
+      const timelineBlocks = gsap.utils.toArray(".timeline-block");
+      timelineBlocks.forEach((block: any) => {
+        gsap.fromTo(block, 
+          { scale: 0.9, opacity: 0, borderColor: "rgba(255,255,255,1)" },
+          { scale: 1, opacity: 1, borderColor: "rgba(255,255,255,0.1)", duration: 0.6, ease: "power3.out", scrollTrigger: { trigger: block, start: "top 90%" } }
+        );
+      });
+      
+      // General section fade up for anything without specific anim
+      const sections = gsap.utils.toArray(".cs-section:not(.timeline-block)");
       sections.forEach((section: any) => {
-        // Exclude sections we animated manually if they conflict (usually fine if different elements)
         gsap.fromTo(
           section,
           { opacity: 0, y: 50 },
@@ -138,7 +115,7 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
             opacity: 1,
             y: 0,
             duration: 0.8,
-            ease: "power3.out",
+            ease: "expo.out",
             scrollTrigger: {
               trigger: section,
               start: "top 90%",
@@ -184,8 +161,10 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
           </div>
           
           {/* Edge-to-Edge Typography */}
-          <h1 className="hero-title text-[15vw] md:text-[12vw] font-black tracking-tighter leading-[0.8] uppercase break-words text-white mix-blend-overlay opacity-90 px-4 md:px-8">
-            {data.client}
+          <h1 className="text-[15vw] md:text-[12vw] font-black tracking-tighter leading-[0.8] uppercase break-words text-white mix-blend-overlay opacity-90 px-4 md:px-8 perspective-1000">
+            {data.client.split('').map((char, i) => (
+              <span key={i} className="inline-block hero-char">{char === ' ' ? '\u00A0' : char}</span>
+            ))}
           </h1>
           
           <div className="px-6 md:px-12 mt-6 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 border-t border-white/10 pt-6 md:pt-12">
@@ -203,8 +182,8 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
       <section className="w-full border-y border-white/10 bg-black relative z-10 cs-section">
         <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-white/10 w-full">
           {data.results.map((res, i) => (
-            <div key={i} className="flex-1 p-8 md:p-24 flex flex-col items-center justify-center text-center group hover:bg-white/[0.02] transition-colors">
-              <span className="result-number text-6xl md:text-9xl font-black tracking-tighter text-white mb-2 md:mb-4">{res.metric}</span>
+            <div key={i} className="result-block flex-1 p-8 md:p-24 flex flex-col items-center justify-center text-center group hover:bg-white/[0.02] transition-colors">
+              <span className="text-6xl md:text-9xl font-black tracking-tighter text-white mb-2 md:mb-4">{res.metric}</span>
               <span className="text-xs md:text-sm font-mono uppercase tracking-widest text-zinc-500">{res.label}</span>
             </div>
           ))}
@@ -217,24 +196,24 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
           <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-8 md:mb-12">01 / The Situation</h3>
           
           {/* Editorial Drop Cap effect using first-letter */}
-          <p className="text-2xl md:text-4xl font-serif leading-relaxed text-zinc-300 mb-12 md:mb-24 first-letter:text-7xl first-letter:font-black first-letter:text-white first-letter:mr-3 first-letter:float-left">
+          <p className="narrative-clip text-2xl md:text-4xl font-serif leading-relaxed text-zinc-300 mb-12 md:mb-24 first-letter:text-7xl first-letter:font-black first-letter:text-white first-letter:mr-3 first-letter:float-left">
             {data.overview}
           </p>
 
           <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-8 md:mb-12 border-t border-white/10 pt-8 md:pt-12">02 / The Obstacles</h3>
-          <div className="space-y-8 md:space-y-12">
+          <div className="space-y-8 md:space-y-12 overflow-hidden">
             {data.challenges.map((challenge, i) => (
-              <div key={i} className="flex gap-8">
+              <div key={i} className="narrative-clip flex gap-8">
                 <span className="text-2xl font-mono text-white/20 font-light">0{i+1}</span>
-                <p className="obstacle-container text-xl md:text-3xl font-medium leading-normal text-white flex flex-wrap gap-x-2 gap-y-1">
+                <div className="text-xl md:text-3xl font-medium leading-normal text-white flex flex-wrap gap-x-1 gap-y-1">
                   {/* Aggressive highlighting for emphasis */}
                   {challenge.split(' ').map((word, idx) => (
-                    // Randomly highlight some words for that aggressive brutalist look (simplified logic here)
+                    // Randomly highlight some words for that aggressive brutalist look
                     (idx === 2 || idx === 5) ? 
-                      <mark key={idx} className="mobile-obstacle-word inline-block bg-white text-black px-1 font-bold">{word}</mark> : 
-                      <span key={idx} className="mobile-obstacle-word inline-block">{word}</span>
+                      <mark key={idx} className="bg-white text-black px-1 font-bold inline-block">{word}</mark> : 
+                      <span key={idx} className="inline-block">{word}</span>
                   ))}
-                </p>
+                </div>
               </div>
             ))}
           </div>
@@ -248,9 +227,9 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
           
           <div className="flex flex-col border-t border-white/10">
             {data.strategy.map((strategy, i) => (
-              <div key={i} className="flex flex-col lg:flex-row gap-4 lg:gap-24 py-12 md:py-24 border-b border-white/10 cs-section group hover:bg-white/[0.02] transition-colors px-4 lg:px-12 -mx-4 lg:-mx-12">
+              <div key={i} className="timeline-block flex flex-col lg:flex-row gap-4 lg:gap-24 py-12 md:py-24 border-b border-white/10 cs-section group hover:bg-white/[0.02] transition-colors px-4 lg:px-12 -mx-4 lg:-mx-12">
                 <div className="lg:w-1/3 flex items-start">
-                  <span className="timeline-bg-num text-6xl md:text-[10rem] font-black tracking-tighter text-white/10 leading-none group-hover:text-white/20 transition-colors">
+                  <span className="text-6xl md:text-[10rem] font-black tracking-tighter text-white/10 leading-none group-hover:text-white/20 transition-colors">
                     0{i+1}
                   </span>
                 </div>
