@@ -118,7 +118,7 @@ export default function Hero() {
               <video
                 autoPlay loop muted playsInline
                 className="w-32 md:w-48 lg:w-72 h-full object-cover grayscale mix-blend-screen opacity-80"
-                src="https://www.digitalsupremacy.in/footer-vid.mp4"
+                src="https://asset.eyecannndy.com/media/clip/2024/01/06/261704530577.webp"
               />
             </motion.div>
             <div className="overflow-hidden pb-4">
@@ -131,7 +131,7 @@ export default function Hero() {
 
         {/* Brutalist Kinetic Headline (Mobile Only) */}
         <div className="flex md:hidden flex-col w-full max-w-[100vw] overflow-hidden relative z-20 pb-4">
-          <motion.div 
+          <motion.div
             whileTap={{ x: [-5, 5, -5, 5, 0], filter: "invert(100%)", scale: 0.95 }}
             transition={{ duration: 0.2 }}
             className="w-full text-zinc-100"
@@ -140,7 +140,7 @@ export default function Hero() {
               PERFORMANCE
             </h1>
           </motion.div>
-          <motion.div 
+          <motion.div
             whileTap={{ x: [5, -5, 5, -5, 0], filter: "invert(100%)", scale: 0.95 }}
             transition={{ duration: 0.2 }}
             className="w-full text-zinc-100"
@@ -149,8 +149,8 @@ export default function Hero() {
               IS NOT A
             </h1>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             whileTap={{ x: [-5, 5, -5, 5, 0], filter: "invert(100%)", scale: 0.95 }}
             transition={{ duration: 0.2 }}
             className="w-full text-red-500"
@@ -159,7 +159,7 @@ export default function Hero() {
               GUESSING
             </h1>
           </motion.div>
-          <motion.div 
+          <motion.div
             whileTap={{ x: [5, -5, 5, -5, 0], filter: "invert(100%)", scale: 0.95 }}
             transition={{ duration: 0.2 }}
             className="w-full text-zinc-100"
