@@ -29,24 +29,77 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
       });
     }
 
-    // Fade up sections
+    // Fade up sections with stagger
     const sections = gsap.utils.toArray(".cs-section");
     sections.forEach((section: any) => {
       gsap.fromTo(
         section,
-        { opacity: 0, y: 100 },
+        { opacity: 0, y: 50, scale: 0.98 },
         {
           opacity: 1,
           y: 0,
-          duration: 1.2,
+          scale: 1,
+          duration: 1.5,
           ease: "expo.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 85%",
+            start: "top 90%",
           },
         }
       );
     });
+
+    // Stagger Results
+    gsap.fromTo(
+      ".result-card",
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.2,
+        duration: 1.5,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: ".results-container",
+          start: "top 80%",
+        }
+      }
+    );
+
+    // Timeline Parallax Numbers
+    const timelineNumbers = gsap.utils.toArray(".timeline-num");
+    timelineNumbers.forEach((num: any) => {
+      gsap.fromTo(
+        num,
+        { y: -50, opacity: 0, scale: 0.5 },
+        {
+          y: 20,
+          opacity: 0.1,
+          scale: 1,
+          duration: 2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: num,
+            start: "top 90%",
+            scrub: 1,
+          }
+        }
+      );
+    });
+
+    // Hero Text Reveal
+    gsap.fromTo(
+      ".hero-title",
+      { opacity: 0, rotateX: 90, y: 100 },
+      {
+        opacity: 0.9,
+        rotateX: 0,
+        y: 0,
+        duration: 2,
+        ease: "expo.out",
+        delay: 0.2,
+      }
+    );
 
   }, { scope: containerRef });
 
@@ -84,9 +137,11 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
           </div>
           
           {/* Edge-to-Edge Typography */}
-          <h1 className="text-[15vw] md:text-[12vw] font-black tracking-tighter leading-[0.8] uppercase break-words text-white mix-blend-overlay opacity-90 px-4 md:px-8">
-            {data.client}
-          </h1>
+          <div style={{ perspective: "1000px" }}>
+            <h1 className="hero-title text-[15vw] sm:text-[12vw] font-black tracking-tighter leading-[0.85] uppercase text-white mix-blend-overlay opacity-90 px-4 md:px-8 max-w-full break-words origin-bottom">
+              {data.client}
+            </h1>
+          </div>
           
           <div className="px-6 md:px-12 mt-6 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 border-t border-white/10 pt-6 md:pt-12">
             <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white leading-tight">
@@ -100,12 +155,12 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
       </header>
 
       {/* Results Banner */}
-      <section className="w-full border-y border-white/10 bg-black relative z-10 cs-section">
+      <section className="w-full border-y border-white/10 bg-black relative z-10 cs-section results-container">
         <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-white/10 w-full">
           {data.results.map((res, i) => (
-            <div key={i} className="flex-1 p-8 md:p-24 flex flex-col items-center justify-center text-center group hover:bg-white/[0.02] transition-colors">
-              <span className="text-6xl md:text-9xl font-black tracking-tighter text-white mb-2 md:mb-4">{res.metric}</span>
-              <span className="text-xs md:text-sm font-mono uppercase tracking-widest text-zinc-500">{res.label}</span>
+            <div key={i} className="result-card flex-1 p-8 md:p-24 flex flex-col items-center justify-center text-center group hover:bg-white/[0.05] transition-colors duration-700">
+              <span className="text-6xl md:text-9xl font-black tracking-tighter text-white mb-2 md:mb-4 group-hover:scale-110 transition-transform duration-700 ease-out">{res.metric}</span>
+              <span className="text-xs md:text-sm font-mono uppercase tracking-widest text-zinc-500 group-hover:text-white transition-colors duration-700">{res.label}</span>
             </div>
           ))}
         </div>
@@ -117,20 +172,21 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
           <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-8 md:mb-12">01 / The Situation</h3>
           
           {/* Editorial Drop Cap effect using first-letter */}
-          <p className="text-2xl md:text-4xl font-serif leading-relaxed text-zinc-300 mb-12 md:mb-24 first-letter:text-7xl first-letter:font-black first-letter:text-white first-letter:mr-3 first-letter:float-left first-letter:leading-[0.8] first-letter:mt-2">
+          <p className="text-2xl md:text-4xl font-serif leading-relaxed text-zinc-300 mb-12 md:mb-24 first-letter:text-7xl first-letter:font-black first-letter:text-white first-letter:mr-3 first-letter:float-left">
             {data.overview}
           </p>
 
           <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-8 md:mb-12 border-t border-white/10 pt-8 md:pt-12">02 / The Obstacles</h3>
-          <div className="space-y-8 md:space-y-12">
+          <div className="space-y-8 md:space-y-12 w-full overflow-hidden">
             {data.challenges.map((challenge, i) => (
-              <div key={i} className="flex gap-6 md:gap-8 group">
-                <span className="text-xl md:text-2xl font-mono text-zinc-700 font-light group-hover:text-zinc-500 transition-colors mt-1">0{i+1}</span>
-                <p className="text-lg md:text-3xl font-medium leading-normal text-zinc-300">
-                  {/* Premium subtle highlighting */}
+              <div key={i} className="flex gap-4 md:gap-8 w-full">
+                <span className="text-2xl font-mono text-white/20 font-light flex-none mt-1">0{i+1}</span>
+                <p className="flex-1 text-xl md:text-3xl font-medium leading-normal text-white break-words">
+                  {/* Aggressive highlighting for emphasis */}
                   {challenge.split(' ').map((word, idx) => (
+                    // Randomly highlight some words for that aggressive brutalist look (simplified logic here)
                     (idx === 2 || idx === 5) ? 
-                      <span key={idx} className="text-white bg-white/10 px-2 py-0.5 rounded-md mr-1 font-semibold">{word}</span> : 
+                      <mark key={idx} className="bg-white text-black px-1 mx-0.5 inline-block font-bold">{word}</mark> : 
                       <span key={idx} className="mr-1">{word}</span>
                   ))}
                 </p>
@@ -141,23 +197,23 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
       </section>
 
       {/* The Brutalist Timeline (The "How") */}
-      <section className="w-full py-16 md:py-32 bg-zinc-950 border-t border-white/10 relative z-10 overflow-hidden">
+      <section className="w-full py-16 md:py-32 bg-black border-t border-white/10 relative z-10">
         <div className="max-w-screen-2xl mx-auto px-6 md:px-12">
           <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-12 md:mb-24 cs-section">03 / The Execution</h3>
           
           <div className="flex flex-col border-t border-white/10">
             {data.strategy.map((strategy, i) => (
-              <div key={i} className="relative py-12 md:py-24 border-b border-white/10 cs-section group hover:bg-white/[0.02] transition-colors overflow-hidden">
-                {/* Background Number */}
-                <span className="absolute -top-4 md:-top-10 -left-4 md:-left-10 text-[10rem] md:text-[18rem] font-black tracking-tighter text-white/[0.03] leading-none select-none z-0 group-hover:text-white/[0.06] transition-colors pointer-events-none">
-                  0{i+1}
-                </span>
-                
-                <div className="relative z-10 flex flex-col justify-center max-w-4xl pt-8 md:pt-16">
-                  <h4 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4 md:mb-8">
+              <div key={i} className="flex flex-col lg:flex-row gap-4 lg:gap-24 py-12 md:py-24 border-b border-white/10 cs-section group hover:bg-white/[0.02] transition-colors px-4 lg:px-12 -mx-4 lg:-mx-12">
+                <div className="lg:w-1/3 flex items-start overflow-hidden">
+                  <span className="timeline-num text-7xl sm:text-9xl md:text-[10rem] font-black tracking-tighter text-white/10 leading-none group-hover:text-white/30 transition-colors duration-500">
+                    0{i+1}
+                  </span>
+                </div>
+                <div className="lg:w-2/3 flex flex-col justify-center">
+                  <h4 className="text-3xl md:text-6xl font-bold tracking-tight text-white mb-4 md:mb-8">
                     {strategy.title}
                   </h4>
-                  <p className="text-lg md:text-2xl lg:text-3xl text-zinc-400 font-light leading-relaxed">
+                  <p className="text-lg md:text-3xl text-zinc-400 font-light leading-relaxed max-w-3xl">
                     {strategy.description}
                   </p>
                 </div>
@@ -169,17 +225,17 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
 
       {/* Psychological Testimonial */}
       {data.testimonial && (
-        <section className="w-full min-h-[50vh] md:min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 bg-black relative z-10 overflow-hidden">
+        <section className="w-full min-h-[50vh] md:min-h-screen flex items-center justify-center py-16 md:py-32 px-6 md:px-12 bg-zinc-950 relative z-10">
           <div className="max-w-5xl w-full text-center cs-section relative">
             {/* Massive quotation marks in background */}
-            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] md:text-[30rem] font-serif text-white/[0.03] leading-none pointer-events-none">"</span>
+            <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[30rem] font-serif text-white/5 leading-none pointer-events-none">"</span>
             
-            <p className="text-2xl md:text-5xl lg:text-7xl leading-[1.3] md:leading-[1.1] font-medium tracking-tight text-zinc-300 mb-12 md:mb-16 relative z-10 break-words max-w-4xl mx-auto">
+            <p className="text-3xl md:text-6xl lg:text-7xl leading-[1.1] font-medium tracking-tight text-white mb-12 md:mb-16 relative z-10 break-words">
               {data.testimonial.quote}
             </p>
-            <div className="flex flex-col items-center gap-4 relative z-10">
-              <div className="w-12 h-px bg-zinc-700" />
-              <span className="text-xs md:text-base uppercase font-mono tracking-widest text-zinc-500 font-bold">
+            <div className="flex flex-col items-center gap-4">
+              <div className="w-16 h-px bg-white/20" />
+              <span className="text-sm md:text-base uppercase font-mono tracking-widest text-zinc-400 font-bold">
                 {data.testimonial.author}
               </span>
             </div>
@@ -190,13 +246,13 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
       {/* Next Project Teaser (Footer area) */}
       <section className="w-full py-24 md:py-48 flex flex-col items-center justify-center border-t border-white/10 bg-black relative z-10 cs-section overflow-hidden">
         <span className="text-zinc-500 font-mono uppercase tracking-widest text-sm mb-8 md:mb-12">System Ready</span>
-        <Link href="/" className="relative group w-full px-4">
-          <span className="text-4xl md:text-9xl font-black tracking-tighter text-white text-center block break-words">
+        <Link href="/" className="relative group w-full px-4 flex items-center justify-center">
+          <span className="text-4xl sm:text-6xl md:text-9xl font-black tracking-tighter text-white text-center block break-words">
             START A PROJECT
           </span>
           {/* Slash over text effect on hover */}
           <div className="absolute inset-0 bg-white scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] flex items-center justify-center">
-            <span className="text-4xl md:text-9xl font-black tracking-tighter text-black text-center block break-words">
+            <span className="text-4xl sm:text-6xl md:text-9xl font-black tracking-tighter text-black text-center block break-words">
               START A PROJECT
             </span>
           </div>
