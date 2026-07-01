@@ -117,21 +117,20 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
           <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-8 md:mb-12">01 / The Situation</h3>
           
           {/* Editorial Drop Cap effect using first-letter */}
-          <p className="text-2xl md:text-4xl font-serif leading-relaxed text-zinc-300 mb-12 md:mb-24 first-letter:text-7xl first-letter:font-black first-letter:text-white first-letter:mr-3 first-letter:float-left">
+          <p className="text-2xl md:text-4xl font-serif leading-relaxed text-zinc-300 mb-12 md:mb-24 first-letter:text-7xl first-letter:font-black first-letter:text-white first-letter:mr-3 first-letter:float-left first-letter:leading-[0.8] first-letter:mt-2">
             {data.overview}
           </p>
 
           <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-8 md:mb-12 border-t border-white/10 pt-8 md:pt-12">02 / The Obstacles</h3>
           <div className="space-y-8 md:space-y-12">
             {data.challenges.map((challenge, i) => (
-              <div key={i} className="flex gap-8">
-                <span className="text-2xl font-mono text-white/20 font-light">0{i+1}</span>
-                <p className="text-xl md:text-3xl font-medium leading-normal text-white">
-                  {/* Aggressive highlighting for emphasis */}
+              <div key={i} className="flex gap-6 md:gap-8 group">
+                <span className="text-xl md:text-2xl font-mono text-zinc-700 font-light group-hover:text-zinc-500 transition-colors mt-1">0{i+1}</span>
+                <p className="text-lg md:text-3xl font-medium leading-normal text-zinc-300">
+                  {/* Premium subtle highlighting */}
                   {challenge.split(' ').map((word, idx) => (
-                    // Randomly highlight some words for that aggressive brutalist look (simplified logic here)
                     (idx === 2 || idx === 5) ? 
-                      <mark key={idx} className="bg-white text-black px-1 mr-1 font-bold">{word}</mark> : 
+                      <span key={idx} className="text-white bg-white/10 px-2 py-0.5 rounded-md mr-1 font-semibold">{word}</span> : 
                       <span key={idx} className="mr-1">{word}</span>
                   ))}
                 </p>
@@ -142,23 +141,23 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
       </section>
 
       {/* The Brutalist Timeline (The "How") */}
-      <section className="w-full py-16 md:py-32 bg-black border-t border-white/10 relative z-10">
+      <section className="w-full py-16 md:py-32 bg-zinc-950 border-t border-white/10 relative z-10 overflow-hidden">
         <div className="max-w-screen-2xl mx-auto px-6 md:px-12">
           <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-12 md:mb-24 cs-section">03 / The Execution</h3>
           
           <div className="flex flex-col border-t border-white/10">
             {data.strategy.map((strategy, i) => (
-              <div key={i} className="flex flex-col lg:flex-row gap-4 lg:gap-24 py-12 md:py-24 border-b border-white/10 cs-section group hover:bg-white/[0.02] transition-colors px-4 lg:px-12 -mx-4 lg:-mx-12">
-                <div className="lg:w-1/3 flex items-start">
-                  <span className="text-6xl md:text-[10rem] font-black tracking-tighter text-white/10 leading-none group-hover:text-white/20 transition-colors">
-                    0{i+1}
-                  </span>
-                </div>
-                <div className="lg:w-2/3 flex flex-col justify-center">
-                  <h4 className="text-3xl md:text-6xl font-bold tracking-tight text-white mb-4 md:mb-8">
+              <div key={i} className="relative py-12 md:py-24 border-b border-white/10 cs-section group hover:bg-white/[0.02] transition-colors overflow-hidden">
+                {/* Background Number */}
+                <span className="absolute -top-4 md:-top-10 -left-4 md:-left-10 text-[10rem] md:text-[18rem] font-black tracking-tighter text-white/[0.03] leading-none select-none z-0 group-hover:text-white/[0.06] transition-colors pointer-events-none">
+                  0{i+1}
+                </span>
+                
+                <div className="relative z-10 flex flex-col justify-center max-w-4xl pt-8 md:pt-16">
+                  <h4 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4 md:mb-8">
                     {strategy.title}
                   </h4>
-                  <p className="text-lg md:text-3xl text-zinc-400 font-light leading-relaxed max-w-3xl">
+                  <p className="text-lg md:text-2xl lg:text-3xl text-zinc-400 font-light leading-relaxed">
                     {strategy.description}
                   </p>
                 </div>
@@ -170,17 +169,17 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
 
       {/* Psychological Testimonial */}
       {data.testimonial && (
-        <section className="w-full min-h-[50vh] md:min-h-screen flex items-center justify-center py-16 md:py-32 px-6 md:px-12 bg-zinc-950 relative z-10">
+        <section className="w-full min-h-[50vh] md:min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 bg-black relative z-10 overflow-hidden">
           <div className="max-w-5xl w-full text-center cs-section relative">
             {/* Massive quotation marks in background */}
-            <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[30rem] font-serif text-white/5 leading-none pointer-events-none">"</span>
+            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] md:text-[30rem] font-serif text-white/[0.03] leading-none pointer-events-none">"</span>
             
-            <p className="text-3xl md:text-6xl lg:text-7xl leading-[1.1] font-medium tracking-tight text-white mb-12 md:mb-16 relative z-10 break-words">
+            <p className="text-2xl md:text-5xl lg:text-7xl leading-[1.3] md:leading-[1.1] font-medium tracking-tight text-zinc-300 mb-12 md:mb-16 relative z-10 break-words max-w-4xl mx-auto">
               {data.testimonial.quote}
             </p>
-            <div className="flex flex-col items-center gap-4">
-              <div className="w-16 h-px bg-white/20" />
-              <span className="text-sm md:text-base uppercase font-mono tracking-widest text-zinc-400 font-bold">
+            <div className="flex flex-col items-center gap-4 relative z-10">
+              <div className="w-12 h-px bg-zinc-700" />
+              <span className="text-xs md:text-base uppercase font-mono tracking-widest text-zinc-500 font-bold">
                 {data.testimonial.author}
               </span>
             </div>
