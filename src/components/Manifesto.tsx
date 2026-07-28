@@ -14,16 +14,17 @@ const BASE_TERMS = [
   { text: "LTV", isFluff: false },
   { text: "SYNERGY", isFluff: true },
   { text: "IMPRESSIONS", isFluff: true },
-  { text: "AWARENESS", isFluff: true },
+  { text: "TAM", isFluff: true },
   { text: "MARGIN", isFluff: false },
   { text: "EBITDA", isFluff: false },
   { text: "VIRALITY", isFluff: true },
   { text: "CONVERSION", isFluff: false },
   { text: "EYEBALLS", isFluff: true },
-  { text: "EXPOSURE", isFluff: true },
+  { text: "HOCKEY STICK GROWTH", isFluff: true },
   { text: "NET PROFIT", isFluff: false },
   { text: "SCALE", isFluff: false },
-  { text: "ENGAGEMENT", isFluff: true },
+  { text: "BRAND LOVE", isFluff: true },
+  { text: "THOUGHT LEADERSHIP", isFluff: true },
   { text: "PROFIT", isFluff: false }
 ];
 

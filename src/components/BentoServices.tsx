@@ -22,8 +22,8 @@ const dialCategories = [
     nodes: [
       { id: "1", title: "Paid Media", desc: "Meta, Google, & LinkedIn Capital Deployment", icon: <Target weight="duotone" className="w-5 h-5 text-red-500" /> },
       { id: "2", title: "Data & Analytics", desc: "Server-side matrices", icon: <ChartLineUp weight="duotone" className="w-5 h-5 text-red-500" /> },
-      { id: "3", title: "Copywriting", desc: "Persuasion engineering", icon: <PenNib weight="duotone" className="w-5 h-5 text-red-500" /> },
-      { id: "4", title: "Web Design", desc: "High-velocity pages", icon: <Browser weight="duotone" className="w-5 h-5 text-red-500" /> },
+      { id: "3", title: "Copywriting", desc: "Words that make people pull out their credit cards", icon: <PenNib weight="duotone" className="w-5 h-5 text-red-500" /> },
+      { id: "4", title: "Web Design", desc: "Landing pages that load faster than an Instagram Reel", icon: <Browser weight="duotone" className="w-5 h-5 text-red-500" /> },
       { id: "5", title: "SEO & Content", desc: "Organic search dominance", icon: <MagnifyingGlass weight="duotone" className="w-5 h-5 text-red-500" /> },
       { id: "6", title: "Email & SMS", desc: "Lifecycle automation", icon: <Envelope weight="duotone" className="w-5 h-5 text-red-500" /> }
     ]
@@ -50,9 +50,9 @@ const dialCategories = [
     glow: "rgba(168,85,247,0.5)",
     nodes: [
       { id: "1", title: "High-Ticket Leads", desc: "Automated pipeline engineering", icon: <Funnel weight="duotone" className="w-5 h-5 text-purple-500" /> },
-      { id: "2", title: "Webinar Funnels", desc: "High-velocity sales events", icon: <VideoCamera weight="duotone" className="w-5 h-5 text-purple-500" /> },
+      { id: "2", title: "Webinar Funnels", desc: "Fixing your 12% show-up rate", icon: <VideoCamera weight="duotone" className="w-5 h-5 text-purple-500" /> },
       { id: "3", title: "VSL Engineering", desc: "Video letters that convert cold", icon: <PresentationChart weight="duotone" className="w-5 h-5 text-purple-500" /> },
-      { id: "4", title: "Community Growth", desc: "Scaling paid groups (Skool)", icon: <Users weight="duotone" className="w-5 h-5 text-purple-500" /> },
+      { id: "4", title: "Community Growth", desc: "Actually getting people to pay for Skool", icon: <Users weight="duotone" className="w-5 h-5 text-purple-500" /> },
       { id: "5", title: "Appointment Setting", desc: "CRM & setter infrastructures", icon: <ChatCircleText weight="duotone" className="w-5 h-5 text-purple-500" /> }
     ]
   }

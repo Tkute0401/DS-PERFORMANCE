@@ -173,7 +173,7 @@ export default function Hero() {
         <div className="w-full flex flex-col gap-8 border-t border-white/10 pt-6 mt-4">
 
           <p className="hero-bottom-element text-xl md:text-3xl text-zinc-400 font-light tracking-tight max-w-4xl leading-relaxed">
-            Stop burning capital on hopeful ad campaigns. We build <strong className="text-white font-medium">ruthless, data-backed acquisition systems</strong> engineered for mathematical certainty.
+            It's 3:15 PM, you've spent ₹50,000 on Meta ads today, and all you have are 12 leads named 'Test'. Stop burning cash on hope. We build <strong className="text-white font-medium">acquisition engines that actually do the math</strong>.
           </p>
 
           {/* Action + Proof Lockup */}
@@ -189,7 +189,7 @@ export default function Hero() {
                 style={{ x: springX, y: springY }}
                 className="group relative flex items-center justify-center gap-4 bg-zinc-100 text-zinc-950 px-8 py-5 rounded-full font-bold overflow-hidden transition-transform shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.2)]"
               >
-                <span className="relative z-10 uppercase tracking-widest text-sm">Audit My System</span>
+                <span className="relative z-10 uppercase tracking-widest text-sm">Roast My Funnel</span>
                 <motion.div
                   animate={{ x: isHovering ? 5 : 0 }}
                   transition={{ type: "spring", stiffness: 300 }}
