@@ -11,7 +11,7 @@ const CASE_STUDIES = [
     industry: "Finance",
     metric: "2X",
     label: "Course Conversions",
-    description: "Scaled lead generation funnels while reducing customer acquisition costs by 50%.",
+    description: "Plugged a bleeding webinar funnel and dropped CPL by 50%.",
     // Data points for the animated chart
     chartPath: "M -100,250 C 100,250 200,200 300,220 C 400,240 500,100 600,120 C 700,140 800,50 1100,0"
   },
@@ -21,7 +21,7 @@ const CASE_STUDIES = [
     industry: "EdTech",
     metric: "120%",
     label: "Admissions",
-    description: "High-ticket enrollment sales driven through hyper-targeted paid media.",
+    description: "Stopped paying for students who just wanted free PDFs.",
     chartPath: "M -100,280 L 200,250 L 400,270 L 600,120 L 800,150 L 1100,0"
   },
   {
@@ -30,7 +30,7 @@ const CASE_STUDIES = [
     industry: "Trading / Edu",
     metric: "3X",
     label: "Business Growth",
-    description: "Optimized conversion rate architecture for course enrollments.",
+    description: "Stopped selling trading courses to 18-year-olds with no money.",
     chartPath: "M -100,280 C 300,280 400,80 1100,0"
   },
   {
@@ -39,7 +39,7 @@ const CASE_STUDIES = [
     industry: "D2C E-commerce",
     metric: "3.5x",
     label: "ROAS Maintained",
-    description: "Scaled D2C health supplement sales with high-converting paid media and retention funnels.",
+    description: "Took a legacy offline brand to Shopify in 60 days.",
     chartPath: "M -100,260 C 150,280 250,220 400,230 C 600,240 750,80 1100,0"
   }
 ];
@@ -60,7 +60,7 @@ export default function CaseStudies() {
         <div className="sticky top-12 md:top-24 z-20 mb-8 md:mb-16 pointer-events-none drop-shadow-xl">
           <p className="font-mono text-sm tracking-widest text-zinc-500 uppercase mb-2 md:mb-4">Phase 03</p>
           <h2 className="text-5xl md:text-7xl font-black tracking-tighter mix-blend-difference text-white">
-            THE ARCHIVE.
+            THE RECEIPTS.
           </h2>
         </div>
 

@@ -5,11 +5,11 @@ import gsap from "gsap";
 import { ArrowRight } from "@phosphor-icons/react";
 
 const PRAISE = [
-  "Our CAC dropped by 45% in month one.",
-  "They engineered a funnel that actually works.",
-  "Finally, an agency that speaks math.",
-  "Scaled from $10k to $100k/mo ad spend profitably.",
-  "The data attribution is flawless."
+  "They stopped us from burning $50k a day on useless traffic.",
+  "The first agency that didn't just give us a shiny PowerPoint.",
+  "Finally, someone who understands math, not just 'brand synergy'.",
+  "Scaled us to $100k/mo without destroying our margins.",
+  "They found exactly where our leads were ghosting us."
 ];
 
 export default function Footer() {
@@ -46,11 +46,11 @@ export default function Footer() {
       {/* Massive CTA */}
       <div className="w-full max-w-6xl mx-auto px-6 md:px-12 py-32 flex flex-col items-center text-center relative z-10">
         <h2 className="text-[12vw] leading-none font-bold tracking-tighter mb-12 text-white">
-          START SCALING.
+          STOP GUESSING.
         </h2>
         
         <button className="group relative flex items-center justify-center gap-3 bg-white text-black px-12 py-6 rounded-full font-bold text-xl overflow-hidden transition-transform hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.2)]">
-          <span className="relative z-10">Book a Strategy Call</span>
+          <span className="relative z-10">Roast My Funnel</span>
           <ArrowRight weight="bold" className="relative z-10 w-6 h-6 group-hover:translate-x-1 transition-transform" />
         </button>
       </div>

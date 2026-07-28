@@ -68,7 +68,7 @@ export default function Navigation() {
 
         <div className="flex items-center gap-4">
           <button onClick={openConversionModal} className="hidden md:block bg-white text-black px-5 py-2 rounded-full text-sm font-bold hover:scale-105 transition-transform">
-            Start Scaling
+            Roast My Funnel
           </button>
           
           {/* Mobile Hamburger */}
@@ -126,7 +126,7 @@ export default function Navigation() {
                 onClick={() => { setMenuOpen(false); openConversionModal(); }} 
                 className="mt-8 text-left text-xl font-black bg-white text-black py-5 px-6 hover:bg-red-500 hover:text-white transition-colors w-full uppercase"
               >
-                START SCALING
+                ROAST MY FUNNEL
               </button>
             </motion.div>
           </motion.div>

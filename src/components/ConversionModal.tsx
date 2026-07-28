@@ -82,7 +82,7 @@ export default function ConversionModal() {
 
             {step === 2 && (
               <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
-                <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-8">Current Monthly Ad Spend?</h2>
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-8">How much are you burning on ads per month?</h2>
                 <div className="flex flex-col gap-4">
                   <label className={`p-6 border rounded-xl cursor-pointer transition-colors ${selectedSpend === "under10k" ? "border-white bg-white/10" : "border-white/10 hover:border-white/30"}`}>
                     <input type="radio" value="under10k" className="hidden" {...register("adSpend")} />
@@ -107,8 +107,8 @@ export default function ConversionModal() {
               <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center">
                 {selectedSpend === "under10k" ? (
                   <>
-                    <h2 className="text-4xl font-bold tracking-tighter mb-4">Not quite ready.</h2>
-                    <p className="text-white/60 mb-8 text-lg">We currently only partner with brands spending $10k+ monthly. Here are some free resources to help you scale to that point.</p>
+                    <h2 className="text-4xl font-bold tracking-tighter mb-4">You don't need us yet.</h2>
+                    <p className="text-white/60 mb-8 text-lg">We only fix systems spending $10k+ a month. Until then, use these resources to get your house in order.</p>
                     <button onClick={() => { closeConversionModal(); setStep(1); }} className="px-8 py-4 border border-white/20 text-white font-bold uppercase tracking-widest rounded-full hover:bg-white/5">
                       Get Resources
                     </button>
@@ -118,7 +118,7 @@ export default function ConversionModal() {
                     <h2 className="text-4xl font-bold tracking-tighter mb-4">
                       {selectedAvatar === "enterprise" ? "Book a Strategy Audit" : "Apply for Partnership"}
                     </h2>
-                    <p className="text-white/60 mb-8 text-lg">You qualify for a high-level performance teardown. Let&apos;s map out your next inflection point.</p>
+                    <p className="text-white/60 mb-8 text-lg">You qualify for a performance teardown. Let's find exactly where you're leaking capital.</p>
                     <div className="w-full aspect-video bg-white/5 rounded-2xl border border-white/10 flex items-center justify-center">
                       <span className="text-white/30 uppercase tracking-widest">[ {selectedAvatar === "enterprise" ? "Calendly Embed" : "Application Form Embed"} ]</span>
                     </div>
