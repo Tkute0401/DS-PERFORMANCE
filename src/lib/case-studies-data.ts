@@ -203,7 +203,7 @@ export const caseStudiesData: Record<string, CaseStudy> = {
       { metric: "3.28x", label: "Return on Ad Spend" }
     ],
     testimonial: {
-      quote: "I was struggling with getting banned constantly and stuck at 1-2 conversions a month. The compliance funnel they built not only stabilized our accounts but completely unlocked our scale. We're now consistently doing 400+ conversions without worrying about SEBI registration bans.",
+      quote: "I was struggling with getting banned constantly and stuck at 1-2 conversions a month. The compliance funnel they built not only stabilized our accounts but completely unlocked our scale. We're now consistently doing 60+ conversions monthly without worrying about SEBI registration bans.",
       author: "Rohit Saraf, Trading Coach"
     }
   }

@@ -8,8 +8,8 @@ const TESTIMONIALS = [
   {
     client: "Rohit Saraf",
     role: "Trading Coach",
-    quote: "I was struggling with getting banned constantly and stuck at 1-2 conversions a month. The compliance funnel they built not only stabilized our accounts but completely unlocked our scale. We're now consistently doing 400+ conversions without worrying about SEBI registration bans.",
-    metric: "400+ Conversions/mo",
+    quote: "I was struggling with getting banned constantly and stuck at 1-2 conversions a month. The compliance funnel they built not only stabilized our accounts but completely unlocked our scale. We're now consistently doing 60+ conversions monthly without worrying about SEBI registration bans.",
+    metric: "60+ Conversions/mo",
     image: "/rohit-saraf.jpg", // Placeholder if we get real image, else uses fallback styling
     hasVideo: false
   },
