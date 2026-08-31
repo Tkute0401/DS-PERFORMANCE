@@ -31,6 +31,7 @@ export const caseStudiesData: Record<string, CaseStudy> = {
     heroSubheadline: "Code Hub India had a great course, but their ads were burning cash on students who just wanted free PDFs. We fixed the math.",
     overview: "Founders think 'EdTech is saturated.' Reality? You're just targeting students who are scrolling memes at 2 AM with generic 'Learn to Code' ads. Code Hub was bleeding cash on bad leads. We didn't need a new logo; we needed a ruthless, intent-based acquisition system.",
     image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop",
+    proofImage: "/codehub-screenshot.png",
     challenges: [
       "Low brand awareness in a highly saturated EdTech market.",
       "Previous marketing efforts were not driving qualified leads.",
@@ -68,6 +69,7 @@ export const caseStudiesData: Record<string, CaseStudy> = {
     heroSubheadline: "Scaling a Nashik-based trading academy by completely re-engineering who they talk to.",
     overview: "The finance niche is a bloodbath of fake gurus and high CPMs. Trading Monk had a phenomenal product, but their ads were bringing in cheap, low-intent traffic that never bought. We had to completely re-engineer who they were talking to.",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
+    proofImage: "/trading-monk-screenshot.png",
     challenges: [
       "Low initial brand recognition in a fiercely competitive trading education space.",
       "Inefficient lead generation campaigns bleeding ad spend.",
@@ -201,9 +203,9 @@ export const caseStudiesData: Record<string, CaseStudy> = {
       }
     ],
     results: [
-      { metric: "₹4.04M", label: "Total Revenue Generated" },
-      { metric: "404", label: "Total Conversions" },
-      { metric: "3.28x", label: "Return on Ad Spend" }
+      { metric: "₹4M+", label: "Total Revenue Generated" },
+      { metric: "400+", label: "Total Conversions" },
+      { metric: "3x+", label: "Return on Ad Spend" }
     ],
     testimonial: {
       quote: "I was struggling with getting banned constantly and stuck at 1-2 conversions a month. The compliance funnel they built not only stabilized our accounts but completely unlocked our scale. We're now consistently doing 60+ conversions monthly without worrying about SEBI registration bans.",

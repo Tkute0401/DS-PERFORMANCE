@@ -288,7 +288,7 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
       {/* Next Project Teaser (Footer area) */}
       <section className="w-full py-24 md:py-48 flex flex-col items-center justify-center border-t border-white/10 bg-black relative z-10 cs-section overflow-hidden">
         <span className="text-zinc-500 font-mono uppercase tracking-widest text-sm mb-8 md:mb-12">System Ready</span>
-        <Link href="/" className="relative group w-full px-4">
+        <Link href="https://wa.me/919689772890" target="_blank" rel="noopener noreferrer" className="relative group w-full px-4">
           <span className="text-4xl md:text-9xl font-black tracking-tighter text-white text-center block break-words">
             START A PROJECT
           </span>
