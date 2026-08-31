@@ -142,6 +142,7 @@ export const caseStudiesData: Record<string, CaseStudy> = {
     heroSubheadline: "You spend ₹1 Lakh to get people to register, and 15 people show up. We plugged the holes.",
     overview: "You spend ₹1 Lakh to get people to register for a webinar, and only 15 people show up. That's the visceral pain Finanthropist was facing. Their traffic wasn't the problem; their qualification and reminder systems were non-existent. We plugged the holes.",
     image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=2574&auto=format&fit=crop",
+    proofImage: "/finanthropist-screenshot.jpeg",
     challenges: [
       "Staggeringly high Cost Per Lead (CPL) eating into profit margins.",
       "Terrible show-up rates for live webinars (leads ghosting).",
