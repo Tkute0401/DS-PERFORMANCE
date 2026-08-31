@@ -169,5 +169,42 @@ export const caseStudiesData: Record<string, CaseStudy> = {
       quote: "Our webinar funnel was bleeding cash because leads were ghosting. They stepped in, ripped up our creatives, and deployed an aggressive automation sequence that pushed our show-up rate to 80%. They doubled our course sales in a saturated market. Do not hire anyone else.",
       author: "CEO, Finanthropist"
     }
+  },
+  "rohit-saraf": {
+    slug: "rohit-saraf",
+    client: "Rohit Saraf",
+    industry: "Trading Coach",
+    heroHeadline: "Unlocking 400+ conversions in the restricted finance niche.",
+    heroSubheadline: "Mastering Meta Ads compliance without SEBI registration to scale a high-ticket trading offer.",
+    overview: "Before our intervention, the client was trapped in a cycle of frustration. With a high-ticket trading offer, they were struggling to break past a stagnant 1 to 2 conversions per month. Every attempt to scale ad spend was met with the anxiety of potential account bans due to Meta's aggressive compliance crackdowns. We engineered a bespoke Meta Ads Compliance Funnel to unlock their growth.",
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop",
+    challenges: [
+      "No SEBI Registration acting as a shield.",
+      "Constant threat of permanent ad account bans.",
+      "Stuck at 1-2 conversions/month, making it impossible to scale."
+    ],
+    strategy: [
+      {
+        title: "The Architecture of Trust",
+        description: "We engineered a bespoke Meta Ads Compliance Funnel, analyzing every single ad creative, copy, and landing page through four separate, rigorous compliance checks."
+      },
+      {
+        title: "Compliance Scoring",
+        description: "Achieved a Meta Ad Compliance Score of 95-100%—virtually unheard of in the trading niche for non-registered entities."
+      },
+      {
+        title: "Aggressive Scaling",
+        description: "Once the accounts were stabilized and trusted by Meta, we aggressively scaled ad spend to ₹1.2M while maintaining profitability."
+      }
+    ],
+    results: [
+      { metric: "₹4.04M", label: "Total Revenue Generated" },
+      { metric: "404", label: "Total Conversions" },
+      { metric: "3.28x", label: "Return on Ad Spend" }
+    ],
+    testimonial: {
+      quote: "I was struggling with getting banned constantly and stuck at 1-2 conversions a month. The compliance funnel they built not only stabilized our accounts but completely unlocked our scale. We're now consistently doing 400+ conversions without worrying about SEBI registration bans.",
+      author: "Rohit Saraf, Trading Coach"
+    }
   }
 };
