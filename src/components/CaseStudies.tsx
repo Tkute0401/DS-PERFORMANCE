@@ -41,6 +41,15 @@ const CASE_STUDIES = [
     label: "ROAS Maintained",
     description: "Took a legacy offline brand to Shopify in 60 days.",
     chartPath: "M -100,260 C 150,280 250,220 400,230 C 600,240 750,80 1100,0"
+  },
+  {
+    client: "Rohit Saraf",
+    slug: "rohit-saraf",
+    industry: "Trading Coach",
+    metric: "400+",
+    label: "Conversions",
+    description: "Scaled from 1-2 conversions to 400+ despite strict Meta compliance blocks.",
+    chartPath: "M -100,280 C 150,280 250,260 400,180 C 600,100 750,20 1100,0"
   }
 ];
 

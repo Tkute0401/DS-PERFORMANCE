@@ -5,10 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ArrowRight, ArrowDownRight } from "@phosphor-icons/react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { useUIStore } from "@/store/useUIStore";
-
 export default function Hero() {
-  const { openConversionModal } = useUIStore();
   const containerRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLDivElement>(null);
 
@@ -45,7 +42,7 @@ export default function Hero() {
   const springX = useSpring(mx, { stiffness: 150, damping: 15, mass: 0.1 });
   const springY = useSpring(my, { stiffness: 150, damping: 15, mass: 0.1 });
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const mouseX = e.clientX - rect.left - rect.width / 2;
     const mouseY = e.clientY - rect.top - rect.height / 2;
@@ -181,8 +178,10 @@ export default function Hero() {
 
             {/* CTA Group */}
             <div className="hero-bottom-element flex flex-wrap items-center gap-4">
-              <motion.button
-                onClick={openConversionModal}
+              <motion.a
+                href="https://wa.me/919689772890"
+                target="_blank"
+                rel="noopener noreferrer"
                 onMouseMove={handleMouseMove}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={handleMouseLeave}
@@ -197,12 +196,12 @@ export default function Hero() {
                 >
                   <ArrowRight weight="bold" className="w-4 h-4" />
                 </motion.div>
-              </motion.button>
+              </motion.a>
 
-              <button className="px-8 py-5 rounded-full font-bold text-sm uppercase tracking-widest text-zinc-500 hover:text-white transition-colors duration-500 flex items-center justify-center gap-2 group">
+              <a href="https://wa.me/919689772890" target="_blank" rel="noopener noreferrer" className="px-8 py-5 rounded-full font-bold text-sm uppercase tracking-widest text-zinc-500 hover:text-white transition-colors duration-500 flex items-center justify-center gap-2 group">
                 See The Math
                 <ArrowDownRight weight="bold" className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
-              </button>
+              </a>
             </div>
 
             {/* Stats Grid - Directly adjacent to CTA for psychological proof */}

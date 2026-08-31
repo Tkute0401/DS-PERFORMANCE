@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import Manifesto from "@/components/Manifesto";
 import BentoServices from "@/components/BentoServices";
 import CaseStudies from "@/components/CaseStudies";
+import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Manifesto />
       <BentoServices />
       <CaseStudies />
+      <Testimonials />
       <Footer />
     </>
   );

@@ -4,11 +4,9 @@ import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { useUIStore } from "@/store/useUIStore";
 import { List, X } from "@phosphor-icons/react";
 
 export default function Navigation() {
-  const { openConversionModal } = useUIStore();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -67,9 +65,9 @@ export default function Navigation() {
         </div>
 
         <div className="flex items-center gap-4">
-          <button onClick={openConversionModal} className="hidden md:block bg-white text-black px-5 py-2 rounded-full text-sm font-bold hover:scale-105 transition-transform">
+          <a href="https://wa.me/919689772890" target="_blank" rel="noopener noreferrer" className="hidden md:block bg-white text-black px-5 py-2 rounded-full text-sm font-bold hover:scale-105 transition-transform">
             Roast My Funnel
-          </button>
+          </a>
           
           {/* Mobile Hamburger */}
           <button 
@@ -122,12 +120,15 @@ export default function Navigation() {
             </motion.div>
             
             <motion.div variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1 } }}>
-              <button 
-                onClick={() => { setMenuOpen(false); openConversionModal(); }} 
-                className="mt-8 text-left text-xl font-black bg-white text-black py-5 px-6 hover:bg-red-500 hover:text-white transition-colors w-full uppercase"
+              <a 
+                href="https://wa.me/919689772890" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)} 
+                className="mt-8 text-left text-xl font-black bg-white text-black py-5 px-6 hover:bg-red-500 hover:text-white transition-colors w-full uppercase block"
               >
                 ROAST MY FUNNEL
-              </button>
+              </a>
             </motion.div>
           </motion.div>
         </motion.div>

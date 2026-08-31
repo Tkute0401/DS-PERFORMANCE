@@ -49,10 +49,10 @@ export default function Footer() {
           STOP GUESSING.
         </h2>
         
-        <button className="group relative flex items-center justify-center gap-3 bg-white text-black px-12 py-6 rounded-full font-bold text-xl overflow-hidden transition-transform hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+        <a href="https://wa.me/919689772890" target="_blank" rel="noopener noreferrer" className="group relative flex items-center justify-center gap-3 bg-white text-black px-12 py-6 rounded-full font-bold text-xl overflow-hidden transition-transform hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.2)]">
           <span className="relative z-10">Roast My Funnel</span>
           <ArrowRight weight="bold" className="relative z-10 w-6 h-6 group-hover:translate-x-1 transition-transform" />
-        </button>
+        </a>
       </div>
 
       {/* Bottom Links */}
