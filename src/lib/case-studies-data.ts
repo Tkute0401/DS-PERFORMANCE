@@ -177,7 +177,7 @@ export const caseStudiesData: Record<string, CaseStudy> = {
     heroHeadline: "Unlocking 400+ conversions in the restricted finance niche.",
     heroSubheadline: "Mastering Meta Ads compliance without SEBI registration to scale a high-ticket trading offer.",
     overview: "Before our intervention, the client was trapped in a cycle of frustration. With a high-ticket trading offer, they were struggling to break past a stagnant 1 to 2 conversions per month. Every attempt to scale ad spend was met with the anxiety of potential account bans due to Meta's aggressive compliance crackdowns. We engineered a bespoke Meta Ads Compliance Funnel to unlock their growth.",
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop",
+    image: "/rohit-saraf-screenshot.png",
     challenges: [
       "No SEBI Registration acting as a shield.",
       "Constant threat of permanent ad account bans.",
