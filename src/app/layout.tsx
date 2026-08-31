@@ -29,6 +29,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-950 text-white`}
+      suppressHydrationWarning
     >
       <body className="min-h-screen w-full max-w-full overflow-x-hidden">
         <SmoothScroller>
