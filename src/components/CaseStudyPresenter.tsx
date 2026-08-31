@@ -220,10 +220,28 @@ export default function CaseStudyPresenter({ data }: { data: CaseStudy }) {
         </div>
       </section>
 
+      {/* The Evidence (Optional) */}
+      {data.proofImage && (
+        <section className="w-full py-16 md:py-32 bg-zinc-900 border-t border-white/10 relative z-10 flex justify-center px-6">
+          <div className="max-w-screen-xl w-full cs-section">
+            <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-8 md:mb-12">03 / The Evidence (Ads Manager)</h3>
+            <div className="w-full rounded-xl overflow-hidden border border-white/10 shadow-2xl relative group">
+              <img 
+                src={data.proofImage} 
+                alt="Ads Manager Proof" 
+                className="w-full h-auto object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-in-out" 
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* The Brutalist Timeline (The "How") */}
       <section className="w-full py-16 md:py-32 bg-black border-t border-white/10 relative z-10">
         <div className="max-w-screen-2xl mx-auto px-6 md:px-12">
-          <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-12 md:mb-24 cs-section">03 / The Execution</h3>
+          <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-600 mb-12 md:mb-24 cs-section">
+            {data.proofImage ? '04' : '03'} / The Execution
+          </h3>
           
           <div className="flex flex-col border-t border-white/10">
             {data.strategy.map((strategy, i) => (
